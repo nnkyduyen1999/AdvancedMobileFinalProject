@@ -14,13 +14,7 @@ export default function CardCustom(props) {
 }
 
 const styles = StyleSheet.create({
-  cardLayout: {
-    width: 200,
-    height: 180,
-    borderRadius: 10,
-    backgroundColor: "rgba(108, 122, 137, 1)",
-    marginRight: 10,
-  },
+  cardLayout: css.cardLayout,
   imgStyle: {
     width: 200,
     height: 100,

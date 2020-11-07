@@ -13,14 +13,7 @@ export default function Bookmarks () {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#708090",
-        marginVertical: 10,
-        paddingVertical: 50
-    },
+    container: css.viewWithRadius,
     imgStyle: {
         width: 50,
         height: 50

@@ -4,11 +4,11 @@ import { Header} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const settingIcon = <Icon name="cog" size={25} color="white"/>;
-export default function HeaderCustom() {
+export default function HeaderCustom(props) {
   return (
     <Header containerStyle={styles.container}
       leftComponent={settingIcon}
-      centerComponent={{ text: "HOME", style: { color: "white" } }}
+      centerComponent={{ text: props.name, style: { color: "white", fontWeight: "bold"} }}
     />
   );
 }

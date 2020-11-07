@@ -13,7 +13,7 @@ const seeAllIcon = <Icon name="angle-right" size={10} color="white" />;
 export default function Home() {
   return (
     <View style={styles.content}>
-      <Header />
+      <Header name="Home"/>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.subContainer}>
           <Text h2 style={styles.titleStyle}>
