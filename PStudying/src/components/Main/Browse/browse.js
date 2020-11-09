@@ -14,13 +14,13 @@ const Browse = () => {
       <ScreenHeader screenTitle="Browse" />
       <ImageButton txt="New Released" imgName="new-release.jpg" imgType={css.largeImgButton}/>
       <ImageButton txt="Recommend for you" imgName="recommended.png" imgType={css.largeImgButton}/>
-      <View>
+      <View style={{marginVertical: 20}}>
         <SectionCourseTitle sectionTitle="Popular Skills" />
         <ButtonCategory />
         <ImageButtonCategory />
       </View>
       <SectionCourses title="Paths" />
-      <ListAuthor />
+      <ListAuthor title="Top Authors"/>
     </ScrollView>
   );
 };

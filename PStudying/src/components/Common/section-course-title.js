@@ -5,30 +5,24 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import css from "../../globals/style";
 
-const seeAllIcon = <Icon name="angle-right" size={10} color="white" />;
+const seeAllIcon = <Icon name="angle-right" size={10} color="white"/>;
 
-const SectionCourseTitle = ({ sectionTitle }) => {
+const SectionCourseTitle = ({ sectionTitle, seeAll }) => {
   return (
     <View style={styles.titleLayout}>
       <Text style={css.sectionTitle}>{sectionTitle}</Text>
-      <Button
-        title="See all"
-        buttonStyle={styles.seeAllBtn}
+      {seeAll && <Button
+        title="See all  "
+        buttonStyle={css.buttonLayoutSmall}
         icon={seeAllIcon}
         iconRight={true}
         titleStyle={css.buttonTitle}
-      ></Button>
+      ></Button>}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    seeAllBtn: {
-    borderRadius: 12,
-    backgroundColor: "#2C3039",
-    paddingHorizontal: 8,
-    paddingVertical: 2
-    },
     titleLayout: {
         display: "flex",
         flex: 1,

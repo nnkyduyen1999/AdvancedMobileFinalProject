@@ -25,9 +25,22 @@ export default StyleSheet.create({
     color:theme.SECONDARY_TEXT_COLOR
   },
   buttonTitle: {
-    fontSize: theme.FONT_SIZE_BUTTON_TITLE, 
+    fontSize: theme.FONT_SIZE_SMALL,
     color: theme.PRIMARY_TEXT_COLOR,
-    marginRight: theme.SMALL_MARGIN
+  },
+  buttonLayoutSmall: {
+    borderRadius: 12,
+    backgroundColor: theme.RADIUS_BTN_BGR,
+    paddingHorizontal: 8,
+    paddingVertical: 3
+  },
+  buttonLayoutBig: {
+    borderRadius: 14,
+    paddingHorizontal: 15,
+    paddingVertical: 6,
+    backgroundColor: theme.RADIUS_BTN_BGR,
+    marginVertical: theme.LARGE_MARGIN,
+    marginRight: theme.LARGE_MARGIN
   },
   screenContent: {
     margin: theme.LARGE_MARGIN,

@@ -37,7 +37,7 @@ const SectionCourses = (props) => {
   };
   return (
     <View style={styles.container}>
-      <SectionCourseTitle sectionTitle={props.title} />
+      <SectionCourseTitle sectionTitle={props.title} seeAll="true"/>
       <ScrollView style={styles.list} horizontal={true}>
         {renderSectionCoursesItems(courses)}
       </ScrollView>
