@@ -3,7 +3,8 @@ import theme from "./theme";
 
 export default StyleSheet.create({
   darkTheme: {
-    backgroundColor: theme.DARK_THEME
+    backgroundColor: theme.DARK_THEME,
+    flex: 1,
   },
   screenTitle: {
     fontSize: theme.FONT_SIZE_SCREEN_TITLE, 
