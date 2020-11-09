@@ -44,6 +44,7 @@ export default StyleSheet.create({
   },
   screenContent: {
     margin: theme.LARGE_MARGIN,
+    paddingVertical: theme.LARGE_PADDING,
   },
   viewWithRadius: {
     display: "flex",

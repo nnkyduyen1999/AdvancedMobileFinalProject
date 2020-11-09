@@ -12,7 +12,7 @@ export default function home() {
   }];
   const channels = [];
   return (
-    <ScrollView style={css.screenContent}>
+    <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Home" />
       <SectionCourses title="Continue learning" />
       <SectionCourses title="Paths" />
