@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import theme from "./theme";
 
 export default StyleSheet.create({
+  darkTheme: {
+    backgroundColor: theme.DARK_THEME
+  },
   screenTitle: {
     fontSize: theme.FONT_SIZE_SCREEN_TITLE, 
     fontWeight: theme.FONT_WEIGHT_HEAVY,
@@ -37,5 +40,19 @@ export default StyleSheet.create({
     paddingVertical: 40,
     marginVertical: 10,
     borderRadius: 3,
+  },
+  largeImgButton: {
+    height: theme.LARGE_IMG_BUTTON_HEIGHT,
+  },
+  smallImgButton: {
+    height: theme.SMALL_IMG_BUTTON_HEIGHT,
+    width: theme.SMALL_IMG_BUTTON_WIDTH,
+  },
+  imgBtnText: {
+    fontSize: theme.FONT_SIZE_LARGE,
+    color: theme.PRIMARY_TEXT_COLOR,
+    textTransform: "uppercase",
+    fontWeight: theme.FONT_WEIGHT_MID,
+    textAlign: "center",
   }
 });
