@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, Text, Button, View, StyleSheet } from "react-native";
 import SectionCourseItems from "../SectionCourseItems/section-course-items";
 import css from "../../../../globals/style";
+import SectionCourseTitle from "../../../Common/section-course-title";
 const SectionCourses = (props) => {
   const courses = [
     {
@@ -36,21 +37,17 @@ const SectionCourses = (props) => {
   };
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={css.sectionTitle}>{props.title}</Text>
-        {/* <Button title="See all"></Button> */}
-      </View>
+      <SectionCourseTitle sectionTitle={props.title} />
       <ScrollView style={styles.list} horizontal={true}>
         {renderSectionCoursesItems(courses)}
       </ScrollView>
     </View>
   );
-  
 };
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    marginVertical: 20,
   },
   list: {
     marginVertical: 15,
