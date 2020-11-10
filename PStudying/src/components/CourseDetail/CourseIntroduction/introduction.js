@@ -6,11 +6,11 @@ import theme from "../../../globals/theme";
 import CourseInfo from "../../Common/course-info";
 import CustomIcon from "../../Common/custom-icon";
 
-const Introduction = ({ lesson }) => {
+const Introduction = ({ course }) => {
   return (
     <View>
       <CourseInfo
-        courseInfo={lesson}
+        courseInfo={course}
         nameStyle={css.courseDetailTitle}
         authorStyle={css.buttonLayoutBig}
       />
@@ -22,7 +22,7 @@ const Introduction = ({ lesson }) => {
       <Divider style={css.divider} />
       <View style={styles.textContainer}>
         <Text style={{ color: theme.SECONDARY_TEXT_COLOR }} numberOfLines={3}>
-          {lesson.description}
+          {course.description}
         </Text>
       </View>
       <Button
