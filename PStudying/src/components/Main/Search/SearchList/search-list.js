@@ -1,11 +1,11 @@
 import React from 'react';
-import { ScrollView } from 'react-native'
+import { SectionList, SectioSectionList } from 'react-native'
 
 const SearchList = ({title, clearBtn}) => {
     return (
-        <ScrollView>
+        <SectionList>
             
-        </ScrollView>
+        </SectionList>
     );
 }
 

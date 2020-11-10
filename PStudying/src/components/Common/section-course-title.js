@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-
 import css from "../../globals/style";
+import theme from "../../globals/theme";
 
+import Icon from "react-native-vector-icons/FontAwesome";
 const seeAllIcon = <Icon name="angle-right" size={10} color="white"/>;
 
 const SectionCourseTitle = ({ sectionTitle, seeAll }) => {
@@ -12,7 +12,7 @@ const SectionCourseTitle = ({ sectionTitle, seeAll }) => {
     <View style={styles.titleLayout}>
       <Text style={css.sectionTitle}>{sectionTitle}</Text>
       {seeAll && <Button
-        title="See all  "
+        title={`${seeAll}`}
         buttonStyle={css.buttonLayoutSmall}
         icon={seeAllIcon}
         iconRight={true}
@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: theme.DARK_THEME,
+        paddingVertical: theme.SMALL_PADDING
     }
 })
 

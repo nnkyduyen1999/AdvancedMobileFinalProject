@@ -36,22 +36,14 @@ const SectionCourses = (props) => {
     ));
   };
   return (
-    <View style={styles.container}>
-      <SectionCourseTitle sectionTitle={props.title} seeAll="true"/>
-      <ScrollView style={styles.list} horizontal={true}>
+    <View>
+      <SectionCourseTitle sectionTitle={props.title} seeAll="See All   "/>
+      <ScrollView horizontal={true}>
         {renderSectionCoursesItems(courses)}
       </ScrollView>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 20,
-  },
-  list: {
-    marginVertical: 15,
-  },
-});
 
 export default SectionCourses;

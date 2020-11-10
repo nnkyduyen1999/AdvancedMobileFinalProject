@@ -40,12 +40,16 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 6,
     backgroundColor: theme.RADIUS_BTN_BGR,
-    marginVertical: theme.LARGE_MARGIN,
-    marginRight: theme.LARGE_MARGIN
+    marginRight: theme.LARGE_MARGIN,
+    marginBottom: theme.LARGE_MARGIN
   },
   screenContent: {
     margin: theme.LARGE_MARGIN,
     paddingVertical: theme.LARGE_PADDING,
+  },
+  screenContentNoPaddingTop:  {
+    margin: theme.LARGE_MARGIN,
+    paddingBottom: theme.LARGE_PADDING,
   },
   viewWithRadius: {
     display: "flex",
@@ -69,5 +73,17 @@ export default StyleSheet.create({
     textTransform: "uppercase",
     fontWeight: theme.FONT_WEIGHT_MID,
     textAlign: "center",
+  },
+  divider: {
+    backgroundColor: theme.DIVIDER_BGR,
+    marginVertical: theme.SMALL_MARGIN
+  },
+  iconText: {
+    color: theme.BASIC_BLUE,
+    fontSize: theme.FONT_SIZE_LARGE,
+    marginHorizontal: theme.SMALL_MARGIN
+  },
+  displayRow: {
+    flexDirection: "row"
   }
 });
