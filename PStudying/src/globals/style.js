@@ -29,6 +29,11 @@ export default StyleSheet.create({
     fontSize: theme.FONT_SIZE_SMALL,
     color: theme.PRIMARY_TEXT_COLOR,
   },
+  courseDetailTitle: {
+    color: theme.PRIMARY_TEXT_COLOR,
+    fontSize: theme.FONT_SIZE_COURSE_TITLE,
+    fontWeight: theme.FONT_WEIGHT_MID
+  },
   buttonLayoutSmall: {
     borderRadius: 12,
     backgroundColor: theme.RADIUS_BTN_BGR,

@@ -15,7 +15,7 @@ const listCourseItems = ({ course }) => {
               "https://pluralsight.imgix.net/course-images/securing-iis-websites-v1.png",
           }}
         />
-        <CourseInfo courseInfo={course} />
+        <CourseInfo courseInfo={course} nameStyle={css.courseTitle}/>
       </View>
       <Divider style={css.divider} />
     </View>

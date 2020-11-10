@@ -8,10 +8,11 @@ import ButtonCategory from "./Category/ButtonCategory";
 import ImageButton from "../../Common/image-button";
 import ScreenHeader from "../../Common/screen-header";
 import css from "../../../globals/style";
+
 const Browse = () => {
   return (
     <ScrollView contentContainerStyle={css.screenContent}>
-      <ScreenHeader screenTitle="Browse" />
+      <ScreenHeader screenTitle="Browse"/>
       <ImageButton txt="New Released" imgName="new-release.jpg" imgType={css.largeImgButton}/>
       <ImageButton txt="Recommend for you" imgName="recommended.png" imgType={css.largeImgButton}/>
       <View style={{marginVertical: 20}}>

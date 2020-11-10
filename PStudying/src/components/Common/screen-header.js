@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native'
-import css from "../../globals/style";
+import css from "../../globals/style"
 const ScreenHeader = ({screenTitle}) => {
     return (
         <View style={{paddingVertical: 20}}>

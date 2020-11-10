@@ -10,7 +10,7 @@ export default function search() {
   return (
     <SearchDetail/>
     // <ScrollView contentContainerStyle={css.screenContent}>
-    //   <ScreenHeader screenTitle="Search" />
+    //   <ScreenHeader screenTitle="Search"/>
     //   <SearchBarCustom />
     //   <SearchList title="Recent searches" clearBtn="true"/>
     //   <SearchList title="Your interested"/>
