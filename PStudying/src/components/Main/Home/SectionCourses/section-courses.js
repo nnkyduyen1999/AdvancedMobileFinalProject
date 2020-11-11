@@ -3,6 +3,7 @@ import { ScrollView, Text, Button, View, StyleSheet } from "react-native";
 import SectionCourseItems from "../SectionCourseItems/section-course-items";
 import css from "../../../../globals/style";
 import SectionCourseTitle from "../../../Common/section-course-title";
+
 const SectionCourses = (props) => {
   const courses = [
     {
@@ -32,7 +33,7 @@ const SectionCourses = (props) => {
   ];
   const renderSectionCoursesItems = (courses) => {
     return courses.map((item, index) => (
-      <SectionCourseItems key={index} courseInfo={item} />
+      <SectionCourseItems key={index} courseInfo={item} nameStyle={css.courseTitle}/>
     ));
   };
   return (

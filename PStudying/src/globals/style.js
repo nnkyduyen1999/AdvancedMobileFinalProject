@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import theme from "./theme";
 
 export default StyleSheet.create({
@@ -7,23 +7,23 @@ export default StyleSheet.create({
     flex: 1,
   },
   screenTitle: {
-    fontSize: theme.FONT_SIZE_SCREEN_TITLE, 
+    fontSize: theme.FONT_SIZE_SCREEN_TITLE,
     fontWeight: theme.FONT_WEIGHT_HEAVY,
-    color: theme.PRIMARY_TEXT_COLOR
+    color: theme.PRIMARY_TEXT_COLOR,
   },
   sectionTitle: {
     fontSize: theme.FONT_SIZE_LARGE,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
-    color: theme.PRIMARY_TEXT_COLOR
+    color: theme.PRIMARY_TEXT_COLOR,
   },
-  courseTitle:{
+  courseTitle: {
     fontSize: theme.FONT_SIZE_MEDIUM,
     color: theme.PRIMARY_TEXT_COLOR,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
   },
   courseContent: {
     fontSize: theme.FONT_SIZE_SMALL,
-    color:theme.SECONDARY_TEXT_COLOR
+    color: theme.SECONDARY_TEXT_COLOR,
   },
   buttonTitle: {
     fontSize: theme.FONT_SIZE_SMALL,
@@ -32,13 +32,13 @@ export default StyleSheet.create({
   courseDetailTitle: {
     color: theme.PRIMARY_TEXT_COLOR,
     fontSize: theme.FONT_SIZE_COURSE_TITLE,
-    fontWeight: theme.FONT_WEIGHT_MID
+    fontWeight: theme.FONT_WEIGHT_MID,
   },
   buttonLayoutSmall: {
     borderRadius: 12,
     backgroundColor: theme.RADIUS_BTN_BGR,
     paddingHorizontal: 8,
-    paddingVertical: 3
+    paddingVertical: 3,
   },
   buttonLayoutBig: {
     borderRadius: 14,
@@ -46,15 +46,16 @@ export default StyleSheet.create({
     paddingVertical: 6,
     backgroundColor: theme.RADIUS_BTN_BGR,
     marginRight: theme.LARGE_MARGIN,
-    marginBottom: theme.LARGE_MARGIN
+    marginBottom: theme.LARGE_MARGIN,
   },
   screenContent: {
     margin: theme.LARGE_MARGIN,
     paddingVertical: theme.LARGE_PADDING,
   },
-  screenContentNoPaddingTop:  {
-    margin: theme.LARGE_MARGIN,
-    paddingBottom: theme.LARGE_PADDING,
+  screenContentNoPaddingTop: {
+    marginHorizontal: theme.LARGE_MARGIN,
+    paddingVertical: theme.SMALL_PADDING,
+    flex: 1
   },
   viewWithRadius: {
     display: "flex",
@@ -62,6 +63,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#708090",
     paddingVertical: 40,
+    paddingHorizontal: 10,
     marginVertical: 10,
     borderRadius: 3,
   },
@@ -81,14 +83,21 @@ export default StyleSheet.create({
   },
   divider: {
     backgroundColor: theme.DIVIDER_BGR,
-    marginVertical: theme.SMALL_MARGIN
+    marginVertical: theme.SMALL_MARGIN,
   },
   iconText: {
     color: theme.BASIC_BLUE,
     fontSize: theme.FONT_SIZE_LARGE,
-    marginHorizontal: theme.SMALL_MARGIN
+    marginHorizontal: theme.SMALL_MARGIN,
   },
   displayRow: {
-    flexDirection: "row"
-  }
+    flexDirection: "row",
+  },
+  headerSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: theme.DARK_THEME,
+    paddingVertical: theme.SMALL_PADDING
+  },
 });

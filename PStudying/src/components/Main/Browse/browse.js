@@ -20,7 +20,7 @@ const Browse = () => {
         <ButtonCategory />
         <ImageButtonCategory />
       </View>
-      <SectionCourses title="Paths" />
+      <SectionCourses title="Paths"/>
       <ListAuthor title="Top Authors"/>
     </ScrollView>
   );

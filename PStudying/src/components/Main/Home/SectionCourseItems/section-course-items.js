@@ -1,16 +1,16 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import CourseInfo from "../../../Common/course-info";
-import css from "../../../../globals/style";
+import theme from "../../../../globals/theme";
 
-const SectionCourseItems = ({ courseInfo }) => {
+const SectionCourseItems = ({ courseInfo, nameStyle }) => {
   return (
     <View style={styles.item}>
       <Image
         source={require("../../../../../assets/img.jpg")}
         style={styles.img}
       />
-      <CourseInfo courseInfo={courseInfo} />
+      <CourseInfo courseInfo={courseInfo} nameStyle={nameStyle} />
     </View>
   );
 };
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 180,
     borderRadius: 10,
-    backgroundColor: "#2D313A",
+    backgroundColor: theme.COURSE_ITEM_BGR,
     marginRight: 10,
   },
   img: {

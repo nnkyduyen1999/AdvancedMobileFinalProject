@@ -2,10 +2,12 @@ import React from "react";
 import { SectionList } from "react-native";
 import ListLessonItem from "../ListLessonItems/list-lesson-item"
 import ListItemHeader from "../ListLessonItems/list-item-header"
-import ListCourseItem from "../../Courses/ListCourseItems/list-course-items"
-const ListLesson = ({ listLesson }) => {
+import Introduction from "../CourseIntroduction/introduction"
+import css from "../../../globals/style"
+
+const ListLesson = ({ listLesson, listHeaderContent }) => {
   return (
-    <SectionList
+    <SectionList style={css.screenContentNoPaddingTop}
         sections={listLesson}
         keyExtractor={(item, index) => item + index}
         renderItem={({ item }) => <ListLessonItem lesson={item} />}
@@ -14,6 +16,7 @@ const ListLesson = ({ listLesson }) => {
             sectionHeader={title}
           />
         )}
+        ListHeaderComponent={<Introduction course={listHeaderContent} />}
       />
   );
 };

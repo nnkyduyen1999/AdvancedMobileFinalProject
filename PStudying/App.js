@@ -10,11 +10,11 @@ import css from "./src/globals/style"
 export default function App() {
   return (
     <SafeAreaView style={css.darkTheme}>
-      {/* <Home /> */}
+      <Home />
       {/* <Browse/> */}
       {/* <Search /> */}
       {/* <Download/> */}
-      <CourseDetail/>
+      {/* <CourseDetail/> */}
     </SafeAreaView>
   );
 }

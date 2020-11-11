@@ -5,14 +5,24 @@ import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 const ListLessonItem = ({ lesson }) => {
   return (
-    <View style={css.displayRow}>
+    <View style={[css.displayRow, {paddingVertical: 20, paddingLeft: 10}]}>
       <Icon
         name="check-circle"
         type="font-awesome"
         color={theme.PRIMARY_TEXT_COLOR}
+        size={14}
       />
-      <Text style={css.courseContent}>{lesson.name}</Text>
+      <Text style={{marginLeft: 20, color: theme.PRIMARY_TEXT_COLOR}}>{lesson.name}</Text>
     </View>
+  //   <View style={[css.displayRow, {paddingVertical: 20, paddingLeft: 10}]}>
+  //   <Icon
+  //     name="circle"
+  //     type="font-awesome"
+  //     color={theme.COURSE_ITEM_BGR}
+  //     size={14}
+  //   />
+  //   <Text style={[css.courseContent, {marginLeft: 20}]}>{lesson.name}</Text>
+  // </View>
   );
 };
 

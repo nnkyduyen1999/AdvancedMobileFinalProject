@@ -1,5 +1,6 @@
 import React from 'react';
 import css from "../../globals/style";
+import theme from "../../globals/theme";
 import { View, Image, Text } from 'react-native'
 const EmptySection = (props) => {
    
@@ -13,7 +14,7 @@ const EmptySection = (props) => {
                 marginVertical: 10,
               }}
             />
-            <Text style={css.courseTitle}>
+            <Text style={{ color: theme.PRIMARY_TEXT_COLOR, textAlign: "center"}}>
               {props.content}
             </Text>
         </View>
