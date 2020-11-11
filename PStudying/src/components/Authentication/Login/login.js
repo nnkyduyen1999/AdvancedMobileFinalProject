@@ -14,32 +14,22 @@ const Login = () => {
         <Button
           title="Sign in"
           buttonStyle={{ backgroundColor: theme.BASIC_BLUE }}
-          titleStyle={{
-            fontSize: theme.FONT_SIZE_MEDIUM,
-            fontWeight: theme.FONT_WEIGHT_MEDIUM,
-          }}
+          titleStyle={css.authenBtnTitle}
         />
         <Button
-          title="Subcribe to PluralSight"
+          title="Register"
           type="outline"
-          titleStyle={styles.text}
+          titleStyle={css.authenBtnTitleOutline}
         />
         <Button
-          title="Explore without a subcription"
+          title="Explore without a subscription"
           type="outline"
-          titleStyle={styles.text}
+          titleStyle={css.authenBtnTitleOutline}
         />
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  text: {
-    color: theme.BASIC_BLUE,
-    fontSize: theme.FONT_SIZE_MEDIUM,
-    fontWeight: theme.FONT_WEIGHT_MEDIUM,
-  },
-});
 
 export default Login;

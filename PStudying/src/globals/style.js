@@ -100,4 +100,15 @@ export default StyleSheet.create({
     backgroundColor: theme.DARK_THEME,
     paddingVertical: theme.SMALL_PADDING
   },
+  authenBtnTitle: {
+    fontSize: theme.FONT_SIZE_LARGE,
+    fontWeight: theme.FONT_WEIGHT_MEDIUM,
+    marginVertical: 3
+  },
+  authenBtnTitleOutline: {
+    color: theme.BASIC_BLUE,
+    fontSize: theme.FONT_SIZE_LARGE,
+    fontWeight: theme.FONT_WEIGHT_MEDIUM,
+    marginVertical: 3
+  },
 });
