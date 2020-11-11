@@ -6,7 +6,8 @@ import Download from "./src/components/Main/Download/download"
 import CourseDetail from "./src/components/CourseDetail/course-detail"
 import Login from "./src/components/Authentication/Login/login"
 import LoginForm from "./src/components/Authentication/Login/Login-Form/login-form"
-import { SafeAreaView, StyleSheet } from "react-native";
+import Register from "./src/components/Authentication/Register/register"
+import { SafeAreaView } from "react-native";
 import css from "./src/globals/style"
 
 export default function App() {
@@ -17,7 +18,8 @@ export default function App() {
       {/* <Search /> */}
       {/* <Download/> */}
       {/* <CourseDetail/> */}
-      <LoginForm/>
+      {/* <LoginForm/> */}
+      <Register/>
     </SafeAreaView>
   );
 }

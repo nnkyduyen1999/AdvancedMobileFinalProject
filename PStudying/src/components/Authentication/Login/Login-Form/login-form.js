@@ -1,62 +1,32 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { Button, Input } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Button } from "react-native-elements";
+import InputCustom from "../InputText/input-text";
+import TextButton from "../InputText/text-button";
 import css from "../../../../globals/style";
 import theme from "../../../../globals/theme";
 const LoginForm = () => {
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
-        <Input
+        <InputCustom
           label="Username"
-          labelStyle={css.courseTitle}
           placeholder="Email or username"
-          leftIcon={
-            <Icon
-              name="envelope-o"
-              size={20}
-              color={theme.SECONDARY_TEXT_COLOR}
-            />
-          }
+          iconName="envelope-o"
         />
-
-        <Input
+        <InputCustom
           label="Password"
-          labelStyle={css.courseTitle}
           placeholder="Password"
-          secureTextEntry={true}
-          leftIcon={
-            <Icon
-              name="unlock-alt"
-              size={24}
-              color={theme.SECONDARY_TEXT_COLOR}
-            />
-          }
-          rightIcon={
-            <Icon
-              name="eye-slash"
-              size={24}
-              color={theme.SECONDARY_TEXT_COLOR}
-            />
-          }
+          iconName="unlock-alt"
+          rightIcon="eye-slash"
         />
         <Button
           title="Sign in"
           buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
         />
-        <Text
-          style={{
-            color: theme.BASIC_BLUE,
-            fontSize: theme.FONT_SIZE_SMALL,
-            textAlign: "center",
-            paddingVertical: 10
-          }}
-        >
-          Need help?
-        </Text>
 
+        <TextButton txt="Need a help?" />
         <Button
           title="Use Single Signin-On (SSO)"
           type="outline"
