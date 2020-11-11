@@ -4,7 +4,7 @@ import { Divider, Button, Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import CourseInfo from "../../Common/course-info";
-import CustomIcon from "../../Common/custom-icon";
+import CustomIcon from "./custom-icon";
 
 const Introduction = ({ course }) => {
   return (

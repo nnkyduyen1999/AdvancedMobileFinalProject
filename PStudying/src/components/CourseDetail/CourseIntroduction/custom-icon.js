@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
-import css from "../../globals/style";
-import theme from "../../globals/theme";
+import css from "../../../globals/style";
+import theme from "../../../globals/theme";
 const CustomIcon = ({ iconName, title }) => {
   const onPressIcon = () => {
     console.log("cliekc");
