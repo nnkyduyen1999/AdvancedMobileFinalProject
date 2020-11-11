@@ -14,7 +14,7 @@ const EmptySection = (props) => {
                 marginVertical: 10,
               }}
             />
-            <Text style={{ color: theme.PRIMARY_TEXT_COLOR, textAlign: "center"}}>
+            <Text style={{ color: theme.SECONDARY_TEXT_COLOR, textAlign: "center"}}>
               {props.content}
             </Text>
         </View>

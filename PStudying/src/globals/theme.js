@@ -24,5 +24,6 @@ export default {
     BASIC_BLUE: "#3E98D6",
     BASIC_GREY: "#343B43",
     CIRCLE_AROUND: "#303135",
-    COURSE_ITEM_BGR: "#2D313A"
+    COURSE_ITEM_BGR: "#2D313A",
+    EMPTY_SECTION_BGR: "#181B20"
   };

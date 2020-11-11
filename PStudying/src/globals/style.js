@@ -61,7 +61,7 @@ export default StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#708090",
+    backgroundColor: theme.EMPTY_SECTION_BGR,
     paddingVertical: 40,
     paddingHorizontal: 10,
     marginVertical: 10,
