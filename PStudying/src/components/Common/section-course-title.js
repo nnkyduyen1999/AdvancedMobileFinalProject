@@ -25,7 +25,6 @@ const SectionCourseTitle = ({ sectionTitle, seeAll }) => {
 const styles = StyleSheet.create({
     titleLayout: {
         display: "flex",
-        flex: 1,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: "center",

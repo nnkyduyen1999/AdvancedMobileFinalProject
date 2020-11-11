@@ -22,8 +22,8 @@ export default function App() {
       {/* <CourseDetail/> */}
       {/* <LoginForm/> */}
       {/* <Register/> */}
-      <Setting/>
-      {/* <Profile/> */}
+      {/* <Setting/> */}
+      <Profile/>
     </SafeAreaView>
   );
 }
