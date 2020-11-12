@@ -1,8 +1,14 @@
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import { ScrollView } from "react-native";
 import {Button} from "react-native-elements";
 import css from "../../../../globals/style";
-export default function ButtonCategory() {
+import constant from "../../../../globals/constant";
+
+
+export default function ButtonCategory({nav}) {
   const listTitle = [
     "Angular",
     "JavaScript",
@@ -17,6 +23,9 @@ export default function ButtonCategory() {
     ".NET",
     "SQL Server",
   ];
+  const onPressSkill = () => {
+    nav.navigate(constant.navigationNames.SkillDetail)
+  }
   const renderListTitle = (listTitle) => {
     return listTitle.map((title, index) => (
       <Button
@@ -24,6 +33,7 @@ export default function ButtonCategory() {
         key={index}
         title={title}
         titleStyle={css.buttonTitle}
+        onPress={onPressSkill}
       />
     ));
   };

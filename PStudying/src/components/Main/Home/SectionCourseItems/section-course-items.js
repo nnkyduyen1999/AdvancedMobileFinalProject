@@ -1,17 +1,24 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import CourseInfo from "../../../Common/course-info";
 import theme from "../../../../globals/theme";
+import constant from "../../../../globals/constant";
 
-const SectionCourseItems = ({ courseInfo, nameStyle }) => {
+const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav }) => {
+  const pressItem = () => {
+    listCourseNav.navigate(constant.navigationNames.CourseDetail);
+  };
   return (
-    <View style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={pressItem}>
       <Image
         source={require("../../../../../assets/img.jpg")}
         style={styles.img}
       />
       <CourseInfo courseInfo={courseInfo} nameStyle={nameStyle} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

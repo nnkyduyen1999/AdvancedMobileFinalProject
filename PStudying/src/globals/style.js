@@ -2,10 +2,6 @@ import { StyleSheet } from "react-native";
 import theme from "./theme";
 
 export default StyleSheet.create({
-  darkTheme: {
-    backgroundColor: theme.DARK_THEME,
-    flex: 1,
-  },
   screenTitle: {
     fontSize: theme.FONT_SIZE_SCREEN_TITLE,
     fontWeight: theme.FONT_WEIGHT_HEAVY,
@@ -49,8 +45,8 @@ export default StyleSheet.create({
     marginBottom: theme.LARGE_MARGIN,
   },
   screenContent: {
-    margin: theme.LARGE_MARGIN,
-    paddingVertical: theme.LARGE_PADDING,
+    paddingHorizontal: theme.SMALL_PADDING,
+    paddingBottom: theme.SMALL_PADDING
   },
   screenContentNoPaddingTop: {
     marginHorizontal: theme.LARGE_MARGIN,

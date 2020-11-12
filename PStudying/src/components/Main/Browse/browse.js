@@ -9,19 +9,29 @@ import ImageButton from "../../Common/image-button";
 import ScreenHeader from "../../Common/screen-header";
 import css from "../../../globals/style";
 
-const Browse = () => {
+const Browse = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={css.screenContent}>
-      <ScreenHeader screenTitle="Browse"/>
-      <ImageButton txt="New Released" imgName="new-release.jpg" imgType={css.largeImgButton}/>
-      <ImageButton txt="Recommend for you" imgName="recommended.png" imgType={css.largeImgButton}/>
-      <View style={{marginVertical: 20}}>
+      <ScreenHeader screenTitle="Browse" />
+      <ImageButton
+        txt="New Released"
+        imgName="new-release.jpg"
+        imgType={css.largeImgButton}
+        nav={navigation}
+      />
+      <ImageButton
+        txt="Recommend for you"
+        imgName="recommended.png"
+        imgType={css.largeImgButton}
+        nav={navigation}
+      />
+      <View style={{ marginVertical: 20 }}>
         <SectionCourseTitle sectionTitle="Popular Skills" />
-        <ButtonCategory />
-        <ImageButtonCategory />
+        <ButtonCategory nav={navigation}/>
+        <ImageButtonCategory nav={navigation}/>
       </View>
-      <SectionCourses title="Paths"/>
-      <ListAuthor title="Top Authors"/>
+      <SectionCourses title="Paths" nav={navigation}/>
+      <ListAuthor title="Top Authors" nav={navigation}/>
     </ScrollView>
   );
 };

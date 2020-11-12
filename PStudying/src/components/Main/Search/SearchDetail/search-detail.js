@@ -5,7 +5,7 @@ import SectionCourseTitle from "../../../Common/section-course-title";
 import SearchEmpty from "../SearchEmpty/search-empty"
 import SearchBarCustom from "../SearchBar/search-bar"
 import css from "../../../../globals/style";
-const SearchDetail = () => {
+const SearchDetail = ({nav}) => {
   const DATA = [
     {
       title: "Main dishes",
@@ -126,12 +126,12 @@ const SearchDetail = () => {
   ];
 
   return (
-    <View style={css.screenContentNoPaddingTop}>
+    <View style={css.screenContent}>
       <SectionList
         contentContainerStyle={{ marginVertical: 20 }}
         sections={DATA}
         keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <ListCourseItem course={item} />}
+        renderItem={({ item }) => <ListCourseItem course={item} listCourseNav={nav}/>}
         renderSectionHeader={({ section: { title, data } }) => (
           <SectionCourseTitle
             seeAll={`${data.length} results   `}

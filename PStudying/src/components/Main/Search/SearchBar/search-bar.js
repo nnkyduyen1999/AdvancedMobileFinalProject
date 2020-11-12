@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { SearchBar } from "react-native-elements";
 import css from "../../../../globals/style"
+import theme from "../../../../globals/theme"
 export default class SearchBarCustom extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ export default class SearchBarCustom extends Component {
         onChangeText={this.updateSearch}
         value={search}
         containerStyle={css.darkTheme}
-        inputContainerStyle={{height: 30, backgroundColor:"white"}}
+        inputContainerStyle={{height: 30, backgroundColor: "white"}}
+        containerStyle={{backgroundColor: theme.DARK_THEME}}
       />
     );
   }

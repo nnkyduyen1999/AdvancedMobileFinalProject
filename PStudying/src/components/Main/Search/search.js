@@ -6,9 +6,9 @@ import SearchList from "./SearchList/search-list"
 import SearchDetail from "./SearchDetail/search-detail"
 import css from "../../../globals/style"
 
-export default function search() {
+export default function search({ navigation}) {
   return (
-    <SearchDetail/>
+    <SearchDetail nav={navigation}/>
     // <ScrollView contentContainerStyle={css.screenContent}>
     //   <ScreenHeader screenTitle="Search"/>
     //   <SearchBarCustom />

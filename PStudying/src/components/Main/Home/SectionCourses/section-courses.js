@@ -33,7 +33,7 @@ const SectionCourses = (props) => {
   ];
   const renderSectionCoursesItems = (courses) => {
     return courses.map((item, index) => (
-      <SectionCourseItems key={index} courseInfo={item} nameStyle={css.courseTitle}/>
+      <SectionCourseItems key={index} courseInfo={item} nameStyle={css.courseTitle} listCourseNav={props.nav}/>
     ));
   };
   return (

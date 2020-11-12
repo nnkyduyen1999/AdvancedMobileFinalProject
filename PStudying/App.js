@@ -1,36 +1,103 @@
 import React from "react";
-import Home from "./src/components/Main/Home/home";
-import Browse from "./src/components/Main/Browse/browse"
-import Search from "./src/components/Main/Search/search"
-import Download from "./src/components/Main/Download/download"
-import CourseDetail from "./src/components/CourseDetail/course-detail"
-import Login from "./src/components/Authentication/Login/login"
-import LoginForm from "./src/components/Authentication/Login/Login-Form/login-form"
-import Register from "./src/components/Authentication/Register/register"
-import Setting from "./src/components/Account Management/Setting-Account/setting"
-import Profile from "./src/components/Account Management/Profile/profile"
-import { SafeAreaView } from "react-native";
-import css from "./src/globals/style"
+import { TouchableOpacity } from "react-native";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import theme from "./src/globals/theme";
+import constant from "./src/globals/constant";
+import { Icon } from "react-native-elements";
+import TabBarCustom from "./src/components/Tab/tab";
+import Navigate from "./Navigation";
+const MyTheme = {
+  dark: false,
+  colors: {
+    primary: theme.BASIC_BLUE,
+    background: theme.DARK_THEME,
+    text: theme.PRIMARY_TEXT_COLOR
+  },
+};
+
+// const tabBarCustomIcon = (route) => {
+//   const {focused, color, size} = route;
+//   let iconName;
+
+//   if (route.name === constant.navigationNames.Home) {
+//     iconName = "home";
+//   } else if (route.name === constant.navigationNames.Download) {
+//     iconName = "arrow-circle-o-down";
+//   } else if (route.name === constant.navigationNames.Browse) {
+//     iconName = "newspaper-o";
+//   } else if (route.name === constant.navigationNames.Search) {
+//     iconName = "search";
+//   }
+
+//   return (
+//     <Icon
+//     type="font-awesome"
+//     name={iconName}
+//     size={size}
+//     color={color}
+//   />
+//   );
+// }
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView style={css.darkTheme}>
-      {/* <Home /> */}
-      {/* <Browse/> */}
-      {/* <Search /> */}
-      {/* <Download/> */}
-      {/* <CourseDetail/> */}
-      {/* <LoginForm/> */}
-      {/* <Register/> */}
-      {/* <Setting/> */}
-      <Profile/>
-    </SafeAreaView>
+    <NavigationContainer theme={MyTheme}>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === constant.navigationNames.Home) {
+              iconName = "home";
+            } else if (route.name === constant.navigationNames.Download) {
+              iconName = "arrow-circle-o-down";
+            } else if (route.name === constant.navigationNames.Browse) {
+              iconName = "newspaper-o";
+            } else if (route.name === constant.navigationNames.Search) {
+              iconName = "search";
+            }
+
+            return (
+              <Icon
+                type="font-awesome"
+                name={iconName}
+                size={size}
+                color={color}
+              />
+            );
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: theme.ICON_BLUE,
+          inactiveTintColor: theme.TAB_BAR_ICON,
+          style: { backgroundColor: theme.TAB_BAR_BGR },
+        }}
+      >
+        <Tab.Screen
+          name={constant.navigationNames.Home}
+          component={Navigate.HomeStackScreen}
+          onPress={() => navigation.navigate(constant.navigationNames.Home)}
+        />
+        <Tab.Screen
+          name={constant.navigationNames.Download}
+          component={Navigate.DownloadStackScreen}
+          onPress={() => navigation.navigate(constant.navigationNames.Download)}
+        />
+        <Tab.Screen
+          name={constant.navigationNames.Browse}
+          component={Navigate.BrowseStackScreen}
+          onPress={() => navigation.navigate(constant.navigationNames.Browse)}
+        />
+        <Tab.Screen
+          name={constant.navigationNames.Search}
+          component={Navigate.SearchStackScreen}
+          onPress={() => navigation.navigate(constant.navigationNames.Search)}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-
-
-
-
-
-
