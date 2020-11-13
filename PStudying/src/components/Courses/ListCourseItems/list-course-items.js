@@ -1,6 +1,4 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import CourseInfo from "../../Common/course-info";

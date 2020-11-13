@@ -3,7 +3,8 @@ import { View, Image, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-const Login = () => {
+import constant from "../../../globals/constant";
+const Login = ({ navigation }) => {
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <Image
@@ -15,21 +16,25 @@ const Login = () => {
           title="Sign in"
           buttonStyle={{ backgroundColor: theme.BASIC_BLUE }}
           titleStyle={css.authenBtnTitle}
+          onPress={() =>
+            navigation.navigate(constant.navigationNames.LoginForm)
+          }
         />
         <Button
           title="Register"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
+          onPress={() => navigation.navigate(constant.navigationNames.Register)}
         />
         <Button
           title="Explore without a subscription"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
+          onPress={() => navigation.navigate(constant.navigationNames.Home)}
         />
       </View>
     </View>
   );
 };
-
 
 export default Login;

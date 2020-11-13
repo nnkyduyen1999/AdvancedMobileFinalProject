@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import InputCustom from "../InputText/input-text";
 import TextButton from "../InputText/text-button";
 import css from "../../../../globals/style";
 import theme from "../../../../globals/theme";
-const LoginForm = () => {
+import constant from "../../../../globals/constant";
+
+const LoginForm = ({ navigation }) => {
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
@@ -26,16 +28,23 @@ const LoginForm = () => {
           titleStyle={css.authenBtnTitle}
         />
 
-        <TextButton txt="Need a help?" />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(constant.navigationNames.ForgotPassword)
+          }
+        >
+          <TextButton txt="Need a help?" />
+        </TouchableOpacity>
         <Button
           title="Use Single Signin-On (SSO)"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
         />
         <Button
-          title="Subcribe to PStudying"
+          title="Cancel"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
+          onPress={() => navigation.goBack()}
         />
       </View>
     </View>

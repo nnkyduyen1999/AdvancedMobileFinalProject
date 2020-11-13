@@ -9,7 +9,14 @@ module.exports.navigationNames = {
     SearchAll: "All",
     SearchCourses: "Courses",
     SearchPaths: "Paths",
-    SearchAuthors: "Authors"
+    SearchAuthors: "Authors",
+    Setting: "Setting",
+    Register: "Register",
+    Login: "Login",
+    LoginForm: "LoginForm",
+    ForgotPassword: "ForgotPassword",
+    ChangePasswordForm: "ChangePasswordForm",
+    MainTabs: "MainTabs",
 }
 
 module.exports.navigationTitles = {

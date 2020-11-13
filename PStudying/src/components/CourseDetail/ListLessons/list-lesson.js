@@ -7,7 +7,7 @@ import css from "../../../globals/style"
 
 const ListLesson = ({ listLesson, listHeaderContent }) => {
   return (
-    <SectionList style={css.screenContentNoPaddingTop}
+    <SectionList style={css.screenContent}
         sections={listLesson}
         keyExtractor={(item, index) => item + index}
         renderItem={({ item }) => <ListLessonItem lesson={item} />}

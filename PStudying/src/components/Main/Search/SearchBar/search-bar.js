@@ -22,7 +22,6 @@ export default class SearchBarCustom extends Component {
         placeholder="Search"
         onChangeText={this.updateSearch}
         value={search}
-        containerStyle={css.darkTheme}
         inputContainerStyle={{height: 30, backgroundColor: "white"}}
         containerStyle={{backgroundColor: theme.DARK_THEME}}
       />

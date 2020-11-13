@@ -1,42 +1,102 @@
 import React from "react";
-
+import { TouchableOpacity } from "react-native";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import Home from "./src/components/Main/Home/home";
-import CourseDetail from "./src/components/CourseDetail/course-detail";
 import Browse from "./src/components/Main/Browse/browse";
 import SkillDetail from "./src/components/Main/Browse/SkillDetail/skill-detail";
 import Search from "./src/components/Main/Search/search";
 import SearchBarCustom from "./src/components/Main/Search/SearchBar/search-bar";
 import Download from "./src/components/Main/Download/download";
 import Login from "./src/components/Authentication/Login/login";
-import LoginForm from "./src/components/Authentication/Login/Login-Form/login-form";
 import Register from "./src/components/Authentication/Register/register";
 import Setting from "./src/components/Account Management/Setting-Account/setting";
 import Profile from "./src/components/Account Management/Profile/profile";
 
 import constant from "./src/globals/constant";
 import theme from "./src/globals/theme";
+import css from "./src/globals/style";
+
 import { Icon } from "react-native-elements";
 
-
+const dismissIcon = (
+  <Icon type="font-awesome" name="times" size={25} color={theme.BASIC_BLUE} />
+);
 const Tab = createMaterialTopTabNavigator();
 
-module.exports.HomeStackScreen = () => {
+const SettingStackScreen = ({ navigation }) => {
+  const SettingStack = createStackNavigator();
+
+  return (
+    <SettingStack.Navigator mode="modal">
+      <SettingStack.Screen
+        name={constant.navigationNames.Setting}
+        component={Setting}
+        options={{
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: theme.LARGE_MARGIN }}
+              onPress={() => navigation.goBack()}
+            >
+              {dismissIcon}
+            </TouchableOpacity>
+          ),
+          title: constant.navigationTitles.Setting,
+          headerLeft: null,
+        }}
+      />
+    </SettingStack.Navigator>
+  );
+};
+
+const MainHomeStackScreen = ({ navigation }) => {
+  const MainHomeStack = createStackNavigator();
+
+  return (
+    <MainHomeStack.Navigator mode="modal">
+      <MainHomeStack.Screen
+        name={constant.navigationNames.Home}
+        component={Home}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: theme.LARGE_MARGIN }}
+              onPress={() =>
+                navigation.navigate(constant.navigationNames.Setting)
+              }
+            >
+              <Icon
+                type="font-awesome"
+                name="cog"
+                size={25}
+                color={theme.BASIC_BLUE}
+              />
+            </TouchableOpacity>
+          ),
+          title: constant.navigationTitles.Home,
+        }}
+      />
+    </MainHomeStack.Navigator>
+  );
+};
+
+module.exports.HomeStackScreen = ({ navigation }) => {
   const HomeStack = createStackNavigator();
 
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator mode="modal">
       <HomeStack.Screen
         name={constant.navigationNames.Home}
-        component={Home}
-        options={{ title: constant.navigationTitles.Home }}
+        component={MainHomeStackScreen}
+        options={{ headerShown: false }}
       />
+
       <HomeStack.Screen
-        name={constant.navigationNames.CourseDetail}
-        component={CourseDetail}
+        name={constant.navigationNames.Setting}
+        component={SettingStackScreen}
+        options={{ headerShown: false }}
       />
     </HomeStack.Navigator>
   );
@@ -52,10 +112,7 @@ module.exports.DownloadStackScreen = () => {
         component={Download}
         options={{ title: constant.navigationTitles.Download }}
       />
-      <DownloadStack.Screen
-        name={constant.navigationNames.CourseDetail}
-        component={CourseDetail}
-      />
+      
     </DownloadStack.Navigator>
   );
 };
@@ -80,10 +137,6 @@ module.exports.BrowseStackScreen = () => {
         component={SkillDetail}
         options={{ title: constant.navigationTitles.SkillDetail }}
       />
-      <BrowseStack.Screen
-        name={constant.navigationNames.CourseDetail}
-        component={CourseDetail}
-      />
     </BrowseStack.Navigator>
   );
 };
@@ -91,47 +144,43 @@ module.exports.BrowseStackScreen = () => {
 const TabSearchScreen = () => {
   return (
     <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: theme.PRIMARY_TEXT_COLOR,
-          inactiveTintColor: theme.SECONDARY_TEXT_COLOR,
-          style: { backgroundColor: theme.TAB_BAR_BGR },
-          labelStyle: {fontWeight: theme.FONT_WEIGHT_MEDIUM}
-        }}
-      >
-        <Tab.Screen
-          name={constant.navigationNames.SearchAll}
-          component={Search}
-        />
-        <Tab.Screen
-          name={constant.navigationNames.SearchCourses}
-          component={Search}
-        />
-        <Tab.Screen
-          name={constant.navigationNames.SearchPaths}
-          component={Search}
-        />
-        <Tab.Screen
-          name={constant.navigationNames.SearchAuthors}
-          component={Search}
-        />
-      </Tab.Navigator>
+      tabBarOptions={{
+        activeTintColor: theme.PRIMARY_TEXT_COLOR,
+        inactiveTintColor: theme.SECONDARY_TEXT_COLOR,
+        style: {
+          backgroundColor: theme.TAB_BAR_BGR,
+          marginTop: theme.SMALL_MARGIN,
+        },
+        labelStyle: { fontWeight: theme.FONT_WEIGHT_MEDIUM },
+      }}
+    >
+      <Tab.Screen
+        name={constant.navigationNames.SearchAll}
+        component={Search}
+      />
+      <Tab.Screen
+        name={constant.navigationNames.SearchCourses}
+        component={Search}
+      />
+      <Tab.Screen
+        name={constant.navigationNames.SearchPaths}
+        component={Search}
+      />
+      <Tab.Screen
+        name={constant.navigationNames.SearchAuthors}
+        component={Search}
+      />
+    </Tab.Navigator>
   );
-  
-}
+};
 module.exports.SearchStackScreen = () => {
   const SearchStack = createStackNavigator();
   return (
-    <SearchStack.Navigator
-      initialRouteName={constant.navigationNames.Search}
-    >
+    <SearchStack.Navigator initialRouteName={constant.navigationNames.Search}>
       <SearchStack.Screen
         name={constant.navigationNames.Search}
         component={TabSearchScreen}
         options={{ headerTitle: (props) => <SearchBarCustom {...props} /> }}
-      />
-      <SearchStack.Screen
-        name={constant.navigationNames.CourseDetail}
-        component={CourseDetail}
       />
     </SearchStack.Navigator>
   );
