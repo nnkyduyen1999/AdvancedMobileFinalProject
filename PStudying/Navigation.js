@@ -10,20 +10,18 @@ import SkillDetail from "./src/components/Main/Browse/SkillDetail/skill-detail";
 import Search from "./src/components/Main/Search/search";
 import SearchBarCustom from "./src/components/Main/Search/SearchBar/search-bar";
 import Download from "./src/components/Main/Download/download";
-import Login from "./src/components/Authentication/Login/login";
-import Register from "./src/components/Authentication/Register/register";
 import Setting from "./src/components/Account Management/Setting-Account/setting";
 import Profile from "./src/components/Account Management/Profile/profile";
 
 import constant from "./src/globals/constant";
 import theme from "./src/globals/theme";
-import css from "./src/globals/style";
 
 import { Icon } from "react-native-elements";
 
 const dismissIcon = (
   <Icon type="font-awesome" name="times" size={25} color={theme.BASIC_BLUE} />
 );
+
 const Tab = createMaterialTopTabNavigator();
 
 const SettingStackScreen = ({ navigation }) => {
@@ -38,7 +36,7 @@ const SettingStackScreen = ({ navigation }) => {
           headerRight: () => (
             <TouchableOpacity
               style={{ marginRight: theme.LARGE_MARGIN }}
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.dangerouslyGetParent().pop()}
             >
               {dismissIcon}
             </TouchableOpacity>

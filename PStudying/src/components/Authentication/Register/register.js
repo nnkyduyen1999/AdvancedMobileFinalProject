@@ -5,7 +5,9 @@ import InputCustom from "../Login/InputText/input-text";
 import TextButton from "../Login/InputText/text-button";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-const Register = () => {
+import constant from "../../../globals/constant";
+
+const Register = ({ navigation }) => {
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
@@ -38,6 +40,9 @@ const Register = () => {
           title="Sign in"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
+          onPress={() =>
+            navigation.navigate(constant.navigationNames.LoginForm)
+          }
         />
       </View>
     </View>

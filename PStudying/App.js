@@ -31,7 +31,7 @@ const MyTheme = {
 const MainTabs = () => {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator
+    <Tab.Navigator initialRouteName={constant.navigationNames.MainTabs}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -106,7 +106,7 @@ export default function App() {
           name={constant.navigationNames.ForgotPassword}
           options={{ headerShown: false }}
         />
-        {/*  */}
+        
         <Main.Screen
           component={CourseDetail}
           name={constant.navigationNames.CourseDetail}

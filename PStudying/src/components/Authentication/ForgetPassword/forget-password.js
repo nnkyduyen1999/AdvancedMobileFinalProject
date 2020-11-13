@@ -5,7 +5,6 @@ import InputCustom from "../Login/InputText/input-text";
 import TextButton from "../Login/InputText/text-button";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-import constant from "../../../globals/constant";
 
 const ForgetPassword = ({navigation}) => {
   return (
@@ -22,7 +21,7 @@ const ForgetPassword = ({navigation}) => {
           iconName="key"
         />
         <Button
-          title="Change password"
+          title="Verify"
           buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
         />
@@ -32,8 +31,8 @@ const ForgetPassword = ({navigation}) => {
           title="Resend email"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
+          onPress={() => navigation.goBack()}
         />
-        
       </View>
     </View>
   );

@@ -33,7 +33,7 @@ const LoginForm = ({ navigation }) => {
             navigation.navigate(constant.navigationNames.ForgotPassword)
           }
         >
-          <TextButton txt="Need a help?" />
+          <TextButton txt="Forget password?" />
         </TouchableOpacity>
         <Button
           title="Use Single Signin-On (SSO)"

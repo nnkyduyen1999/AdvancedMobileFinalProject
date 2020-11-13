@@ -1,6 +1,7 @@
 import React from "react";
 import { View, ScrollView, Alert } from "react-native";
 import { Button } from "react-native-elements";
+import { StackActions } from '@react-navigation/native';
 import ListSetting from "./list-setting/list-setting";
 import css from "../../../globals/style";
 import constant from "../../../globals/constant";
@@ -65,7 +66,10 @@ export default function Setting({ navigation }) {
         },
         {
           text: "Sign out",
-          onPress: () => navigation.navigate(constant.navigationNames.Login),
+          onPress: () => {
+            navigation.dispatch(StackActions.pop(1));
+            navigation.navigate(constant.navigationNames.Login)
+          },
         },
       ],
       { cancelable: false }
