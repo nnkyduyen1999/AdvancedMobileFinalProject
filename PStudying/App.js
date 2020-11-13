@@ -7,7 +7,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import theme from "./src/globals/theme";
 import constant from "./src/globals/constant";
 import { Icon } from "react-native-elements";
-import TabBarCustom from "./src/components/Tab/tab";
 import Navigate from "./Navigation";
 const MyTheme = {
   dark: false,
@@ -80,22 +79,18 @@ export default function App() {
         <Tab.Screen
           name={constant.navigationNames.Home}
           component={Navigate.HomeStackScreen}
-          onPress={() => navigation.navigate(constant.navigationNames.Home)}
         />
         <Tab.Screen
           name={constant.navigationNames.Download}
           component={Navigate.DownloadStackScreen}
-          onPress={() => navigation.navigate(constant.navigationNames.Download)}
         />
         <Tab.Screen
           name={constant.navigationNames.Browse}
           component={Navigate.BrowseStackScreen}
-          onPress={() => navigation.navigate(constant.navigationNames.Browse)}
         />
         <Tab.Screen
           name={constant.navigationNames.Search}
           component={Navigate.SearchStackScreen}
-          onPress={() => navigation.navigate(constant.navigationNames.Search)}
         />
       </Tab.Navigator>
     </NavigationContainer>

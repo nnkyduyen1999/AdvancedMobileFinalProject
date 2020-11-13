@@ -6,6 +6,10 @@ module.exports.navigationNames = {
     Download: "Download",
     Profile: "Profile",
     SkillDetail: "SkillDetail",
+    SearchAll: "All",
+    SearchCourses: "Courses",
+    SearchPaths: "Paths",
+    SearchAuthors: "Authors"
 }
 
 module.exports.navigationTitles = {
@@ -14,5 +18,4 @@ module.exports.navigationTitles = {
     Browse: "Browse",
     Download: "Download",
     Profile: "Profile",
-
 }
