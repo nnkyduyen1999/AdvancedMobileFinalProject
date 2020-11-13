@@ -74,6 +74,21 @@ const MainHomeStackScreen = ({ navigation }) => {
             </TouchableOpacity>
           ),
           title: constant.navigationTitles.Home,
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: theme.LARGE_MARGIN }}
+              onPress={() =>
+                navigation.navigate(constant.navigationNames.Profile)
+              }
+            >
+              <Icon
+                type="font-awesome"
+                name="user-circle"
+                size={25}
+                color={theme.BASIC_BLUE}
+              />
+            </TouchableOpacity>
+          ),
         }}
       />
     </MainHomeStack.Navigator>
@@ -96,6 +111,29 @@ module.exports.HomeStackScreen = ({ navigation }) => {
         component={SettingStackScreen}
         options={{ headerShown: false }}
       />
+      <HomeStack.Screen
+        name={constant.navigationNames.Profile}
+        component={Profile}
+        options={{
+          title: constant.navigationTitles.Profile,
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: theme.LARGE_MARGIN }}
+              onPress={() =>
+                navigation.goBack()
+              }
+            >
+              <Icon
+                type="font-awesome"
+                name="times"
+                size={25}
+                color={theme.BASIC_BLUE}
+              />
+            </TouchableOpacity>
+          ),
+          headerLeft: null,
+        }}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -110,7 +148,6 @@ module.exports.DownloadStackScreen = () => {
         component={Download}
         options={{ title: constant.navigationTitles.Download }}
       />
-      
     </DownloadStack.Navigator>
   );
 };

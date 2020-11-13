@@ -7,7 +7,9 @@ import constant from "../../../../globals/constant";
 
 const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav }) => {
   const pressItem = () => {
-    listCourseNav.navigate(constant.navigationNames.CourseDetail);
+    listCourseNav.navigate(constant.navigationNames.CourseDetail, {
+      courseInfo: courseInfo,
+    });
   };
   return (
     <TouchableOpacity style={styles.item} onPress={pressItem}>

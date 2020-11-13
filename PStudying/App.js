@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,7 +10,7 @@ import { Icon } from "react-native-elements";
 import Navigate from "./Navigation";
 import Login from "./src/components/Authentication/Login/login";
 import LoginForm from "./src/components/Authentication/Login/Login-Form/login-form";
-import ForgetPassword from "./src/components/Authentication/ForgetPassword/forget-password"
+import ForgetPassword from "./src/components/Authentication/ForgetPassword/forget-password";
 import Register from "./src/components/Authentication/Register/register";
 import CourseDetail from "./src/components/CourseDetail/course-detail";
 
@@ -31,7 +30,8 @@ const MyTheme = {
 const MainTabs = () => {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator initialRouteName={constant.navigationNames.MainTabs}
+    <Tab.Navigator
+      initialRouteName={constant.navigationNames.MainTabs}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -60,23 +60,28 @@ const MainTabs = () => {
         activeTintColor: theme.ICON_BLUE,
         inactiveTintColor: theme.TAB_BAR_ICON,
         style: { backgroundColor: theme.TAB_BAR_BGR },
+        tabStyle: {flexDirection: "column"}
       }}
     >
       <Tab.Screen
         name={constant.navigationNames.Home}
         component={Navigate.HomeStackScreen}
+        options={{ title: constant.navigationTitles.Home }}
       />
       <Tab.Screen
         name={constant.navigationNames.Download}
         component={Navigate.DownloadStackScreen}
+        options={{ title: constant.navigationTitles.Download }}
       />
       <Tab.Screen
         name={constant.navigationNames.Browse}
         component={Navigate.BrowseStackScreen}
+        options={{ title: constant.navigationTitles.Download }}
       />
       <Tab.Screen
         name={constant.navigationNames.Search}
         component={Navigate.SearchStackScreen}
+        options={{ title: constant.navigationTitles.Search }}
       />
     </Tab.Navigator>
   );
@@ -86,11 +91,17 @@ const Main = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
-      <Main.Navigator  mode="modal">
+      <Main.Navigator mode="modal">
         <Main.Screen
           component={MainTabs}
-          name={constant.navigationNames.MainTabs} options={{ headerShown: false }}/>
-        <Main.Screen component={Login} name={constant.navigationNames.Login} options={{ headerShown: false }}/>
+          name={constant.navigationNames.MainTabs}
+          options={{ headerShown: false }}
+        />
+        <Main.Screen
+          component={Login}
+          name={constant.navigationNames.Login}
+          options={{ headerShown: false }}
+        />
         <Main.Screen
           component={Register}
           name={constant.navigationNames.Register}
@@ -106,7 +117,7 @@ export default function App() {
           name={constant.navigationNames.ForgotPassword}
           options={{ headerShown: false }}
         />
-        
+
         <Main.Screen
           component={CourseDetail}
           name={constant.navigationNames.CourseDetail}
