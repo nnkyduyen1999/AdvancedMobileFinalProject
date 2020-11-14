@@ -76,7 +76,7 @@ const MainTabs = () => {
       <Tab.Screen
         name={constant.navigationNames.Browse}
         component={Navigate.BrowseStackScreen}
-        options={{ title: constant.navigationTitles.Download }}
+        options={{ title: constant.navigationTitles.Browse }}
       />
       <Tab.Screen
         name={constant.navigationNames.Search}

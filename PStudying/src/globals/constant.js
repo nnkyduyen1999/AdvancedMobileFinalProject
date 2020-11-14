@@ -17,6 +17,7 @@ module.exports.navigationNames = {
     ForgotPassword: "ForgotPassword",
     ChangePasswordForm: "ChangePasswordForm",
     MainTabs: "MainTabs",
+    Authentication: "Authentication",
 }
 
 module.exports.navigationTitles = {

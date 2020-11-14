@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import { StackActions } from '@react-navigation/native';
 import { Button } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
@@ -31,7 +30,7 @@ const Login = ({ navigation }) => {
           title="Explore without a subscription"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
-          onPress={() => navigation.dispatch(StackActions.popToTop())}
+          onPress={() => navigation.popToTop()}
         />
       </View>
     </View>
