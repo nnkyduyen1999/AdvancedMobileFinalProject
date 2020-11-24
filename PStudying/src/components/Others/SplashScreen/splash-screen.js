@@ -18,7 +18,7 @@ const SplashScreen = ({ navigation }) => {
           buttonStyle={{ backgroundColor: theme.BASIC_BLUE }}
           titleStyle={css.authenBtnTitle}
           onPress={() =>
-            navigation.navigate(constant.navigationNames.LoginForm)
+            navigation.navigate(constant.navigationNames.Login)
           }
         />
         <Button
