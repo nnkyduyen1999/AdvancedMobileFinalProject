@@ -60,7 +60,7 @@ const MainTabs = () => {
         activeTintColor: theme.ICON_BLUE,
         inactiveTintColor: theme.TAB_BAR_ICON,
         style: { backgroundColor: theme.TAB_BAR_BGR },
-        tabStyle: {flexDirection: "column"}
+        tabStyle: { flexDirection: "column" },
       }}
     >
       <Tab.Screen
@@ -86,44 +86,48 @@ const MainTabs = () => {
     </Tab.Navigator>
   );
 };
-const Main = createStackNavigator();
 
-export default function App() {
+const MainModalNav = () => {
+  const Main = createStackNavigator();
+
   return (
-    <NavigationContainer theme={MyTheme}>
-      <Main.Navigator mode="modal">
-        <Main.Screen
-          component={MainTabs}
-          name={constant.navigationNames.MainTabs}
-          options={{ headerShown: false }}
-        />
-        <Main.Screen
-          component={Login}
-          name={constant.navigationNames.Login}
-          options={{ headerShown: false }}
-        />
-        <Main.Screen
-          component={Register}
-          name={constant.navigationNames.Register}
-          options={{ headerShown: false }}
-        />
-        <Main.Screen
-          component={LoginForm}
-          name={constant.navigationNames.LoginForm}
-          options={{ headerShown: false }}
-        />
-        <Main.Screen
-          component={ForgetPassword}
-          name={constant.navigationNames.ForgotPassword}
-          options={{ headerShown: false }}
-        />
+    <Main.Navigator mode="modal">
+      <Main.Screen
+        component={MainTabs}
+        name={constant.navigationNames.MainTabs}
+        options={{ headerShown: false }}
+      />
+      <Main.Screen
+        component={Login}
+        name={constant.navigationNames.Login}
+        options={{ headerShown: false }}
+      />
+      <Main.Screen
+        component={Register}
+        name={constant.navigationNames.Register}
+        options={{ headerShown: false }}
+      />
+      <Main.Screen
+        component={LoginForm}
+        name={constant.navigationNames.LoginForm}
+        options={{ headerShown: false }}
+      />
+      <Main.Screen
+        component={ForgetPassword}
+        name={constant.navigationNames.ForgotPassword}
+        options={{ headerShown: false }}
+      />
 
-        <Main.Screen
-          component={CourseDetail}
-          name={constant.navigationNames.CourseDetail}
-          options={{ headerShown: true }}
-        />
-      </Main.Navigator>
-    </NavigationContainer>
+      <Main.Screen
+        component={CourseDetail}
+        name={constant.navigationNames.CourseDetail}
+        options={{ headerShown: true }}
+      />
+    </Main.Navigator>
   );
+};
+export default function App() {
+  return <NavigationContainer theme={MyTheme}>
+    <MainModalNav/>
+  </NavigationContainer>;
 }
