@@ -49,11 +49,42 @@ const SettingStackScreen = ({ navigation }) => {
   );
 };
 
+const ProfileStackScreen = ({ navigation }) => {
+  const ProfileStack = createStackNavigator();
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name={constant.navigationNames.Profile}
+        component={Profile}
+        options={{
+          title: constant.navigationTitles.Profile,
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: theme.LARGE_MARGIN }}
+              onPress={() =>
+                navigation.goBack()
+              }
+            >
+              <Icon
+                type="font-awesome"
+                name="times"
+                size={25}
+                color={theme.BASIC_BLUE}
+              />
+            </TouchableOpacity>
+          ),
+          headerLeft: null,
+        }}
+      />
+    </ProfileStack.Navigator>
+  );
+}
+
 const MainHomeStackScreen = ({ navigation }) => {
   const MainHomeStack = createStackNavigator();
 
   return (
-    <MainHomeStack.Navigator mode="modal">
+    <MainHomeStack.Navigator>
       <MainHomeStack.Screen
         name={constant.navigationNames.Home}
         component={Home}
@@ -111,28 +142,11 @@ module.exports.HomeStackScreen = ({ navigation }) => {
         component={SettingStackScreen}
         options={{ headerShown: false }}
       />
+      
       <HomeStack.Screen
         name={constant.navigationNames.Profile}
-        component={Profile}
-        options={{
-          title: constant.navigationTitles.Profile,
-          headerRight: () => (
-            <TouchableOpacity
-              style={{ marginRight: theme.LARGE_MARGIN }}
-              onPress={() =>
-                navigation.goBack()
-              }
-            >
-              <Icon
-                type="font-awesome"
-                name="times"
-                size={25}
-                color={theme.BASIC_BLUE}
-              />
-            </TouchableOpacity>
-          ),
-          headerLeft: null,
-        }}
+        component={ProfileStackScreen}
+        options={{ headerShown: false }}
       />
     </HomeStack.Navigator>
   );

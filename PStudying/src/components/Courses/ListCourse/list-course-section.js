@@ -2,7 +2,7 @@ import React from 'react'
 import { SectionList, View, Text } from "react-native";
 import ListCourseItem from "../ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../Common/section-course-title";
-export default function ListCourseSection() {
+export default function ListCourseSection({nav}) {
     const DATA = [
         {
           title: "Main dishes",

@@ -1,40 +1,54 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
+import InputCustom from "./InputText/input-text";
+import TextButton from "./InputText/text-button";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
-const Login = ({ navigation }) => {
+
+const LoginForm = ({ navigation }) => {
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
-      <Image
-        source={require("../../../../assets/logo.png")}
-        style={{ width: 300, height: 200, alignSelf: "center" }}
-      />
-      <View style={{ justifyContent: "space-around", height: 200 }}>
+      <View style={{ height: 400, justifyContent: "space-around" }}>
+        <InputCustom
+          label="Username"
+          placeholder="Email or username"
+          iconName="envelope-o"
+        />
+        <InputCustom
+          label="Password"
+          placeholder="Password"
+          iconName="unlock-alt"
+          rightIcon="eye-slash"
+        />
         <Button
           title="Sign in"
-          buttonStyle={{ backgroundColor: theme.BASIC_BLUE }}
+          buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
+        />
+
+        <TouchableOpacity
           onPress={() =>
-            navigation.navigate(constant.navigationNames.LoginForm)
+            navigation.navigate(constant.navigationNames.ForgotPassword)
           }
-        />
+        >
+          <TextButton txt="Forget password?" />
+        </TouchableOpacity>
         <Button
-          title="Register"
+          title="Use Single Signin-On (SSO)"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
-          onPress={() => navigation.navigate(constant.navigationNames.Register)}
         />
         <Button
-          title="Explore without a subscription"
+          title="Cancel"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
-          onPress={() => navigation.popToTop()}
+          onPress={() => navigation.goBack()}
         />
       </View>
     </View>
   );
 };
 
-export default Login;
+export default LoginForm;

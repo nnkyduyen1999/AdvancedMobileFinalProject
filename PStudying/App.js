@@ -8,8 +8,8 @@ import theme from "./src/globals/theme";
 import constant from "./src/globals/constant";
 import { Icon } from "react-native-elements";
 import Navigate from "./Navigation";
+import SplashScreen from "./src/components/Others/SplashScreen/splash-screen";
 import Login from "./src/components/Authentication/Login/login";
-import LoginForm from "./src/components/Authentication/Login/Login-Form/login-form";
 import ForgetPassword from "./src/components/Authentication/ForgetPassword/forget-password";
 import Register from "./src/components/Authentication/Register/register";
 import CourseDetail from "./src/components/CourseDetail/course-detail";
@@ -87,47 +87,49 @@ const MainTabs = () => {
   );
 };
 
-const MainModalNav = () => {
-  const Main = createStackNavigator();
+const AuthenNav = () => {
+  const AuthenNav = createStackNavigator();
 
   return (
-    <Main.Navigator mode="modal">
-      <Main.Screen
+    <AuthenNav.Navigator mode="modal">
+      <AuthenNav.Screen
         component={MainTabs}
         name={constant.navigationNames.MainTabs}
         options={{ headerShown: false }}
       />
-      <Main.Screen
-        component={Login}
-        name={constant.navigationNames.Login}
+      <AuthenNav.Screen
+        component={SplashScreen}
+        name={constant.navigationNames.SplashScreen}
         options={{ headerShown: false }}
       />
-      <Main.Screen
+      <AuthenNav.Screen
         component={Register}
         name={constant.navigationNames.Register}
         options={{ headerShown: false }}
       />
-      <Main.Screen
-        component={LoginForm}
-        name={constant.navigationNames.LoginForm}
+      <AuthenNav.Screen
+        component={Login}
+        name={constant.navigationNames.Login}
         options={{ headerShown: false }}
       />
-      <Main.Screen
+      <AuthenNav.Screen
         component={ForgetPassword}
         name={constant.navigationNames.ForgotPassword}
         options={{ headerShown: false }}
       />
 
-      <Main.Screen
+      <AuthenNav.Screen
         component={CourseDetail}
         name={constant.navigationNames.CourseDetail}
         options={{ headerShown: true }}
       />
-    </Main.Navigator>
+    </AuthenNav.Navigator>
   );
 };
 export default function App() {
-  return <NavigationContainer theme={MyTheme}>
-    <MainModalNav/>
-  </NavigationContainer>;
+  return (
+    <NavigationContainer theme={MyTheme}>
+      <AuthenNav />
+    </NavigationContainer>
+  );
 }

@@ -68,7 +68,7 @@ export default function Setting({ navigation }) {
           text: "Sign out",
           onPress: () => {
             navigation.dispatch(StackActions.pop(1));
-            navigation.navigate(constant.navigationNames.Login)
+            navigation.navigate(constant.navigationNames.SplashScreen)
           },
         },
       ],

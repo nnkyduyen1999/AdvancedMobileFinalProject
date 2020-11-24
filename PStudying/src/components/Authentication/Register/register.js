@@ -41,7 +41,7 @@ const Register = ({ navigation }) => {
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
           onPress={() =>
-            navigation.navigate(constant.navigationNames.LoginForm)
+            navigation.navigate(constant.navigationNames.Login)
           }
         />
       </View>
