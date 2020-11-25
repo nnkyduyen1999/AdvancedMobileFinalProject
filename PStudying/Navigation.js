@@ -12,6 +12,9 @@ import SearchBarCustom from "./src/components/Main/Search/SearchBar/search-bar";
 import Download from "./src/components/Main/Download/download";
 import Setting from "./src/components/Account Management/Setting-Account/setting";
 import Profile from "./src/components/Account Management/Profile/profile";
+import AuthorProfile from "./src/components/Main/Browse/Authors/author-profile";
+import NewRelease from "./src/components/Main/Browse/QuickBrowse/new-release";
+import Recommended from "./src/components/Main/Browse/QuickBrowse/recommended";
 
 import constant from "./src/globals/constant";
 import theme from "./src/globals/theme";
@@ -61,9 +64,7 @@ const ProfileStackScreen = ({ navigation }) => {
           headerRight: () => (
             <TouchableOpacity
               style={{ marginRight: theme.LARGE_MARGIN }}
-              onPress={() =>
-                navigation.goBack()
-              }
+              onPress={() => navigation.goBack()}
             >
               <Icon
                 type="font-awesome"
@@ -78,7 +79,7 @@ const ProfileStackScreen = ({ navigation }) => {
       />
     </ProfileStack.Navigator>
   );
-}
+};
 
 const MainHomeStackScreen = ({ navigation }) => {
   const MainHomeStack = createStackNavigator();
@@ -142,7 +143,7 @@ module.exports.HomeStackScreen = ({ navigation }) => {
         component={SettingStackScreen}
         options={{ headerShown: false }}
       />
-      
+
       <HomeStack.Screen
         name={constant.navigationNames.Profile}
         component={ProfileStackScreen}
@@ -185,6 +186,21 @@ module.exports.BrowseStackScreen = () => {
         name={constant.navigationNames.SkillDetail}
         component={SkillDetail}
         options={{ title: constant.navigationTitles.SkillDetail }}
+      />
+      <BrowseStack.Screen
+        name={constant.navigationNames.AuthorProfile}
+        component={AuthorProfile}
+        options={{ title: constant.navigationTitles.AuthorProfile }}
+      />
+      <BrowseStack.Screen
+        name={constant.navigationNames.NewRelease}
+        component={NewRelease}
+        options={{ title: "" }}
+      />
+      <BrowseStack.Screen
+        name={constant.navigationNames.Recommended}
+        component={Recommended}
+        options={{ title: "" }}
       />
     </BrowseStack.Navigator>
   );

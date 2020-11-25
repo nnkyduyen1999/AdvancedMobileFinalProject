@@ -18,6 +18,9 @@ module.exports.navigationNames = {
     ChangePasswordForm: "ChangePasswordForm",
     MainTabs: "MainTabs",
     Authentication: "Authentication",
+    AuthorProfile: "AuthorProfile",
+    NewRelease: "NewRelease",
+    Recommended: "Recommended",
 }
 
 module.exports.navigationTitles = {
@@ -26,4 +29,5 @@ module.exports.navigationTitles = {
     Browse: "Browse",
     Download: "Download",
     Profile: "Profile",
+    AuthorProfile: "Author",
 }

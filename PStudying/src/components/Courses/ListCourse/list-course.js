@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import ListCourseItem from "../ListCourseItems/list-course-items";
 
-const ListCourse = ({ nav }) => {
+const ListCourse = ({ nav, listCourses }) => {
   const courses = [
     {
       id: "1",
@@ -31,7 +31,7 @@ const ListCourse = ({ nav }) => {
   ];
   return (
     <FlatList
-      data={courses}
+      data={listCourses}
       renderItem={({ item }) => (
         <ListCourseItem course={item} listCourseNav={nav} />
       )}

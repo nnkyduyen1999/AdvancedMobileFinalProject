@@ -8,6 +8,7 @@ import ButtonCategory from "./Category/ButtonCategory";
 import ImageButton from "../../Common/image-button";
 import ScreenHeader from "../../Common/screen-header";
 import css from "../../../globals/style";
+import constant from "../../../globals/constant";
 
 const Browse = ({ navigation }) => {
   return (
@@ -17,13 +18,21 @@ const Browse = ({ navigation }) => {
         txt="New Released"
         imgName="new-release.jpg"
         imgType={css.largeImgButton}
-        nav={navigation}
+        onPressImgBtn={
+          () => {
+            navigation.navigate(constant.navigationNames.NewRelease)
+          }
+        }
       />
       <ImageButton
         txt="Recommend for you"
         imgName="recommended.png"
         imgType={css.largeImgButton}
-        nav={navigation}
+        onPressImgBtn={
+          () => {
+            navigation.navigate(constant.navigationNames.Recommended)
+          }
+        }
       />
       <View style={{ marginVertical: 20 }}>
         <SectionCourseTitle sectionTitle="Popular Skills" />
