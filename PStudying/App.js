@@ -14,9 +14,7 @@ import ForgetPassword from "./src/components/Authentication/ForgetPassword/forge
 import Register from "./src/components/Authentication/Register/register";
 import CourseDetail from "./src/components/CourseDetail/course-detail";
 
-const dismissIcon = (
-  <Icon type="font-awesome" name="times" size={25} color={theme.BASIC_BLUE} />
-);
+import  {AuthenticationProvider}  from "./src/providers/authentication-provider";
 
 const MyTheme = {
   dark: false,
@@ -129,7 +127,9 @@ const AuthenNav = () => {
 export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
-      <AuthenNav />
+      <AuthenticationProvider>
+        <AuthenNav />
+      </AuthenticationProvider>
     </NavigationContainer>
   );
 }
