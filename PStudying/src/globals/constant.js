@@ -1,5 +1,6 @@
 module.exports.navigationNames = {
     Home: "Home",
+    HomeTab: "HomeTab",
     CourseDetail: "CourseDetail",
     Search: "Search",
     Browse: "Browse",
