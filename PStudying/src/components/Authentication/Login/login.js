@@ -14,7 +14,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState(``);
   const authenticationContext = useContext(AuthenticationContext);
   const { authentication } = authenticationContext;
-
+  
   const renderStatus = (authentication) => {
     if (!authentication) {
       return <></>;

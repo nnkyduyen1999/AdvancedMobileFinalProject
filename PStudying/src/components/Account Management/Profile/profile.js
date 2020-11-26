@@ -10,17 +10,24 @@ import { AuthenticationContext } from "../../../providers/authentication-provide
 const Profile = () => {
   const authenticationContext = useContext(AuthenticationContext);
   const { userInfo } = authenticationContext.authentication;
-  console.log(userInfo);
   return (
     <ScrollView style={css.screenContent}>
       <View style={{ alignItems: "center" }}>
-        <Avatar
+        
+        {!userInfo.avatar && <Avatar
+          size="xlarge"
+          rounded
+          source={{
+            uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`
+          }}
+        />}
+        {userInfo.avatar && <Avatar
           size="xlarge"
           rounded
           source={{
             uri: `${userInfo.avatar}`
           }}
-        />
+        />}
         <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
           {userInfo.name}
         </Text>

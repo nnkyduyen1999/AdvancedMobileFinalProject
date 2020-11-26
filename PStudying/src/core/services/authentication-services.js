@@ -32,5 +32,5 @@ module.exports.register = (username, email, phone, password) => {
   if (username === "admin" || email === "admin@example.com") {
     return { statusCode: 400, errString: "Existed username or email" };
   }
-  return { statusCode: 200 };
+  return { statusCode: 200, userInfo: { username, email, password, phone } };
 };
