@@ -1,12 +1,24 @@
-import React from "react";
-import { ScrollView, Text, View, StyleSheet } from "react-native";
+import React, { useContext, useState } from "react";
+import { ScrollView, Text, View, StyleSheet, Alert } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import CourseInfo from "../../Common/course-info";
 import CustomIcon from "./custom-icon";
+import { CourseContext } from "../../../providers/course-provider";
+import courseServices from "../../../core/services/course-services";
 
 const Introduction = ({ course }) => {
+  const courseContext = useContext(CourseContext);
+  const [status, setStatus] = useState();
+
+  const onPressFavor = (status) => {
+    if (status && status.statusCode === 200) {
+      Alert.alert(status.message);
+    } else {
+      return <></>;
+    }
+  };
   return (
     <View>
       <CourseInfo
@@ -15,8 +27,19 @@ const Introduction = ({ course }) => {
         authorStyle={css.buttonLayoutBig}
       />
       <View style={styles.iconView}>
+        {onPressFavor(status)}
         <CustomIcon iconName="bookmark-o" title="Bookmarks" />
-        <CustomIcon iconName="heart-o" title="Add to channels" />
+        <CustomIcon
+          iconName="heart-o"
+          title="Add to channels"
+          onPressIcon={() => {
+              setStatus(courseServices.likeCourse(course.id));
+              courseContext.setFavoriteCourses([
+                ...courseContext.favoriteCourses,
+                course,
+              ]);
+          }}
+        />
         <CustomIcon iconName="arrow-circle-o-down" title="Download" />
       </View>
       <Divider style={css.divider} />
@@ -29,13 +52,25 @@ const Introduction = ({ course }) => {
         buttonStyle={styles.fullButton}
         title="Related paths and courses"
         titleStyle={styles.fullButtonText}
-        icon={<Icon name="window-maximize" type="font-awesome" color={theme.PRIMARY_TEXT_COLOR} />}
+        icon={
+          <Icon
+            name="window-maximize"
+            type="font-awesome"
+            color={theme.PRIMARY_TEXT_COLOR}
+          />
+        }
       />
       <Button
         buttonStyle={styles.fullButton}
         title="Take a learning check"
         titleStyle={styles.fullButtonText}
-        icon={<Icon name="bullseye" type="font-awesome" color={theme.PRIMARY_TEXT_COLOR} />}
+        icon={
+          <Icon
+            name="bullseye"
+            type="font-awesome"
+            color={theme.PRIMARY_TEXT_COLOR}
+          />
+        }
       />
     </View>
   );

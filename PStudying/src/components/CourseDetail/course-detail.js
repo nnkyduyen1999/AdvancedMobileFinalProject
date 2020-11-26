@@ -2,8 +2,6 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import VideoPlayer from "./VideoPlayer/video-player";
 import ListLesson from "./ListLessons/list-lesson";
-import css from "../../globals/style";
-import theme from "../../globals/theme";
 
 const CourseDetail = ({ route }) => {
   const course = {
