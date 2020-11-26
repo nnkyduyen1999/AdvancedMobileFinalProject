@@ -13,7 +13,6 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState(``);
   const [password, setPassword] = useState(``);
   const authenticationContext = useContext(AuthenticationContext);
-
   const { authentication } = authenticationContext;
 
   const renderStatus = (authentication) => {
@@ -54,7 +53,6 @@ const Login = ({ navigation }) => {
           buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
           onPress={() => {
-            //setStatus(authenticationService.login(username, password));
             authenticationContext.setAuthentication(
               authenticationService.login(username, password)
             );

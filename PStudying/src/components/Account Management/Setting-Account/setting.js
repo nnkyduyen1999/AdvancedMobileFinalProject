@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, ScrollView, Alert } from "react-native";
 import { Button } from "react-native-elements";
 import { StackActions } from '@react-navigation/native';
 import ListSetting from "./list-setting/list-setting";
 import css from "../../../globals/style";
 import constant from "../../../globals/constant";
+import { AuthenticationContext} from "../../../providers/authentication-provider"
 
 export default function Setting({ navigation }) {
+  const authenticationContext = useContext(AuthenticationContext);
   const settingList1 = [
     {
       main: "Subcription",
@@ -55,6 +57,7 @@ export default function Setting({ navigation }) {
     },
   ];
 
+
   const showAlert = () => {
     Alert.alert(
       "Sign out",
@@ -69,6 +72,7 @@ export default function Setting({ navigation }) {
           onPress: () => {
             navigation.dispatch(StackActions.pop(1));
             navigation.navigate(constant.navigationNames.SplashScreen)
+            authenticationContext.setAuthentication();
           },
         },
       ],

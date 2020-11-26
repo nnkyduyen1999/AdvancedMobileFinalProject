@@ -9,7 +9,8 @@ import { AuthenticationContext } from "../../../providers/authentication-provide
 
 const Profile = () => {
   const authenticationContext = useContext(AuthenticationContext);
-  const userInfo = authenticationContext.authentication.user;
+  const { userInfo } = authenticationContext.authentication;
+  console.log(userInfo);
   return (
     <ScrollView style={css.screenContent}>
       <View style={{ alignItems: "center" }}>
@@ -17,12 +18,11 @@ const Profile = () => {
           size="xlarge"
           rounded
           source={{
-            uri:
-              "https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg",
+            uri: `${userInfo.avatar}`
           }}
         />
         <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
-          {userInfo.fullName}
+          {userInfo.name}
         </Text>
       </View>
       <View>
@@ -30,13 +30,17 @@ const Profile = () => {
         <ButtonCategory />
         <HeadingContent sectionTitle="Information" />
         <View>
-          <Text style={styles.textStyle}>quote</Text>
-          <Input placeholder="Some quote here ..." style={styles.infoInput} />
+          <Text style={styles.textStyle}>Phone</Text>
+          <Input
+            placeholder="Phone here ..."
+            style={styles.infoInput}
+            value={`${userInfo.phone}`}
+          />
           <Text style={styles.textStyle}>email</Text>
           <Input
             placeholder="Email here ..."
             style={styles.infoInput}
-            value={`${userInfo.username}`}
+            value={`${userInfo.email}`}
           />
         </View>
         <Button title="Update info" type="outline" />
