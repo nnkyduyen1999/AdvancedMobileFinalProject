@@ -22,6 +22,7 @@ module.exports.navigationNames = {
     AuthorProfile: "AuthorProfile",
     NewRelease: "NewRelease",
     Recommended: "Recommended",
+    FullSection: "FullSection",
 }
 
 module.exports.navigationTitles = {

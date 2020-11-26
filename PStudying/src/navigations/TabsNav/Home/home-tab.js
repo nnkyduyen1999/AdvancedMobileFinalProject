@@ -5,8 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../../../components/Main/Home/home";
 import Setting from "../../../components/Account Management/Setting-Account/setting";
-import Profile from "../../..//components/Account Management/Profile/profile";
-
+import Profile from "../../../components/Account Management/Profile/profile";
+import FullSection from "../../../components/Main/Home/SectionFullList/section-full-list";
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
 
@@ -15,7 +15,6 @@ import { Icon } from "react-native-elements";
 const dismissIcon = (
   <Icon type="font-awesome" name="times" size={25} color={theme.BASIC_BLUE} />
 );
-
 
 const SettingStackScreen = ({ navigation }) => {
   const SettingStack = createStackNavigator();
@@ -113,6 +112,11 @@ const MainHomeStackScreen = ({ navigation }) => {
           ),
         }}
       />
+      <MainHomeStack.Screen
+        name={constant.navigationNames.FullSection}
+        component={FullSection}
+        options={{title: ""}}
+      />
     </MainHomeStack.Navigator>
   );
 };
@@ -144,4 +148,3 @@ const HomeStackScreen = ({ navigation }) => {
 };
 
 export default HomeStackScreen;
-

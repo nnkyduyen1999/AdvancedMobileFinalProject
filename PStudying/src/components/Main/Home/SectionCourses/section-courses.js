@@ -13,7 +13,7 @@ const SectionCourses = ({listCourse, nav, title}) => {
   };
   return (
     <View>
-      <SectionCourseTitle sectionTitle={title} seeAll="See All   "/>
+      <SectionCourseTitle sectionTitle={title} seeAll="See All   " fullSecNav={nav} sectionCourses={listCourse}/>
       <ScrollView horizontal={true}>
         {renderSectionCoursesItems(listCourse)}
       </ScrollView>
