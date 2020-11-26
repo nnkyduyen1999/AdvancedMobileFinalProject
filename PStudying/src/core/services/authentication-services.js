@@ -34,3 +34,10 @@ module.exports.register = (username, email, phone, password) => {
   }
   return { statusCode: 200, userInfo: { username, email, password, phone } };
 };
+
+module.exports.forgetPassword = (email) => {
+  if (email === `admin@gmail.com`) {
+    return { statusCode: 200 }
+  }
+  return { statusCode: 400, errString: "Unregistered email" };
+}
