@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ScrollView, Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
@@ -28,16 +28,26 @@ const Introduction = ({ course }) => {
       />
       <View style={styles.iconView}>
         {onPressFavor(status)}
-        <CustomIcon iconName="bookmark-o" title="Bookmarks" />
+        <CustomIcon
+          iconName="bookmark-o"
+          title="Bookmarks"
+          onPressIcon={() => {
+            courseContext.setBookmark([
+              ...courseContext.bookmark,
+              course,
+            ]);
+            Alert.alert("Added course to bookmark");
+          }}
+        />
         <CustomIcon
           iconName="heart-o"
           title="Add to channels"
           onPressIcon={() => {
-              setStatus(courseServices.likeCourse(course.id));
-              courseContext.setFavoriteCourses([
-                ...courseContext.favoriteCourses,
-                course,
-              ]);
+            setStatus(courseServices.likeCourse(course.id));
+            courseContext.setFavoriteCourses([
+              ...courseContext.favoriteCourses,
+              course,
+            ]);
           }}
         />
         <CustomIcon iconName="arrow-circle-o-down" title="Download" />

@@ -11,6 +11,7 @@ const SectionCourseTitle = ({ sectionTitle, seeAll }) => {
   return (
     <View style={styles.titleLayout}>
       <Text style={css.sectionTitle}>{sectionTitle}</Text>
+
       {seeAll && (
         <Button
           title={`${seeAll}`}
