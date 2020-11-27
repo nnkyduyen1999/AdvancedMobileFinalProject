@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, TouchableOpacity, Alert, Text } from "react-native";
+import { View, TouchableOpacity, Alert, Text, KeyboardAvoidingView  } from "react-native";
 import { Button } from "react-native-elements";
 import InputCustom from "./InputText/input-text";
 import TextButton from "./InputText/text-button";
@@ -14,7 +14,14 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState(``);
   const authenticationContext = useContext(AuthenticationContext);
   const { authentication } = authenticationContext;
-  
+  // console.log("enter login");
+  // console.log(authentication);
+  useEffect(() => {
+    if (authentication && authentication.statusCode === 200) {
+      navigation.navigate(constant.navigationNames.Home);
+      //console.log("passed");
+    } 
+  }, [authentication]);
   const renderStatus = (authentication) => {
     if (!authentication) {
       return <></>;
@@ -24,15 +31,8 @@ const Login = ({ navigation }) => {
       return <Text style={{ color: "red" }}>{authentication.errString}</Text>;
     }
   };
-
-  useEffect(() => {
-    if (authentication && authentication.statusCode === 200) {
-      navigation.navigate(constant.navigationNames.Home);
-    }
-  }, [authentication]);
-
   return (
-    <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
+    <KeyboardAvoidingView style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
         {renderStatus(authentication)}
         <InputCustom
@@ -78,7 +78,7 @@ const Login = ({ navigation }) => {
           onPress={() => navigation.goBack()}
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

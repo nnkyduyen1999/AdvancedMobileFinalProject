@@ -40,7 +40,6 @@ const Browse = ({ navigation }) => {
   ];
   const newCourses = courseServices.newCourses();
   const recommendedCourses = courseServices.getRecommendedCourse();
-
   return (
     <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Browse" />

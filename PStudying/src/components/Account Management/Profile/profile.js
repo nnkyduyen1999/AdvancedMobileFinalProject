@@ -1,5 +1,13 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { Input, Button, Avatar } from "react-native-elements";
 import HeadingContent from "../../Common/section-course-title";
 import ButtonCategory from "../../Main/Browse/Category/ButtonCategory";
@@ -9,90 +17,116 @@ import constant from "../../../globals/constant";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const Profile = ({ navigation }) => {
+  // console.log("enter profile")
   const authenticationContext = useContext(AuthenticationContext);
   const { authentication } = authenticationContext;
+  //console.log(authentication);
   if (!authentication) {
     return (
-      <ScrollView style={css.screenContent}>
-        <View style={{ alignItems: "center" }}>
-          <Avatar
-            size="xlarge"
-            rounded
-            source={{
-              uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`,
-            }}
-          />
-          <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
-            username
-          </Text>
-        </View>
-        <View>
-          <HeadingContent sectionTitle="Interested" />
-          <ButtonCategory />
-          <HeadingContent sectionTitle="Information" />
-          <View>
-            <Text style={styles.textStyle}>Phone</Text>
-            <Input placeholder="Phone here ..." style={styles.infoInput} />
-            <Text style={styles.textStyle}>email</Text>
-            <Input placeholder="Email here ..." style={styles.infoInput} />
-          </View>
-          <Button
-            title="Login"
-            type="outline"
-            onPress={() => {
-              navigation.navigate(constant.navigationNames.SplashScreen);
-            }}
-          />
-        </View>
-      </ScrollView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView style={css.screenContent}>
+            <View style={{ alignItems: "center" }}>
+              <Avatar
+                size="xlarge"
+                rounded
+                source={{
+                  uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`,
+                }}
+              />
+              <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
+                username
+              </Text>
+            </View>
+            <View>
+              <HeadingContent sectionTitle="Interested" />
+              <ButtonCategory />
+              <HeadingContent sectionTitle="Information" />
+              <View>
+                <Text style={styles.textStyle}>Name</Text>
+                <Input placeholder="Name here ..." style={styles.infoInput} />
+                <Text style={styles.textStyle}>Phone</Text>
+                <Input placeholder="Phone here ..." style={styles.infoInput} />
+                <Text style={styles.textStyle}>Email</Text>
+                <Input placeholder="Email here ..." style={styles.infoInput} />
+              </View>
+              <Button
+                title="Login"
+                type="outline"
+                onPress={() => {
+                  navigation.navigate(constant.navigationNames.SplashScreen);
+                }}
+              />
+            </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     );
   } else {
     const { userInfo } = authentication;
     return (
-      <ScrollView style={css.screenContent}>
-        <View style={{ alignItems: "center" }}>
-          {!userInfo.avatar && (
-            <Avatar
-              size="xlarge"
-              rounded
-              source={{
-                uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`,
-              }}
-            />
-          )}
-          {userInfo.avatar && <Avatar
-            size="xlarge"
-            rounded
-            source={{
-              uri: `${userInfo.avatar}`,
-            }}
-          />}
-          
-          <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
-            {userInfo.name}
-          </Text>
-        </View>
-        <View>
-          <HeadingContent sectionTitle="Interested" />
-          <ButtonCategory />
-          <HeadingContent sectionTitle="Information" />
-          <View>
-            <Text style={styles.textStyle}>Phone</Text>
-            <Input
-              placeholder="Phone here ..."
-              style={styles.infoInput}
-              value={`${userInfo.phone}`}
-            />
-            <Text style={styles.textStyle}>email</Text>
-            <Input
-              placeholder="Email here ..."
-              style={styles.infoInput}
-              value={`${userInfo.email}`}
-            />
-          </View>
-          <Button title="Update info" type="outline" />
-        </View>
-      </ScrollView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView style={css.screenContent}>
+            <View style={{ alignItems: "center" }}>
+              {!userInfo.avatar && (
+                <Avatar
+                  size="xlarge"
+                  rounded
+                  source={{
+                    uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`,
+                  }}
+                />
+              )}
+              {userInfo.avatar && (
+                <Avatar
+                  size="xlarge"
+                  rounded
+                  source={{
+                    uri: `${userInfo.avatar}`,
+                  }}
+                />
+              )}
+
+              <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
+                {userInfo.name}
+              </Text>
+            </View>
+            <View>
+              <HeadingContent sectionTitle="Interested" />
+              <ButtonCategory />
+              <HeadingContent sectionTitle="Information" />
+              <View>
+                <Text style={styles.textStyle}>Name</Text>
+                <Input
+                  placeholder="Name here ..."
+                  style={styles.infoInput}
+                  value={`${userInfo.name}`}
+                />
+                <Text style={styles.textStyle}>Phone</Text>
+                <Input
+                  placeholder="Phone here ..."
+                  style={styles.infoInput}
+                  value={`${userInfo.phone}`}
+                />
+                <Text style={styles.textStyle}>email</Text>
+                <Input
+                  placeholder="Email here ..."
+                  style={styles.infoInput}
+                  value={`${userInfo.email}`}
+                />
+              </View>
+              <Button title="Update info" type="outline" />
+            </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     );
   }
 };
