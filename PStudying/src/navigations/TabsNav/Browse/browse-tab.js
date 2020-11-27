@@ -6,8 +6,7 @@ import Browse from "../../../components/Main/Browse/browse";
 import SkillDetail from "../../../components/Main/Browse/SkillDetail/skill-detail";
 import Profile from "../../../components/Account Management/Profile/profile";
 import AuthorProfile from "../../../components/Main/Browse/Authors/author-profile";
-import NewRelease from "../../../components/Main/Browse/QuickBrowse/new-release";
-import Recommended from "../../../components/Main/Browse/QuickBrowse/recommended";
+import FullSection from "../../../components/Main/Home/SectionFullList/section-full-list"
 
 import constant from "../../../globals/constant";
 
@@ -37,13 +36,8 @@ const BrowseStackScreen = () => {
         options={{ title: constant.navigationTitles.AuthorProfile }}
       />
       <BrowseStack.Screen
-        name={constant.navigationNames.NewRelease}
-        component={NewRelease}
-        options={{ title: "" }}
-      />
-      <BrowseStack.Screen
-        name={constant.navigationNames.Recommended}
-        component={Recommended}
+        name={constant.navigationNames.FullSection}
+        component={FullSection}
         options={{ title: "" }}
       />
     </BrowseStack.Navigator>

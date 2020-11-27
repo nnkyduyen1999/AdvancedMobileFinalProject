@@ -4,6 +4,7 @@ import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
 import SearchEmpty from "../SearchEmpty/search-empty"
 import css from "../../../../globals/style";
+
 const SearchDetail = ({nav}) => {
   const DATA = [
     {
@@ -64,35 +65,6 @@ const SearchDetail = ({nav}) => {
         },
       ],
     },
-    {
-      title: "Authors",
-      data: [
-        {
-          id: "1",
-          name: "React Native",
-          author: "Hai Pham",
-          level: "Advanced",
-          released: "May 2019",
-          duration: "40h",
-        },
-        {
-          id: "2",
-          name: "React",
-          author: "Khanh Nguyen",
-          level: "Advanced",
-          released: "May 2019",
-          duration: "60h",
-        },
-        {
-          id: "3",
-          name: "Test",
-          author: "Hanh Tran",
-          level: "Beginner",
-          released: "May 2019",
-          duration: "45h",
-        },
-      ],
-    },
   ];
 
   return (
@@ -110,6 +82,7 @@ const SearchDetail = ({nav}) => {
         )}
         ListEmptyComponent={<SearchEmpty/>}
       />
+      
     </View>
   );
 };

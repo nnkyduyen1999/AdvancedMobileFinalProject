@@ -4,7 +4,7 @@ import css from "../../../../globals/style";
 import ScreenHeader from "../../../Common/screen-header";
 import ListCourse from "../../../Courses/ListCourse/list-course";
 
-const Download = ({ navigation, route }) => {
+const SectionFullList = ({ navigation, route }) => {
   const sectionContent = route.params.sectionContent;
   return (
     <ScrollView style={css.screenContent}>
@@ -14,4 +14,4 @@ const Download = ({ navigation, route }) => {
   );
 };
 
-export default Download;
+export default SectionFullList;
