@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import { Input, Button, Avatar } from "react-native-elements";
 import HeadingContent from "../../Common/section-course-title";
@@ -15,11 +16,13 @@ import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
+import userServices from "../../../core/services/user-services";
 
 const Profile = ({ navigation }) => {
   // console.log("enter profile")
   const authenticationContext = useContext(AuthenticationContext);
   const { authentication } = authenticationContext;
+
   //console.log(authentication);
   if (!authentication) {
     return (
@@ -49,9 +52,15 @@ const Profile = ({ navigation }) => {
                 <Text style={styles.textStyle}>Name</Text>
                 <Input placeholder="Name here ..." style={styles.infoInput} />
                 <Text style={styles.textStyle}>Phone</Text>
-                <Input placeholder="Phone here ..." style={styles.infoInput} />
+                <Input
+                  placeholder="Phone here ..."
+                  style={styles.infoInput}
+                />
                 <Text style={styles.textStyle}>Email</Text>
-                <Input placeholder="Email here ..." style={styles.infoInput} />
+                <Input
+                  placeholder="Email here ..."
+                  style={styles.infoInput}
+                />
               </View>
               <Button
                 title="Login"
@@ -67,6 +76,9 @@ const Profile = ({ navigation }) => {
     );
   } else {
     const { userInfo } = authentication;
+    const [name, setName] = useState(userInfo.name);
+    const [phone, setPhone] = useState(userInfo.phone);
+
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -107,13 +119,15 @@ const Profile = ({ navigation }) => {
                 <Input
                   placeholder="Name here ..."
                   style={styles.infoInput}
-                  value={`${userInfo.name}`}
+                  value={name}
+                  onChangeText={(text) => setName(text)}
                 />
                 <Text style={styles.textStyle}>Phone</Text>
                 <Input
                   placeholder="Phone here ..."
                   style={styles.infoInput}
-                  value={`${userInfo.phone}`}
+                  value={phone}
+                  onChangeText={(text) => setPhone(text)}
                 />
                 <Text style={styles.textStyle}>email</Text>
                 <Input
@@ -122,7 +136,18 @@ const Profile = ({ navigation }) => {
                   value={`${userInfo.email}`}
                 />
               </View>
-              <Button title="Update info" type="outline" />
+              <Button
+                title="Update info"
+                type="outline"
+                onPress={() => {
+                  authenticationContext.setAuthentication(
+                    userServices.updateInfo(name, phone)
+                  );
+                  if (authentication && authentication.statusCode === 200) {
+                    Alert.alert("Successfully updated info");
+                  }
+                }}
+              />
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>
