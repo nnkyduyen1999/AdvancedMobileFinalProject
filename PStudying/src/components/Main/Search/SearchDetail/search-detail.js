@@ -105,6 +105,7 @@ const SearchDetail = ({nav}) => {
           <SectionCourseTitle
             seeAll={`${data.length} results   `}
             sectionTitle={title}
+            fullSecNav={nav} sectionCourses={data}
           />
         )}
         ListEmptyComponent={<SearchEmpty/>}

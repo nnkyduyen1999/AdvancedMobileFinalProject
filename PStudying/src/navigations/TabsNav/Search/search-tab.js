@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 
 import Search from "../../../components/Main/Search/search";
 import SearchBarCustom from "../../../components/Main/Search/SearchBar/search-bar";
-
+import FullSection from "../../../components/Main/Home/SectionFullList/section-full-list"
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
 
@@ -52,6 +52,11 @@ const SearchStackScreen = () => {
         name={constant.navigationNames.Search}
         component={TabSearchScreen}
         options={{ headerTitle: (props) => <SearchBarCustom {...props} /> }}
+      />
+      <SearchStack.Screen
+        name={constant.navigationNames.FullSection}
+        component={FullSection}
+        options={{ title: "" }}
       />
     </SearchStack.Navigator>
   );
