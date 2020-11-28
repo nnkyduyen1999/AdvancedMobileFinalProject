@@ -2,7 +2,7 @@ import React from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "./src/globals/theme";
-import MainModals from "./src/navigations/ModalsNav/main-modals";
+import RootStack from "./src/navigations/root-navigation";
 import { AuthenticationProvider } from "./src/providers/authentication-provider";
 import { CourseProvider } from "./src/providers/course-provider";
 
@@ -20,7 +20,7 @@ export default function App() {
     <NavigationContainer theme={MyTheme}>
       <AuthenticationProvider>
         <CourseProvider>
-          <MainModals />
+          <RootStack />
         </CourseProvider>
       </AuthenticationProvider>
     </NavigationContainer>

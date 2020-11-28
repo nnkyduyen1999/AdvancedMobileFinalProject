@@ -3,12 +3,13 @@ import { Text, View, StyleSheet, Alert } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
+import constant from "../../../globals/constant";
 import CourseInfo from "../../Common/course-info";
 import CustomIcon from "./custom-icon";
 import { CourseContext } from "../../../providers/course-provider";
 import courseServices from "../../../core/services/course-services";
 
-const Introduction = ({ course }) => {
+const Introduction = ({ course, nav }) => {
   const courseContext = useContext(CourseContext);
   const [status, setStatus] = useState();
 
@@ -69,6 +70,16 @@ const Introduction = ({ course }) => {
             color={theme.PRIMARY_TEXT_COLOR}
           />
         }
+        onPress={
+          () => {
+            nav.navigate(constant.navigationNames.FullSection, { 
+              sectionContent: {
+                title: "Related courses",
+                courses: courseContext.favoriteCourses,
+              }
+            });
+          }
+        }
       />
       <Button
         buttonStyle={styles.fullButton}
@@ -80,6 +91,16 @@ const Introduction = ({ course }) => {
             type="font-awesome"
             color={theme.PRIMARY_TEXT_COLOR}
           />
+        }
+        onPress={
+          () => {
+            nav.navigate(constant.navigationNames.FullSection, { 
+              sectionContent: {
+                title: "Exercises",
+                courses: courseContext.favoriteCourses,
+              }
+            });
+          }
         }
       />
     </View>

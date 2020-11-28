@@ -5,7 +5,7 @@ import ListItemHeader from "../ListLessonItems/list-item-header"
 import Introduction from "../CourseIntroduction/introduction"
 import css from "../../../globals/style"
 
-const ListLesson = ({ listLesson, listHeaderContent }) => {
+const ListLesson = ({ listLesson, listHeaderContent, nav }) => {
   return (
     <SectionList style={css.screenContent}
         sections={listLesson}
@@ -16,7 +16,7 @@ const ListLesson = ({ listLesson, listHeaderContent }) => {
             sectionHeader={title}
           />
         )}
-        ListHeaderComponent={<Introduction course={listHeaderContent} />}
+        ListHeaderComponent={<Introduction course={listHeaderContent} nav={nav}/>}
       />
   );
 };
