@@ -33,10 +33,9 @@ const SplashScreen = ({ navigation }) => {
           onPress={() => navigation.navigate(constant.navigationNames.Register)}
         />
         <Button
-          title="Explore without a subscription"
+          title="Login with Google"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
-          onPress={() => navigation.popToTop()}
         />
       </View>
     </View>

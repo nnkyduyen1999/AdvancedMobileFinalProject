@@ -2,13 +2,13 @@ import React from "react";
 import { SectionList, View, Text } from "react-native";
 import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
-import SearchEmpty from "../SearchEmpty/search-empty"
-import { FlatList } from "react-native-gesture-handler";
+import SearchEmpty from "../SearchEmpty/search-empty";
+import css from "../../../../globals/style";
 
-const SearchDetail = ({nav}) => {
-  const authors = [
+const SearchAuthor = ({ nav }) => {
+  const DATA = [
     {
-      title: "Authors",
+      title: "Courses",
       data: [
         {
           id: "1",
@@ -39,15 +39,25 @@ const SearchDetail = ({nav}) => {
   ];
 
   return (
-    <View>
-    <SectionCourseTitle
-          seeAll={`${data.length} results   `}
-          sectionTitle="Authors"
-          fullSecNav={nav} sectionCourses={authors}
-        />
-        <FlatList/>
+    <View style={css.screenContent}>
+      <SectionList
+        sections={DATA}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => (
+          <ListCourseItem course={item} listCourseNav={nav} />
+        )}
+        renderSectionHeader={({ section: { title, data } }) => (
+          <SectionCourseTitle
+            seeAll={`${data.length} results   `}
+            sectionTitle={title}
+            fullSecNav={nav}
+            sectionCourses={data}
+          />
+        )}
+        ListEmptyComponent={<SearchEmpty />}
+      />
     </View>
   );
 };
 
-export default SearchDetail;
+export default SearchAuthor;
