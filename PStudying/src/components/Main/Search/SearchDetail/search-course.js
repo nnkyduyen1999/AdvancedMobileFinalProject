@@ -5,40 +5,15 @@ import SectionCourseTitle from "../../../Common/section-course-title";
 import SearchEmpty from "../SearchEmpty/search-empty"
 import css from "../../../../globals/style";
 
-const SearchCourses = ({nav}) => {
+const SearchCourses = ({nav, searchData}) => {
     const DATA = [
         {
           title: "Courses",
-          data: [
-            {
-              id: "1",
-              name: "React Native",
-              author: "Hai Pham",
-              level: "Advanced",
-              released: "May 2019",
-              duration: "40h",
-            },
-            {
-              id: "2",
-              name: "React",
-              author: "Khanh Nguyen",
-              level: "Advanced",
-              released: "May 2019",
-              duration: "60h",
-            },
-            {
-              id: "3",
-              name: "Test",
-              author: "Hanh Tran",
-              level: "Beginner",
-              released: "May 2019",
-              duration: "45h",
-            },
-          ],
+          data: searchData,
         },
       ];
     
-
+  
   return (
     <View style={css.screenContent}>
       <SectionList

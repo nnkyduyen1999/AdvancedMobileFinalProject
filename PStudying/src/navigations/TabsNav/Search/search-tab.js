@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View } from "react-native";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,10 +13,12 @@ import SearchAuthors from "../../../components/Main/Search/SearchDetail/search-a
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
 import css from "../../../globals/style";
+import {CourseContext} from "../../../providers/course-provider";
 
 const Tab = createMaterialTopTabNavigator();
 
 const TabSearchScreen = () => {
+  const courseContext = useContext(CourseContext);
   return (
     <>
       <SearchBarCustom />
@@ -33,20 +35,24 @@ const TabSearchScreen = () => {
       >
         <Tab.Screen
           name={constant.navigationNames.SearchAll}
-          component={Search}
-        />
+        >
+          {props => <Search {...props} searchData={courseContext.searchDataAfter}/>}
+        </Tab.Screen>
         <Tab.Screen
           name={constant.navigationNames.SearchCourses}
-          component={SearchCourses}
-        />
+        >
+          {props => <SearchCourses {...props} searchData={courseContext.searchDataAfter}/>}
+        </Tab.Screen>
         <Tab.Screen
           name={constant.navigationNames.SearchPaths}
-          component={SearchPaths}
-        />
+        >
+          {props => <SearchPaths {...props} searchData={courseContext.searchDataAfter}/>}
+        </Tab.Screen>
         <Tab.Screen
           name={constant.navigationNames.SearchAuthors}
-          component={SearchAuthors}
-        />
+        >
+          {props => <SearchAuthors {...props} searchData={courseContext.searchDataAfter}/>}
+        </Tab.Screen>
       </Tab.Navigator>
     </>
   );

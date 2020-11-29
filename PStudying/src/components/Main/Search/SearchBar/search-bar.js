@@ -1,50 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SearchBar } from "react-native-elements";
 import theme from "../../../../globals/theme";
+import {CourseContext} from "../../../../providers/course-provider"
 
 export default function SearchBarCustom() {
   const [search, setSearch] = useState(``);
-  
-  const DATA = [
-    {
-      id: "1",
-      name: "React Native",
-      author: "Hai Pham",
-      level: "Advanced",
-      released: "May 2019",
-      duration: "40h",
-    },
-    {
-      id: "2",
-      name: "React",
-      author: "Khanh Nguyen",
-      level: "Advanced",
-      released: "May 2019",
-      duration: "60h",
-    },
-    {
-      id: "3",
-      name: "Test",
-      author: "Hanh Tran",
-      level: "Beginner",
-      released: "May 2019",
-      duration: "45h",
-    },
-  ];
-  const [searchData, setSearchData] = useState(DATA);
+  const courseContext = useContext(CourseContext);
 
+  const searchData = courseContext.searchData;
   const handleSearch = (query) => {
     const searchQuery = query.toLowerCase();
-    const filteredData = DATA.filter((item) => {
-      console.log(item);
-      if (item.name.includes(searchQuery)) {
+    const filteredData = searchData.filter((item) => {
+      if (item.name.toLowerCase().includes(searchQuery)) {
         return true;
       }
       return false;
     });
-    setSearchData(filteredData);
+    courseContext.setSearchDataAfter(filteredData);
     setSearch(query);
   };
+
   return (
     <SearchBar
       platform="ios"

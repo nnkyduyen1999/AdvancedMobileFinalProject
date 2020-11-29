@@ -1,43 +1,20 @@
 import React from "react";
-import { SectionList, View } from "react-native";
+import { SectionList, View, Text } from "react-native";
 import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
 import SearchEmpty from "../SearchEmpty/search-empty"
 import css from "../../../../globals/style";
 
-const SearchPath = ({nav}) => {
+const SearchPaths = ({nav, searchData}) => {
     const DATA = [
         {
-          title: "Courses",
-          data: [
-            {
-              id: "1",
-              name: "React Native",
-              author: "Hai Pham",
-              level: "Advanced",
-              released: "May 2019",
-              duration: "40h",
-            },
-            {
-              id: "2",
-              name: "React",
-              author: "Khanh Nguyen",
-              level: "Advanced",
-              released: "May 2019",
-              duration: "60h",
-            },
-            {
-              id: "3",
-              name: "Test",
-              author: "Hanh Tran",
-              level: "Beginner",
-              released: "May 2019",
-              duration: "45h",
-            },
-          ],
+          title: "Paths",
+          data: searchData,
         },
       ];
-      return (
+    
+  
+  return (
     <View style={css.screenContent}>
       <SectionList
         sections={DATA}
@@ -57,4 +34,4 @@ const SearchPath = ({nav}) => {
   );
 };
 
-export default SearchPath;
+export default SearchPaths;
