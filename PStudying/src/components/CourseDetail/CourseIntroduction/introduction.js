@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
+
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
@@ -11,6 +12,7 @@ import courseServices from "../../../core/services/course-services";
 
 const Introduction = ({ course, nav }) => {
   const courseContext = useContext(CourseContext);
+  const [textTouched, setTextTouched] = useState(false);
   const [status, setStatus] = useState();
 
   const onPressFavor = (status) => {
@@ -33,10 +35,7 @@ const Introduction = ({ course, nav }) => {
           iconName="bookmark-o"
           title="Bookmarks"
           onPressIcon={() => {
-            courseContext.setBookmark([
-              ...courseContext.bookmark,
-              course,
-            ]);
+            courseContext.setBookmark([...courseContext.bookmark, course]);
             Alert.alert("Added course to bookmark");
           }}
         />
@@ -54,11 +53,33 @@ const Introduction = ({ course, nav }) => {
         <CustomIcon iconName="arrow-circle-o-down" title="Download" />
       </View>
       <Divider style={css.divider} />
-      <View style={styles.textContainer}>
-        <Text style={{ color: theme.SECONDARY_TEXT_COLOR }} numberOfLines={3}>
-          {course.description}
-        </Text>
-      </View>
+      <TouchableOpacity
+        style={styles.textContainer}
+        onPress={() => setTextTouched(!textTouched)}
+      >
+        {!textTouched && (
+          <Text style={{ color: theme.SECONDARY_TEXT_COLOR }} numberOfLines={3}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </Text>
+        )}
+        {textTouched && (
+          <Text style={{ color: theme.SECONDARY_TEXT_COLOR }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </Text>
+        )}
+      </TouchableOpacity>
       <Button
         buttonStyle={styles.fullButton}
         title="Related paths and courses"
@@ -70,16 +91,14 @@ const Introduction = ({ course, nav }) => {
             color={theme.PRIMARY_TEXT_COLOR}
           />
         }
-        onPress={
-          () => {
-            nav.navigate(constant.navigationNames.FullSection, { 
-              sectionContent: {
-                title: "Related courses",
-                courses: courseContext.favoriteCourses,
-              }
-            });
-          }
-        }
+        onPress={() => {
+          nav.navigate(constant.navigationNames.FullSection, {
+            sectionContent: {
+              title: "Related courses",
+              courses: courseContext.favoriteCourses,
+            },
+          });
+        }}
       />
       <Button
         buttonStyle={styles.fullButton}
@@ -92,16 +111,14 @@ const Introduction = ({ course, nav }) => {
             color={theme.PRIMARY_TEXT_COLOR}
           />
         }
-        onPress={
-          () => {
-            nav.navigate(constant.navigationNames.FullSection, { 
-              sectionContent: {
-                title: "Exercises",
-                courses: courseContext.favoriteCourses,
-              }
-            });
-          }
-        }
+        onPress={() => {
+          nav.navigate(constant.navigationNames.FullSection, {
+            sectionContent: {
+              title: "Exercises",
+              courses: courseContext.favoriteCourses,
+            },
+          });
+        }}
       />
     </View>
   );

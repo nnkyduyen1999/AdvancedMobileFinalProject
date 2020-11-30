@@ -12,7 +12,6 @@ import SearchPaths from "../../../components/Main/Search/SearchDetail/search-pat
 import SearchAuthors from "../../../components/Main/Search/SearchDetail/search-author";
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
-import css from "../../../globals/style";
 import {CourseContext} from "../../../providers/course-provider";
 
 const Tab = createMaterialTopTabNavigator();

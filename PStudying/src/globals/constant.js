@@ -24,6 +24,8 @@ module.exports.navigationNames = {
     NewRelease: "NewRelease",
     Recommended: "Recommended",
     FullSection: "FullSection",
+    ListLesson: "Contents",
+    ListComments: "Comments",
 }
 
 module.exports.navigationTitles = {
@@ -32,5 +34,4 @@ module.exports.navigationTitles = {
     Browse: "Browse",
     Download: "Download",
     Profile: "Profile",
-    AuthorProfile: "Author",
 }

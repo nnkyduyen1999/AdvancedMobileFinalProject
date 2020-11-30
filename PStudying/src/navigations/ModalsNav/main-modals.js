@@ -7,7 +7,7 @@ import theme from "../../globals/theme";
 import SplashScreen from "../../components/Others/SplashScreen/splash-screen";
 import Login from "../../components/Authentication/Login/login";
 import ForgetPassword from "../../components/Authentication/ForgetPassword/forget-password";
-import VerifyEmail from "../../components/Authentication/Verify Email/verify-email"
+import VerifyEmail from "../../components/Authentication/Verify Email/verify-email";
 import Register from "../../components/Authentication/Register/register";
 import CourseDetail from "../../components/CourseDetail/course-detail";
 import MainTabs from "../TabsNav/main-tabs";
@@ -17,11 +17,34 @@ const dismissIcon = (
   <Icon type="font-awesome" name="times" size={25} color={theme.BASIC_BLUE} />
 );
 
+const onShare = async () => {
+  try {
+    const result = await Share.share({
+      message:
+        'React Native | A framework for building native apps using React',
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
 export default MainModals = ({ navigation }) => {
   const MainModals = createStackNavigator();
 
   return (
-    <MainModals.Navigator mode="modal" initialRouteName={constant.navigationNames.SplashScreen}>
+    <MainModals.Navigator
+      mode="modal"
+      initialRouteName={constant.navigationNames.SplashScreen}
+    >
       <MainModals.Screen
         component={MainTabs}
         name={constant.navigationNames.Home}
@@ -67,7 +90,21 @@ export default MainModals = ({ navigation }) => {
             );
           },
           title: ``,
-          
+          headerRight: () => {
+            return (
+              <TouchableOpacity
+                style={{ marginLeft: theme.LARGE_MARGIN }}
+                onPress={onShare}
+              >
+                <Icon
+                  type="font-awesome"
+                  name="share-alt"
+                  size={25}
+                  color={theme.BASIC_BLUE}
+                />
+              </TouchableOpacity>
+            );
+          },
         }}
       />
     </MainModals.Navigator>
