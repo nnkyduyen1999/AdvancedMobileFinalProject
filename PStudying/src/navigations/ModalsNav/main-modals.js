@@ -1,7 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Share } from "react-native";
 import constant from "../../globals/constant";
 import theme from "../../globals/theme";
 import SplashScreen from "../../components/Others/SplashScreen/splash-screen";
@@ -93,7 +93,7 @@ export default MainModals = ({ navigation }) => {
           headerRight: () => {
             return (
               <TouchableOpacity
-                style={{ marginLeft: theme.LARGE_MARGIN }}
+                style={{ marginRight: theme.LARGE_MARGIN }}
                 onPress={onShare}
               >
                 <Icon
