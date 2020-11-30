@@ -7,6 +7,7 @@ import theme from "../../globals/theme";
 import SplashScreen from "../../components/Others/SplashScreen/splash-screen";
 import Login from "../../components/Authentication/Login/login";
 import ForgetPassword from "../../components/Authentication/ForgetPassword/forget-password";
+import VerifyEmail from "../../components/Authentication/Verify Email/verify-email"
 import Register from "../../components/Authentication/Register/register";
 import CourseDetail from "../../components/CourseDetail/course-detail";
 import MainTabs from "../TabsNav/main-tabs";
@@ -20,7 +21,7 @@ export default MainModals = ({ navigation }) => {
   const MainModals = createStackNavigator();
 
   return (
-    <MainModals.Navigator mode="modal">
+    <MainModals.Navigator mode="modal" initialRouteName={constant.navigationNames.SplashScreen}>
       <MainModals.Screen
         component={MainTabs}
         name={constant.navigationNames.Home}
@@ -39,6 +40,11 @@ export default MainModals = ({ navigation }) => {
       <MainModals.Screen
         component={Login}
         name={constant.navigationNames.Login}
+        options={{ headerShown: false }}
+      />
+      <MainModals.Screen
+        component={VerifyEmail}
+        name={constant.navigationNames.VerifyEmail}
         options={{ headerShown: false }}
       />
       <MainModals.Screen

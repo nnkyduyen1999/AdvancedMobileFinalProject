@@ -13,7 +13,6 @@ const SearchPaths = ({nav, searchData}) => {
         },
       ];
     
-  
   return (
     <View style={css.screenContent}>
       <SectionList

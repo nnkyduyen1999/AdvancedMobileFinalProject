@@ -35,6 +35,13 @@ module.exports.register = (username, email, phone, password) => {
   return { statusCode: 200, userInfo: { username, email, password, phone } };
 };
 
+module.exports.verifyEmail = (token) => {
+  if (token === "00000") {
+    return { statusCode: 200, access_token: token}
+  }
+  return { statusCode: 400, errString: "Invalid token"}
+}
+
 module.exports.forgetPassword = (email) => {
   if (email === `admin@gmail.com`) {
     return { statusCode: 200 }

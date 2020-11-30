@@ -17,6 +17,7 @@ module.exports.navigationNames = {
     Login: "Login",
     ForgotPassword: "ForgotPassword",
     ChangePasswordForm: "ChangePasswordForm",
+    VerifyEmail: "VerifyEmail",
     MainTabs: "MainTabs",
     Authentication: "Authentication",
     AuthorProfile: "AuthorProfile",

@@ -20,8 +20,7 @@ const Register = ({ navigation }) => {
   const [email, setEmail] = useState(``);
   const [phone, setPhone] = useState(``);
   const [password, setPassword] = useState(``);
-  const authenticationContext = useContext(AuthenticationContext);
-  const { authentication } = authenticationContext;
+  const [status, setStatus] = useState();
 
   const renderStatus = (status) => {
     if (!status) {
@@ -34,10 +33,10 @@ const Register = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (authentication && authentication.statusCode === 200) {
-      navigation.navigate(constant.navigationNames.Home);
+    if (status && status.statusCode === 200) {
+      navigation.navigate(constant.navigationNames.VerifyEmail);
     }
-  }, [authentication]);
+  }, [status]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -48,7 +47,7 @@ const Register = ({ navigation }) => {
           style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}
         >
           <View style={{ justifyContent: "space-around" }}>
-            {renderStatus(authentication)}
+            {renderStatus(status)}
             <InputCustom
               label="Username"
               placeholder="Username"
@@ -80,7 +79,7 @@ const Register = ({ navigation }) => {
               buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
               titleStyle={css.authenBtnTitle}
               onPress={() => {
-                authenticationContext.setAuthentication(
+                setStatus(
                   authenticationService.register(
                     username,
                     email,

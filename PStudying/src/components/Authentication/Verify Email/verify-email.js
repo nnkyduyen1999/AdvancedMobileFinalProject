@@ -1,44 +1,49 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text } from "react-native";
 import { Button } from "react-native-elements";
 import InputCustom from "../Login/InputText/input-text";
 import TextButton from "../Login/InputText/text-button";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-import authenticationService from "../../../core/services/authentication-services";
+import constant from "../../../globals/constant";
+import authenticationServices from "../../../core/services/authentication-services"
 
-const ForgetPassword = ({navigation}) => {
-  const [email, setEmail] = useState(``);
+const VerifyEmail = ({navigation}) => {
+  const [token, setToken] = useState(``);
   const [status, setStatus] = useState();
 
   const renderStatus = (status) => {
     if (!status) {
       return <></>;
     } else if (status && status.statusCode === 200) {
-      return <Text style={{ color: "red" }}>Sent email.</Text>
+      return <Text style={{ color: "green" }}>Email verify successful.</Text>
     } else {
-    return <Text style={{ color: "red" }}>{status.errString}</Text>
+      return <Text style={{ color: "red" }}>{status.errString}</Text>;
     }
   }
 
-  
+  useEffect(() => {
+    if (status && status.statusCode === 200) {
+      navigation.navigate(constant.navigationNames.Login);
+    }
+  })
+
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
         {renderStatus(status)}
         <InputCustom
-          label="Email"
-          placeholder="Email"
-          iconName="envelope-o"
-          textChange={(text) => setEmail(text)}
+          label="Verify Code"
+          placeholder="Verify code"
+          iconName="key"
+          textChange={(text) =>setToken(text)}
         />
-        
         <Button
           title="Verify"
           buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
           onPress={() => {
-            setStatus(authenticationService.forgetPassword(email));
+              setStatus(authenticationServices.verifyEmail(token));
           }}
         />
         <TextButton txt="Haven't received an email?" />
@@ -47,11 +52,13 @@ const ForgetPassword = ({navigation}) => {
           title="Resend email"
           type="outline"
           titleStyle={css.authenBtnTitleOutline}
-          onPress={() => navigation.goBack()}
+          onPress={() => {
+            navigation.navigate(constant.navigationNames.SplashScreen);
+          }}
         />
       </View>
     </View>
   );
 };
 
-export default ForgetPassword;
+export default VerifyEmail;
