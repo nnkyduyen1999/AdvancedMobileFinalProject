@@ -1,7 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableOpacity, Share } from "react-native";
+import { TouchableOpacity, Share, Alert } from "react-native";
 import constant from "../../globals/constant";
 import theme from "../../globals/theme";
 import SplashScreen from "../../components/Others/SplashScreen/splash-screen";
@@ -21,16 +21,14 @@ const onShare = async () => {
   try {
     const result = await Share.share({
       message:
-        'React Native | A framework for building native apps using React',
+        'Join new course',
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
-        // shared with activity type of result.activityType
+        Alert.alert("Successfully share");
       } else {
-        // shared
+        Alert.alert("Oppss. Cannot share now");
       }
-    } else if (result.action === Share.dismissedAction) {
-      // dismissed
     }
   } catch (error) {
     alert(error.message);

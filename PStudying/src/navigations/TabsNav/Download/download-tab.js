@@ -13,7 +13,7 @@ const DownloadStackScreen = () => {
       <DownloadStack.Screen
         name={constant.navigationNames.Download}
         component={Download}
-        options={{ title: constant.navigationTitles.Download }}
+        options={{ title: constant.navigationTitles.Download, headerLeft: null }}
       />
     </DownloadStack.Navigator>
   );

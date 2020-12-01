@@ -1,7 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import Browse from "../../../components/Main/Browse/browse";
 import Profile from "../../../components/Account Management/Profile/profile";
 import AuthorProfile from "../../../components/Main/Browse/Authors/author-profile";
@@ -17,7 +16,7 @@ const BrowseStackScreen = () => {
       <BrowseStack.Screen
         name={constant.navigationNames.Browse}
         component={Browse}
-        options={{ title: constant.navigationTitles.Browse }}
+        options={{ title: constant.navigationTitles.Browse, headerLeft: null }}
       />
       <BrowseStack.Screen
         name={constant.navigationNames.Profile}

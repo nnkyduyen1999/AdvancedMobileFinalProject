@@ -1,7 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import theme from "../../globals/theme";
 import constant from "../../globals/constant";
 import { Icon } from "react-native-elements";
@@ -49,22 +48,18 @@ export default MainTabs = () => {
       <Tab.Screen
         name={constant.navigationNames.Home}
         component={HomeStackScreen}
-        options={{ title: constant.navigationTitles.Home }}
       />
       <Tab.Screen
         name={constant.navigationNames.Download}
         component={DownloadStackScreen}
-        options={{ title: constant.navigationTitles.Download }}
       />
       <Tab.Screen
         name={constant.navigationNames.Browse}
         component={BrowseStackScreen}
-        options={{ title: constant.navigationTitles.Browse }}
       />
       <Tab.Screen
         name={constant.navigationNames.Search}
         component={SearchStackScreen}
-        options={{ title: constant.navigationTitles.Search }}
       />
     </Tab.Navigator>
   );

@@ -15,8 +15,9 @@ const CourseDetailTab = ({ courseInfo, nav }) => {
       </Tab.Screen>
       <Tab.Screen
         name={constant.navigationNames.ListComments}
-        component={ListComments}
-      />
+      >
+        {() => <ListComments courseInfo={courseInfo} nav={nav} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };

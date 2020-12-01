@@ -28,7 +28,7 @@ const SettingStackScreen = ({ navigation }) => {
           headerRight: () => (
             <TouchableOpacity
               style={{ marginRight: theme.LARGE_MARGIN }}
-              onPress={() => navigation.dangerouslyGetParent().pop()}
+              onPress={() => navigation.goBack()}
             >
               {dismissIcon}
             </TouchableOpacity>
