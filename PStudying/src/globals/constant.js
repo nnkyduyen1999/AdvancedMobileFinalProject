@@ -1,5 +1,6 @@
 module.exports.navigationNames = {
     Home: "Home",
+    MainModals: "MainModals",
     CourseDetail: "CourseDetail",
     Search: "Search",
     Browse: "Browse",
@@ -12,12 +13,19 @@ module.exports.navigationNames = {
     SearchAuthors: "Authors",
     Setting: "Setting",
     Register: "Register",
+    SplashScreen: "SplashScreen",
     Login: "Login",
-    LoginForm: "LoginForm",
     ForgotPassword: "ForgotPassword",
     ChangePasswordForm: "ChangePasswordForm",
+    VerifyEmail: "VerifyEmail",
     MainTabs: "MainTabs",
     Authentication: "Authentication",
+    AuthorProfile: "AuthorProfile",
+    NewRelease: "NewRelease",
+    Recommended: "Recommended",
+    FullSection: "FullSection",
+    ListLesson: "Contents",
+    ListComments: "Comments",
 }
 
 module.exports.navigationTitles = {

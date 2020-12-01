@@ -2,7 +2,10 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import ImageButton from "../../../Common/image-button";
 import css from "../../../../globals/style";
-export default function ImageButtonCategory() {
+import constant from "../../../../globals/constant";
+import courseServices from "../../../../core/services/course-services";
+
+export default function ImageButtonCategory({ nav }) {
   const listTitle = [
     "Conferences",
     "Certifications",
@@ -19,7 +22,19 @@ export default function ImageButtonCategory() {
   ];
   const renderListImgButton = (listTitle) => {
     return listTitle.map((title, index) => (
-      <ImageButton key={index} txt={title} imgType={css.smallImgButton} />
+      <ImageButton
+        key={index}
+        txt={title}
+        imgType={css.smallImgButton}
+        onPressImgBtn={() => {
+          nav.navigate(constant.navigationNames.FullSection, {
+            sectionContent: {
+              title: title,
+              courses: courseServices.getCatalogCourses(`1234`),
+            },
+          });
+        }}
+      />
     ));
   };
   return (

@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import css from "../../globals/style";
 
-const ImageButton = ({ txt, imgName, imgType }) => {
+const ImageButton = ({ txt, imgName, imgType, onPressImgBtn}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPressImgBtn}>
       <ImageBackground
         style={imgType}
         source={require("../../../assets/new-release.jpg")}

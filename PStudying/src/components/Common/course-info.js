@@ -11,6 +11,7 @@ export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
       {!authorStyle && (
         <Text style={css.courseContent}>{courseInfo.author}</Text>
       )}
+      
       {authorStyle && (
         <View style={{ width: 150, marginTop: 10 }}>
           <Button
