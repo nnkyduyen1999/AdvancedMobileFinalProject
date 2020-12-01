@@ -26,12 +26,12 @@ const BrowseStackScreen = () => {
       <BrowseStack.Screen
         name={constant.navigationNames.AuthorProfile}
         component={AuthorProfile}
-        options={{ title: constant.navigationTitles.AuthorProfile }}
+        options={{ title: `` }}
       />
       <BrowseStack.Screen
         name={constant.navigationNames.FullSection}
         component={FullSection}
-        options={{ title: "" }}
+        options={{ title: `` }}
       />
     </BrowseStack.Navigator>
   );

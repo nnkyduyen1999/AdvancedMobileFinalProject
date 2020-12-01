@@ -14,19 +14,17 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState(``);
   const authenticationContext = useContext(AuthenticationContext);
   const { authentication } = authenticationContext;
-  // console.log("enter login");
-  // console.log(authentication);
+
   useEffect(() => {
     if (authentication && authentication.statusCode === 200) {
       navigation.navigate(constant.navigationNames.Home);
-      //console.log("passed");
     } 
   }, [authentication]);
   const renderStatus = (authentication) => {
     if (!authentication) {
       return <></>;
     } else if (authentication.statusCode === 200) {
-      return <Text style={{ color: "red" }}>Successfully Login</Text>;
+      return <Text style={{ color: "green" }}>Successfully Login</Text>;
     } else {
       return <Text style={{ color: "red" }}>{authentication.errString}</Text>;
     }

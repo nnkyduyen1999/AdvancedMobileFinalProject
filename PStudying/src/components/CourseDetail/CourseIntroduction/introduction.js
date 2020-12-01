@@ -15,11 +15,10 @@ const Introduction = ({ course, nav }) => {
   const [textTouched, setTextTouched] = useState(false);
   const [status, setStatus] = useState();
 
-  const onPressFavor = (status) => {
+  const onPressFavorite = (status, course) => {
+    setStatus(courseServices.likeCourse(course.id));
     if (status && status.statusCode === 200) {
       Alert.alert(status.message);
-    } else {
-      return <></>;
     }
   };
   return (
@@ -30,7 +29,6 @@ const Introduction = ({ course, nav }) => {
         authorStyle={css.buttonLayoutBig}
       />
       <View style={styles.iconView}>
-        {onPressFavor(status)}
         <CustomIcon
           iconName="bookmark-o"
           title="Bookmarks"
@@ -43,11 +41,12 @@ const Introduction = ({ course, nav }) => {
           iconName="heart-o"
           title="Add to channels"
           onPressIcon={() => {
-            setStatus(courseServices.likeCourse(course.id));
+            //setStatus(courseServices.likeCourse(course.id));
             courseContext.setFavoriteCourses([
               ...courseContext.favoriteCourses,
               course,
             ]);
+            Alert.alert("Added course to favorites");
           }}
         />
         <CustomIcon iconName="arrow-circle-o-down" title="Download" />

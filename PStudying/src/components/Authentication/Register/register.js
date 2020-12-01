@@ -26,7 +26,7 @@ const Register = ({ navigation }) => {
     if (!status) {
       return <></>;
     } else if ((status === status.statusCode) === 200) {
-      return <Text style={{ color: "red" }}>Successfully register.</Text>;
+      return <Text style={{ color: "green" }}>Successfully register.</Text>;
     } else {
       return <Text style={{ color: "red" }}>{status.errString}</Text>;
     }
