@@ -9,11 +9,14 @@ module.exports.loginService = (email, password) => {
   return req;
 };
 
-module.exports.register = (username, email, phone, password) => {
-  if (username === "admin" || email === "admin@example.com") {
-    return { statusCode: 400, errString: "Existed username or email" };
-  }
-  return { statusCode: 200, userInfo: { username, email, password, phone } };
+module.exports.registerService = (username, email, phone, password) => {
+  var req = axios.post(`${constants.API_LINK}/user/register`, {
+    username: username,
+    email: email,
+    phone: phone,
+    password: password,
+  });
+  return req;
 };
 
 module.exports.verifyEmail = (token) => {

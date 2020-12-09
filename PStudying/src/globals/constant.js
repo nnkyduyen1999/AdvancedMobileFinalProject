@@ -42,4 +42,7 @@ module.exports.dispatchTypes = {
     LoginSuccess: `LOGIN_SUCCEED`,
     LoginFailure: `LOGIN_FAILURE`,
     LoginRequest: `LOGIN_REQUEST`,
+    RegisterRequest: `REGISTER_REQUEST`,
+    RegisterSuccess: `REGISTER_SUCCESS`,
+    RegisterFailure: `REGISTER_FAILURE`,
 }

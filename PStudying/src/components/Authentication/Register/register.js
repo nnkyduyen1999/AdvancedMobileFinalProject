@@ -20,22 +20,34 @@ const Register = ({ navigation }) => {
   const [phone, setPhone] = useState(``);
   const [password, setPassword] = useState(``);
   const [status, setStatus] = useState();
+  const [msg, setMsg] = useState(``);
 
   const renderStatus = (status) => {
     if (!status) {
       return <></>;
-    } else if ((status === status.statusCode) === 200) {
+    } else if (status && status === 200) {
       return <Text style={{ color: "green" }}>Successfully register.</Text>;
     } else {
-      return <Text style={{ color: "red" }}>{status.errString}</Text>;
+      return <Text style={{ color: "red" }}>{msg.message}</Text>;
     }
   };
 
   useEffect(() => {
-    if (status && status.statusCode === 200) {
+    if (status && status === 200) {
       navigation.navigate(constant.navigationNames.VerifyEmail);
     }
   }, [status]);
+
+  const onPressRegister = () => {
+    authenticationService.registerService(username, email, phone, password).
+    then(res => {
+      setStatus(res.status);
+      setMsg(res.data);
+    }).catch(error => {
+      setStatus(error.response.status);
+      setMsg(error.response.data);
+    })
+  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -77,16 +89,7 @@ const Register = ({ navigation }) => {
               title="Sign up"
               buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
               titleStyle={css.authenBtnTitle}
-              onPress={() => {
-                setStatus(
-                  authenticationService.register(
-                    username,
-                    email,
-                    phone,
-                    password
-                  )
-                );
-              }}
+              onPress={onPressRegister}
             />
 
             <TextButton txt="Have an account?" />
