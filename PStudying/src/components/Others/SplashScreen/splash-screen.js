@@ -4,13 +4,9 @@ import { Button } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
-import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const SplashScreen = ({ navigation }) => {
-  const authenticationContext = useContext(AuthenticationContext);
-  useEffect(() => {
-    authenticationContext.setAuthentication(null);
-  }, []);
+  
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <Image

@@ -72,7 +72,7 @@ export default function Setting({ navigation }) {
           onPress: () => {
             navigation.dispatch(StackActions.pop(1));
             navigation.navigate(constant.navigationNames.SplashScreen)
-            authenticationContext.setAuthentication(null);
+            // authenticationContext.setAuthentication(null);
           },
         },
       ],

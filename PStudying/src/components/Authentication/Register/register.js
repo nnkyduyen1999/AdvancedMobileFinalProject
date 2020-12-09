@@ -13,7 +13,6 @@ import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
 import authenticationService from "../../../core/services/authentication-services";
-import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const Register = ({ navigation }) => {
   const [username, setUsername] = useState(``);

@@ -35,3 +35,11 @@ module.exports.navigationTitles = {
     Download: "Download",
     Profile: "Profile",
 }
+
+module.exports.API_LINK = `https://api.letstudy.org`
+
+module.exports.dispatchTypes = {
+    LoginSuccess: `LOGIN_SUCCEED`,
+    LoginFailure: `LOGIN_FAILURE`,
+    LoginRequest: `LOGIN_REQUEST`,
+}
