@@ -14,15 +14,16 @@ const Login = ({ navigation }) => {
   const authenticationContext = useContext(AuthenticationContext);
   const { state } = authenticationContext;
 
+  console.log(state);
   useEffect(() => {
-    if (state && state.statusCode === 200) {
+    if (state.isAuthenticated) {
       navigation.navigate(constant.navigationNames.Home);
     } 
   }, [state]);
   const renderStatus = (authentication) => {
     if (!authentication) {
       return <></>;
-    } else if (authentication.statusCode === 200) {
+    } else if (authentication.isAuthenticated) {
       return <Text style={{ color: "green" }}>Successfully Login</Text>;
     } else {
       return <Text style={{ color: "red" }}>{authentication.errMsg}</Text>;

@@ -19,65 +19,11 @@ import { AuthenticationContext } from "../../../providers/authentication-provide
 import userServices from "../../../core/services/user-services";
 
 const Profile = ({ navigation }) => {
-  // console.log("enter profile")
   const authenticationContext = useContext(AuthenticationContext);
-  const { authentication } = authenticationContext;
+  const { userInfo } = authenticationContext.state;
 
-  //console.log(authentication);
-  if (!authentication) {
-    return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
-      >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView style={css.screenContent}>
-            <View style={{ alignItems: "center" }}>
-              <Avatar
-                size="xlarge"
-                rounded
-                source={{
-                  uri: `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`,
-                }}
-              />
-              <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
-                username
-              </Text>
-            </View>
-            <View>
-              <HeadingContent sectionTitle="Interested" />
-              <ButtonCategory />
-              <HeadingContent sectionTitle="Information" />
-              <View>
-                <Text style={styles.textStyle}>Name</Text>
-                <Input placeholder="Name here ..." style={styles.infoInput} />
-                <Text style={styles.textStyle}>Phone</Text>
-                <Input
-                  placeholder="Phone here ..."
-                  style={styles.infoInput}
-                />
-                <Text style={styles.textStyle}>Email</Text>
-                <Input
-                  placeholder="Email here ..."
-                  style={styles.infoInput}
-                />
-              </View>
-              <Button
-                title="Login"
-                type="outline"
-                onPress={() => {
-                  navigation.navigate(constant.navigationNames.SplashScreen);
-                }}
-              />
-            </View>
-          </ScrollView>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    );
-  } else {
-    const { userInfo } = authentication;
-    const [name, setName] = useState(userInfo.name);
-    const [phone, setPhone] = useState(userInfo.phone);
+  const [name, setName] = useState(userInfo.name);
+   const [phone, setPhone] = useState(userInfo.phone);
 
     return (
       <KeyboardAvoidingView
@@ -107,7 +53,7 @@ const Profile = ({ navigation }) => {
               )}
 
               <Text style={[css.sectionTitle, { marginVertical: 10 }]}>
-                {userInfo.name}
+                {userInfo.type}
               </Text>
             </View>
             <View>
@@ -153,7 +99,6 @@ const Profile = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     );
-  }
 };
 const styles = StyleSheet.create({
   textStyle: {
