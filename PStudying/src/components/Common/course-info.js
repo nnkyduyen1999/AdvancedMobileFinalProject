@@ -6,24 +6,24 @@ import css from "../../globals/style";
 export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
   return (
     <View style={styles.container}>
-      <Text style={nameStyle}>{courseInfo.name}</Text>
+      <Text style={nameStyle}>{courseInfo.title}</Text>
 
       {!authorStyle && (
-        <Text style={css.courseContent}>{courseInfo.author}</Text>
+        <Text style={css.courseContent}>{courseInfo.subtitle}</Text>
       )}
       
       {authorStyle && (
         <View style={{ width: 150, marginTop: 10 }}>
           <Button
             buttonStyle={authorStyle}
-            title={courseInfo.author}
+            title={courseInfo.subtitle}
             titleStyle={css.buttonTitle}
           />
         </View>
       )}
       <Text
         style={css.courseContent}
-      >{`${courseInfo.level} . ${courseInfo.released} . ${courseInfo.duration}`}</Text>
+      >{`${courseInfo.contentPoint} . ${courseInfo.status} . ${courseInfo.totalHours}`}</Text>
     </View>
   );
 }

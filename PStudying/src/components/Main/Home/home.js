@@ -5,12 +5,11 @@ import ScreenHeader from "../../Common/screen-header";
 import EmptySection from "../../Common/empty-section";
 import SectionCourseTitle from "../../Common/section-course-title";
 import css from "../../../globals/style";
-import {CourseContext} from "../../../providers/course-provider";
+//import {CourseContext} from "../../../providers/course-provider";
 
 export default function home({ navigation }) {
   const channels = [];
-  const courseContext = useContext(CourseContext);
-  const bookmark = courseContext.bookmark;
+  const bookmark = [];
   const courses = [
     {
       id: "1",

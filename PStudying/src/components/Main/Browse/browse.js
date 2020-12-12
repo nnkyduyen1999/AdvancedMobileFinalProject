@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ScrollView, Alert } from "react-native";
+import React, {useEffect, useReducer} from "react";
+import { View, ScrollView, Alert, ActivityIndicator } from "react-native";
 import ListAuthor from "./Authors/list-author";
 import SectionCourses from "../Home/SectionCourses/section-courses";
 import SectionCourseTitle from "../../Common/section-course-title";
@@ -8,9 +8,17 @@ import ButtonCategory from "./Category/ButtonCategory";
 import ImageButton from "../../Common/image-button";
 import ScreenHeader from "../../Common/screen-header";
 import css from "../../../globals/style";
+import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
-import courseServices from "../../../core/services/course-services";
+import {coursesReducer} from '../../../reducers/courses-reducer'
+import {getTopNewCourses, getTopSellCourses} from '../../../actions/courses-action';
 
+const initialState = {
+  topNewCourses: [],
+  topSellCourses: [],
+  isLoadingCourses: false,
+  errMsg: null,
+}
 const Browse = ({ navigation }) => {
   const courses = [
     {
@@ -38,11 +46,18 @@ const Browse = ({ navigation }) => {
       duration: "45h",
     },
   ];
-  const newCourses = courseServices.newCourses();
-  const recommendedCourses = courseServices.getRecommendedCourse();
+
+  const [courseState, dispatch] = useReducer(coursesReducer, initialState);
+  useEffect(() => {
+    getTopNewCourses(dispatch);
+   // getTopSellCourses(dispatch);
+  }, []);
+
+  console.log(courseState);
   return (
     <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Browse" />
+      {courseState.isLoadingCourses && <ActivityIndicator size="large" color={theme.BASIC_BLUE}/>}
       <ImageButton
         txt="New Released"
         imgName="new-release.jpg"
@@ -51,7 +66,7 @@ const Browse = ({ navigation }) => {
           navigation.navigate(constant.navigationNames.FullSection, {
             sectionContent: {
               title: "New",
-              courses: newCourses,
+              courses: courseState.topNewCourses,
             },
           });
         }}
@@ -64,7 +79,7 @@ const Browse = ({ navigation }) => {
           navigation.navigate(constant.navigationNames.FullSection, {
             sectionContent: {
               title: "Recommended for you",
-              courses: recommendedCourses,
+              courses: courseState.topSellCourses,
             },
           });
         }}
@@ -74,7 +89,7 @@ const Browse = ({ navigation }) => {
         <ButtonCategory nav={navigation} />
         <ImageButtonCategory nav={navigation} />
       </View>
-      <SectionCourses title="Paths" nav={navigation} listCourse={courses} />
+      <SectionCourses title="Paths" nav={navigation} listCourse={courseState.topNewCourses} />
       <ListAuthor title="Top Authors" nav={navigation} />
     </ScrollView>
   );

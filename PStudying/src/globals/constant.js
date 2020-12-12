@@ -36,7 +36,7 @@ module.exports.navigationTitles = {
     Profile: "Profile",
 }
 
-module.exports.API_LINK = `https://api.letstudy.org`
+module.exports.API_LINK = `http://api.dev.letstudy.org`
 
 module.exports.dispatchTypes = {
     LoginSuccess: `LOGIN_SUCCEED`,
@@ -45,4 +45,9 @@ module.exports.dispatchTypes = {
     RegisterRequest: `REGISTER_REQUEST`,
     RegisterSuccess: `REGISTER_SUCCESS`,
     RegisterFailure: `REGISTER_FAILURE`,
+    CoursesRequest: `COURSES_REQUEST`,
+    GetTopNewSuccess: `GET_TOP_NEW_SUCCESS`,
+    GetTopNewFailure: `GET_TOP_NEW_FAILURE`,
+    GetTopSellSuccess: `GET_TOP_SELL_SUCCESS`,
+    GetTopSellFailure: `GET_TOP_SELL_FAILURE`,
 }

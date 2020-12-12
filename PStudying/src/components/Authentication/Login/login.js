@@ -14,7 +14,6 @@ const Login = ({ navigation }) => {
   const authenticationContext = useContext(AuthenticationContext);
   const { state } = authenticationContext;
 
-  console.log(state);
   useEffect(() => {
     if (state.isAuthenticated) {
       navigation.navigate(constant.navigationNames.Home);

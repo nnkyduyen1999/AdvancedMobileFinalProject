@@ -19,9 +19,7 @@ export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
       <AuthenticationProvider>
-        <CourseProvider>
           <RootStack />
-        </CourseProvider>
       </AuthenticationProvider>
     </NavigationContainer>
   );

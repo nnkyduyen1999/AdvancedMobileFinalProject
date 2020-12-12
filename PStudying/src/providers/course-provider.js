@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { coursesReducer } from "../reducers/courses-reducer";
+import { getTopNewCourses, getTopSellCourses } from "../actions/courses-action";
 
+const initialState = {
+  
+};
 const CourseContext = React.createContext();
 const CourseProvider = (props) => {
-  const [favoriteCourses, setFavoriteCourses] = useState([
-    {
-      id: "1F",
-      name: "React Native",
-      author: "Hai Pham",
-      level: "Advanced",
-      released: "May 2019",
-      duration: "40h",
-    },
-  ]);
-  const [bookmark, setBookmark] = useState([]);
+  const [courseState, dispatch] = useReducer(coursesReducer, initialState);
+
+  //const [favoriteCourses, setFavoriteCourses] = useState([]);
+  //const [bookmark, setBookmark] = useState([]);
   const [searchData, setSearchData] = useState([
     {
       id: "1",
@@ -43,11 +41,14 @@ const CourseProvider = (props) => {
   return (
     <CourseContext.Provider
       value={{
-        favoriteCourses,
-        setFavoriteCourses,
-        bookmark,
-        setBookmark,
-        searchData,
+        courseState,
+        getTopNewCourses: getTopNewCourses(dispatch),
+        getTopSellCourses: getTopSellCourses(dispatch),
+        // favoriteCourses,
+        // setFavoriteCourses,
+        // bookmark,
+        // setBookmark,
+        // searchData,
         searchDataAfter,
         setSearchDataAfter,
       }}
