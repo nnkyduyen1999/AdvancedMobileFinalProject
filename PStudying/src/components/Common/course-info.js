@@ -9,21 +9,21 @@ export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
       <Text style={nameStyle}>{courseInfo.title}</Text>
 
       {!authorStyle && (
-        <Text style={css.courseContent}>{courseInfo.subtitle}</Text>
+        <Text style={css.courseContent}>Author name</Text>
       )}
       
       {authorStyle && (
         <View style={{ width: 150, marginTop: 10 }}>
           <Button
             buttonStyle={authorStyle}
-            title={courseInfo.subtitle}
+            title="author name"
             titleStyle={css.buttonTitle}
           />
         </View>
       )}
       <Text
         style={css.courseContent}
-      >{`${courseInfo.contentPoint} . ${courseInfo.status} . ${courseInfo.totalHours}`}</Text>
+      >{`${courseInfo.contentPoint}P . ${courseInfo.status} . ${courseInfo.totalHours}h`}</Text>
     </View>
   );
 }

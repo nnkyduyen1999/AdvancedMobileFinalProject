@@ -11,11 +11,12 @@ import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
 import {coursesReducer} from '../../../reducers/courses-reducer'
-import {getTopNewCourses, getTopSellCourses} from '../../../actions/courses-action';
+import {getTopNewCourses, getTopSellCourses, getTopRateCourses} from '../../../actions/courses-action';
 
 const initialState = {
   topNewCourses: [],
   topSellCourses: [],
+  topRateCourses: [],
   isLoadingCourses: false,
   errMsg: null,
 }
@@ -50,10 +51,10 @@ const Browse = ({ navigation }) => {
   const [courseState, dispatch] = useReducer(coursesReducer, initialState);
   useEffect(() => {
     getTopNewCourses(dispatch);
-   // getTopSellCourses(dispatch);
+    getTopSellCourses(dispatch);
+    getTopRateCourses(dispatch);
   }, []);
 
-  console.log(courseState);
   return (
     <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Browse" />
@@ -89,7 +90,7 @@ const Browse = ({ navigation }) => {
         <ButtonCategory nav={navigation} />
         <ImageButtonCategory nav={navigation} />
       </View>
-      <SectionCourses title="Paths" nav={navigation} listCourse={courseState.topNewCourses} />
+      <SectionCourses title="Top rate" nav={navigation} listCourse={courseState.topRateCourses} />
       <ListAuthor title="Top Authors" nav={navigation} />
     </ScrollView>
   );

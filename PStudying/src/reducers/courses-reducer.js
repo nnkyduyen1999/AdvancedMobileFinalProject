@@ -17,7 +17,6 @@ module.exports.coursesReducer = (prevState, action) => {
             return { 
                 ...prevState,
                 isLoadingCourses: false,
-                topNewCourses: [],
             }
         case constants.dispatchTypes.GetTopSellSuccess:
             return {
@@ -29,7 +28,17 @@ module.exports.coursesReducer = (prevState, action) => {
             return { 
                 ...prevState,
                 isLoadingCourses: false,
-                topSellCourses: []
+            }
+        case constants.dispatchTypes.GetTopRateSuccess:
+            return {
+                ...prevState,
+                isLoadingCourses: false,
+                topRateCourses: action.data.payload
+            }
+        case constants.dispatchTypes.GetTopRateFailure:
+            return {
+                ...prevState,
+                isLoadingCourses: false,
             }
 
     }

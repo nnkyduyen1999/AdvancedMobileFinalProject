@@ -14,15 +14,6 @@ const ListLessonItem = ({ lesson }) => {
       />
       <Text style={{marginLeft: 20, color: theme.PRIMARY_TEXT_COLOR}}>{lesson.name}</Text>
     </View>
-  //   <View style={[css.displayRow, {paddingVertical: 20, paddingLeft: 10}]}>
-  //   <Icon
-  //     name="circle"
-  //     type="font-awesome"
-  //     color={theme.COURSE_ITEM_BGR}
-  //     size={14}
-  //   />
-  //   <Text style={[css.courseContent, {marginLeft: 20}]}>{lesson.name}</Text>
-  // </View>
   );
 };
 

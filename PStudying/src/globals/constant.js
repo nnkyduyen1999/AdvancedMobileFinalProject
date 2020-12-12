@@ -50,4 +50,6 @@ module.exports.dispatchTypes = {
     GetTopNewFailure: `GET_TOP_NEW_FAILURE`,
     GetTopSellSuccess: `GET_TOP_SELL_SUCCESS`,
     GetTopSellFailure: `GET_TOP_SELL_FAILURE`,
+    GetTopRateSuccess: `GET_TOP_RATE_SUCCESS`,
+    GetTopRateFailure: `GET_TOP_RATE_FAILURE`,
 }

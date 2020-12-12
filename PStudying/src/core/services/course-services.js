@@ -123,9 +123,17 @@ module.exports.getTopNewCoursesService = () => {
   });
   return req;
 }
+
 module.exports.getTopSellCoursesService = () => {
   return axios.post(`${constants.API_LINK}/course/top-sell`, {
     "limit": 10,
+    "page": 1
+  });
+}
+
+module.exports.getTopRateCoursesService = () => {
+  return axios.post(`${constants.API_LINK}/course/top-rate`, {
+    "limit": 5,
     "page": 1
   });
 }
