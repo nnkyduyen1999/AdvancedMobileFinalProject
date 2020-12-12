@@ -1,3 +1,6 @@
+import axios from "axios";
+import constants from "../../globals/constant";
+
 module.exports.updateInfo = (name, phone) => {
   return {
     statusCode: 200,
@@ -15,4 +18,19 @@ module.exports.updateInfo = (name, phone) => {
       updatedAt: "2020-11-27T15:08:24.394Z",
     },
   };
+};
+
+module.exports.updateProfileService = (name, avatar, phone, token) => {
+  const req = axios.put(
+    `${constants.API_LINK}/user/update-profile`,
+    {
+      name: name,
+      avatar: avatar,
+      phone: phone,
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return req;
 };

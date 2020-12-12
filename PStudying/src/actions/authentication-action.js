@@ -2,7 +2,6 @@ import { loginService } from "../core/services/authentication-services";
 import constants from '../globals/constant';
 
 const login = (dispatch) => (email, password) => {
-
   dispatch({
       type: constants.dispatchTypes.LoginRequest
   })

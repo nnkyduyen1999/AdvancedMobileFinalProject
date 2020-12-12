@@ -52,4 +52,7 @@ module.exports.dispatchTypes = {
     GetTopSellFailure: `GET_TOP_SELL_FAILURE`,
     GetTopRateSuccess: `GET_TOP_RATE_SUCCESS`,
     GetTopRateFailure: `GET_TOP_RATE_FAILURE`,
+    UpdateProfileRequest: `UPDATE_PROFILE_REQUEST`,
+    UpdateProfileSuccess: `UPDATE_PROFILE_SUCCESS`,
+    UpdateProfileFailure: `UPDATE_PROFILE_FAILURE`,
 }

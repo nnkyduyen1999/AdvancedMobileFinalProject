@@ -23,7 +23,28 @@ module.exports.authenticationReducer = (prevState, action) => {
         isAuthenticated: false,
         errMsg: action.data.message,
       };
+    case constants.dispatchTypes.UpdateProfileRequest:
+      return {
+        ...prevState,
+        isAuthenticating: true,
+      }
+    case constants.dispatchTypes.UpdateProfileSuccess:
+      return {
+        ...prevState,
+        isAuthenticating: false,
+        isUpdated: true,
+        userInfo: action.data.payload
+      }
+    case constants.dispatchTypes.UpdateProfileFailure:
+      return {
+        ...prevState,
+        isAuthenticating: false,
+        isUpdated: false,
+        errMsg: action.data.message
+      }
     default:
       throw new Error();
   }
 };
+
+
