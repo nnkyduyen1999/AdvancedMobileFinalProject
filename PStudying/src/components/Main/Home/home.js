@@ -7,14 +7,14 @@ import SectionCourseTitle from "../../Common/section-course-title";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import { coursesReducer } from "../../../reducers/courses-reducer";
-import { getRecommendCourses } from "../../../actions/courses-action";
+import { getRecommendCourses, getFavoriteCourses } from "../../../actions/courses-action";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const initialState = {
   recommendedCourses: [],
   processCourses: [],
   favoriteCourses: [],
-  isLoading: true,
+  isLoadingCourses: true,
   errMsg: null,
 };
 export default function home({ navigation }) {
@@ -55,10 +55,11 @@ export default function home({ navigation }) {
       state.userInfo.id,
       state.token
     );
+    getFavoriteCourses(dispatch, state.token);
   }, []);
   return (
     <>
-    {courseState.isLoading ? <ActivityIndicator size="large" color={theme.BASIC_BLUE}/> : <ScrollView contentContainerStyle={css.screenContent}>
+    {courseState.isLoadingCourses ? <ActivityIndicator size="large" color={theme.BASIC_BLUE}/> : <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Home" />
       <SectionCourses
         title="Tiếp tục học"
@@ -78,7 +79,7 @@ export default function home({ navigation }) {
       {courseState.favoriteCourses.length === 0 ? (
         <View>
           <SectionCourseTitle sectionTitle="Khóa học yêu thích" />
-          <EmptySection content="Use bookmarks to quickly save courses for later watching." />
+          <EmptySection content="Dùng bookmark đánh dấu lại các khóa học muốn xem sau." />
         </View>
       ) : (
         <SectionCourses

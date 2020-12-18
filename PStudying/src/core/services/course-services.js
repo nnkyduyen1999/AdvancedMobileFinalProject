@@ -47,6 +47,12 @@ module.exports.getRecommendCoursesService = (idUser, token) => {
   );
 };
 
+module.exports.getFavoriteCoursesService = (token) => {
+  return axios.get(`${constants.API_LINK}/user/get-favorite-courses`, {
+    header: { Authorization: `Bearer ${token}` },
+  });
+};
+
 module.exports.getCourseDetailService = (idCourse, idUser, token) => {
   return axios.get(
     `${constants.API_LINK}/course/get-course-detail/${idCourse}/${idUser}`,

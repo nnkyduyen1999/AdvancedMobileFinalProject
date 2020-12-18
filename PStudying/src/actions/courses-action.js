@@ -4,6 +4,7 @@ import {
   getTopSellCoursesService,
   getTopRateCoursesService,
   getRecommendCoursesService,
+  getFavoriteCoursesService,
 } from "../core/services/course-services";
 
 const getTopNewCourses = (dispatch) => {
@@ -85,7 +86,7 @@ const getTopRateCourses = (dispatch) => {
 };
 
 const getRecommendCourses = (dispatch, idUser, token) => {
-  dispatch({ type: constants.dispatchTypes.GetRecommendRequest });
+  dispatch({ type: constants.dispatchTypes.CoursesRequest });
   getRecommendCoursesService(idUser, token)
     .then((res) => {
       if (res.status === 200) {
@@ -108,9 +109,34 @@ const getRecommendCourses = (dispatch, idUser, token) => {
     });
 };
 
+const getFavoriteCourses = (dispatch, token) => {
+  dispatch({ type: constants.dispatchTypes.CoursesRequest });
+  getFavoriteCoursesService(token)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({
+          type: constants.dispatchTypes.GetFavoriteSuccess,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: constants.dispatchTypes.GetFavoriteFailure,
+          data: res.data,
+        });
+      }
+    })
+    .catch((err) => {
+      dispatch({
+        type: constants.dispatchTypes.GetFavoriteFailure,
+        data: err.response.data,
+      });
+    });
+};
+
 export {
   getTopSellCourses,
   getTopNewCourses,
   getTopRateCourses,
   getRecommendCourses,
+  getFavoriteCourses,
 };

@@ -43,22 +43,29 @@ module.exports.coursesReducer = (prevState, action) => {
         isLoadingCourses: false,
         errMsg: action.data.message,
       };
-    case constants.dispatchTypes.GetRecommendRequest:
-      return {
-        ...prevState,
-        isLoading: true
-      }
     case constants.dispatchTypes.GetRecommendSuccess:
       return {
         ...prevState,
-        isLoading: false,
-        recommendedCourses: action.data.payload
-      }
+        isLoadingCourses: false,
+        recommendedCourses: action.data.payload,
+      };
     case constants.dispatchTypes.GetRecommendFailure:
       return {
         ...prevState,
-        isLoading: false,
-        errMsg: action.data.message
-      }
+        isLoadingCourses: false,
+        errMsg: action.data.message,
+      };
+    case constants.dispatchTypes.GetFavoriteSuccess:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        favoriteCourses: action.data.payload,
+      };
+    case constants.dispatchTypes.GetFavoriteFailure:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        errMsg: action.data.message,
+      };
   }
 };
