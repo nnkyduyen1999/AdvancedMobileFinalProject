@@ -3,6 +3,7 @@ import {
   getTopNewCoursesService,
   getTopSellCoursesService,
   getTopRateCoursesService,
+  getRecommendCoursesService,
 } from "../core/services/course-services";
 
 const getTopNewCourses = (dispatch) => {
@@ -83,4 +84,33 @@ const getTopRateCourses = (dispatch) => {
     });
 };
 
-export { getTopSellCourses, getTopNewCourses, getTopRateCourses };
+const getRecommendCourses = (dispatch, idUser, token) => {
+  dispatch({ type: constants.dispatchTypes.GetRecommendRequest });
+  getRecommendCoursesService(idUser, token)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({
+          type: constants.dispatchTypes.GetRecommendSuccess,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: constants.dispatchTypes.GetRecommendFailure,
+          data: res.data,
+        });
+      }
+    })
+    .catch((err) => {
+      dispatch({
+        type: constants.dispatchTypes.GetRecommendFailure,
+        data: err.response.data,
+      });
+    });
+};
+
+export {
+  getTopSellCourses,
+  getTopNewCourses,
+  getTopRateCourses,
+  getRecommendCourses,
+};

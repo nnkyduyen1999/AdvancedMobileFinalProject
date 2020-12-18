@@ -43,5 +43,22 @@ module.exports.coursesReducer = (prevState, action) => {
         isLoadingCourses: false,
         errMsg: action.data.message,
       };
+    case constants.dispatchTypes.GetRecommendRequest:
+      return {
+        ...prevState,
+        isLoading: true
+      }
+    case constants.dispatchTypes.GetRecommendSuccess:
+      return {
+        ...prevState,
+        isLoading: false,
+        recommendedCourses: action.data.payload
+      }
+    case constants.dispatchTypes.GetRecommendFailure:
+      return {
+        ...prevState,
+        isLoading: false,
+        errMsg: action.data.message
+      }
   }
 };

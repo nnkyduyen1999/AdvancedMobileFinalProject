@@ -15,10 +15,7 @@ const listCourseItems = ({ course, listCourseNav }) => {
       <View style={styles.container}>
         <Image
           style={styles.img}
-          source={{
-            uri:
-              "https://pluralsight.imgix.net/course-images/securing-iis-websites-v1.png",
-          }}
+          source={{uri: course.imageUrl}}
         />
         <CourseInfo courseInfo={course} nameStyle={css.courseTitle}/>
       </View>

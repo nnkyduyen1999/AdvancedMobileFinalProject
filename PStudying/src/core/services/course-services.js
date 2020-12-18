@@ -36,6 +36,17 @@ module.exports.getTopRateCoursesService = () => {
   });
 };
 
+module.exports.getRecommendCoursesService = (idUser, token) => {
+  const limit = 10;
+  const offset = 1;
+  return axios.get(
+    `${constants.API_LINK}/user/recommend-course/${idUser}/${limit}/${offset}`,
+    {
+      header: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
 module.exports.getCourseDetailService = (idCourse, idUser, token) => {
   return axios.get(
     `${constants.API_LINK}/course/get-course-detail/${idCourse}/${idUser}`,

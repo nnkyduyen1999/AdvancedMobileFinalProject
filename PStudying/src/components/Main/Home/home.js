@@ -1,12 +1,22 @@
-import React, {useContext} from "react";
+import React, { useEffect, useReducer, useContext } from "react";
 import SectionCourses from "./SectionCourses/section-courses";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, ActivityIndicator } from "react-native";
 import ScreenHeader from "../../Common/screen-header";
 import EmptySection from "../../Common/empty-section";
 import SectionCourseTitle from "../../Common/section-course-title";
 import css from "../../../globals/style";
-//import {CourseContext} from "../../../providers/course-provider";
+import theme from "../../../globals/theme";
+import { coursesReducer } from "../../../reducers/courses-reducer";
+import { getRecommendCourses } from "../../../actions/courses-action";
+import { AuthenticationContext } from "../../../providers/authentication-provider";
 
+const initialState = {
+  recommendedCourses: [],
+  processCourses: [],
+  favoriteCourses: [],
+  isLoading: true,
+  errMsg: null,
+};
 export default function home({ navigation }) {
   const channels = [];
   const bookmark = [];
@@ -36,29 +46,49 @@ export default function home({ navigation }) {
       duration: "45h",
     },
   ];
+
+  const {state} = useContext(AuthenticationContext);
+  const [courseState, dispatch] = useReducer(coursesReducer, initialState);
+  useEffect(() => {
+    getRecommendCourses(
+      dispatch,
+      state.userInfo.id,
+      state.token
+    );
+  }, []);
   return (
-    <ScrollView contentContainerStyle={css.screenContent}>
+    <>
+    {courseState.isLoading ? <ActivityIndicator size="large" color={theme.BASIC_BLUE}/> : <ScrollView contentContainerStyle={css.screenContent}>
       <ScreenHeader screenTitle="Home" />
-      <SectionCourses title="Continue learning" nav={navigation} listCourse={courses}/>
-      <SectionCourses title="Paths" nav={navigation} listCourse={courses}/>
-      {channels.length === 0 && (
+      <SectionCourses
+        title="Tiếp tục học"
+        nav={navigation}
+        listCourse={courseState.processCourses}
+      />
+      {courseState.recommendedCourses.length === 0 ? (
         <View>
-          <SectionCourseTitle sectionTitle="Channels" />
+          <SectionCourseTitle sectionTitle="Khóa học gợi ý" />
           <EmptySection content="Use channels to save, organize and share content to accomplish your learning objectives." />
         </View>
+      ) : (
+        <SectionCourses title="Khoá học gợi ý" nav={navigation} 
+        listCourse={courseState.recommendedCourses}
+        />
       )}
-      {channels.length > 0 && (
-        <SectionCourses title="Channels" nav={navigation} />
-      )}
-      {bookmark.length === 0 && (
+      {courseState.favoriteCourses.length === 0 ? (
         <View>
-          <SectionCourseTitle sectionTitle="Bookmarks" />
+          <SectionCourseTitle sectionTitle="Khóa học yêu thích" />
           <EmptySection content="Use bookmarks to quickly save courses for later watching." />
         </View>
+      ) : (
+        <SectionCourses
+          title="Khóa học yêu thích"
+          nav={navigation}
+          listCourse={courseState.favoriteCourses}
+        />
       )}
-      {bookmark.length > 0 && (
-        <SectionCourses title="Bookmarks" nav={navigation} listCourse={bookmark}/>
-      )}
-    </ScrollView>
+    </ScrollView>}
+    </>
+    
   );
 }

@@ -14,7 +14,7 @@ const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav }) => {
   return (
     <TouchableOpacity style={styles.item} onPress={pressItem}>
       <Image
-        source={require("../../../../../assets/img.jpg")}
+        source={{uri: courseInfo.imageUrl}}
         style={styles.img}
       />
       <CourseInfo courseInfo={courseInfo} nameStyle={nameStyle} />
