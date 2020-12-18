@@ -27,24 +27,30 @@ module.exports.authenticationReducer = (prevState, action) => {
       return {
         ...prevState,
         isAuthenticating: true,
-      }
+      };
     case constants.dispatchTypes.UpdateProfileSuccess:
       return {
         ...prevState,
         isAuthenticating: false,
         isUpdated: true,
-        userInfo: action.data.payload
-      }
+        userInfo: action.data.payload,
+      };
     case constants.dispatchTypes.UpdateProfileFailure:
       return {
         ...prevState,
         isAuthenticating: false,
         isUpdated: false,
-        errMsg: action.data.message
-      }
+        errMsg: action.data.message,
+      };
+    case constants.dispatchTypes.LogOutRequest:
+      return {
+        ...prevState,
+        isAuthenticating: false,
+        isAuthenticated: false,
+        token: null,
+        userInfo: null,
+      };
     default:
       throw new Error();
   }
 };
-
-

@@ -21,7 +21,7 @@ const updateProfileAction = (dispatch) => (name, avatar, phone, token) => {
     .catch((err) => {
       dispatch({
         type: constants.dispatchTypes.UpdateProfileFailure,
-        data: err.response.message,
+        data: err.response.data,
       });
     });
 };

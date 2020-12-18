@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useEffect, useContext, useReducer } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import css from "../../globals/style";
 
+
 export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
+  
   return (
     <View style={styles.container}>
       <Text style={nameStyle}>{courseInfo.title}</Text>
 
       {!authorStyle && (
-        <Text style={css.courseContent}>Author name</Text>
+        <Text style={css.courseContent}>{courseInfo.subtitle}</Text>
       )}
-      
-      {authorStyle && (
+
+      {courseInfo.instructor && (
         <View style={{ width: 150, marginTop: 10 }}>
           <Button
             buttonStyle={authorStyle}
-            title="author name"
+            title={courseInfo.instructor.name}
             titleStyle={css.buttonTitle}
           />
         </View>
       )}
+      
       <Text
         style={css.courseContent}
       >{`${courseInfo.contentPoint}P . ${courseInfo.status} . ${courseInfo.totalHours}h`}</Text>

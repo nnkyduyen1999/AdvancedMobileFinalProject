@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { authenticationReducer } from "../reducers/authentication-reducer";
-import { login } from "../actions/authentication-action";
+import { login, logout } from "../actions/authentication-action";
 import { updateProfileAction } from "../actions/user-action";
 
 const AuthenticationContext = React.createContext();
@@ -21,6 +21,7 @@ function AuthenticationProvider(props) {
         state,
         login: login(dispatch),
         updateProfile: updateProfileAction(dispatch),
+        logout: logout(dispatch)
       }}
     >
       {props.children}

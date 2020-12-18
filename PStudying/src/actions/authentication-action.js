@@ -27,6 +27,12 @@ const login = (dispatch) => (email, password) => {
     });
 };
 
+const logout = dispatch => () => {
+  dispatch({
+    type: constants.dispatchTypes.LogOutRequest,
+  })
+}
 
 
-export { login };
+
+export { login, logout };

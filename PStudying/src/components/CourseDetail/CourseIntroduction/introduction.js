@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Text, View, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
 
@@ -10,7 +10,7 @@ import CustomIcon from "./custom-icon";
 import { CourseContext } from "../../../providers/course-provider";
 import courseServices from "../../../core/services/course-services";
 
-const Introduction = ({ course, nav }) => {
+const Introduction = ({ course, fullCourse, nav }) => {
   const courseContext = useContext(CourseContext);
   const [textTouched, setTextTouched] = useState(false);
   const [status, setStatus] = useState();
@@ -21,13 +21,24 @@ const Introduction = ({ course, nav }) => {
       Alert.alert(status.message);
     }
   };
+
   return (
     <View>
-      <CourseInfo
-        courseInfo={course}
-        nameStyle={css.courseDetailTitle}
-        authorStyle={css.buttonLayoutBig}
-      />
+      {fullCourse && (
+        <CourseInfo
+          courseInfo={fullCourse}
+          nameStyle={css.courseDetailTitle}
+          authorStyle={css.buttonLayoutBig}
+        />
+      )}
+      {!fullCourse && (
+        <CourseInfo
+          courseInfo={course}
+          nameStyle={css.courseDetailTitle}
+          authorStyle={css.buttonLayoutBig}
+        />
+      )}
+
       <View style={styles.iconView}>
         <CustomIcon
           iconName="bookmark-o"

@@ -5,13 +5,13 @@ import ListItemHeader from "../ListLessonItems/list-item-header";
 import Introduction from "../CourseIntroduction/introduction";
 import css from "../../../globals/style";
 
-const ListLesson = ({ courseInfo, nav }) => {
+const ListLesson = ({ courseInfo, courseInfoFull, nav }) => {
   const course = {
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin sapien diam, id tincidunt nunc rhoncus ac. Cras massa elit, imperdiet pellentesque ullamcorper et, mattis nec est. Ut fringilla vulputate leo et bibendum. Sed at lacinia ante, id mollis arcu. Nulla non ante dolor. Mauris eget rutrum metus. Curabitur ultrices id nulla eget fermentum. Quisque nec neque est. Maecenas a nulla magna. Donec varius ipsum eu lectus tristique, ac feugiat orci viverra. Aenean accumsan ex eu velit accumsan, at malesuada nibh rutrum. Pellentesque iaculis tellus eget libero consequat dictum. Quisque lacus sapien, bibendum eu sapien in, finibus dapibus odio. Vivamus nec eleifend massa, dictum rhoncus sapien. Sed augue lectus, sodales nec vulputate in, venenatis vitae est. ",
-    lesson: [
+    section: [
       {
-        title: "Introduction",
+        name: "Introduction",
         data: [
           {
             id: "1",
@@ -40,7 +40,7 @@ const ListLesson = ({ courseInfo, nav }) => {
         ],
       },
       {
-        title: "Getting started",
+        name: "Getting started",
         data: [
           {
             id: "1",
@@ -69,7 +69,7 @@ const ListLesson = ({ courseInfo, nav }) => {
         ],
       },
       {
-        title: "Go deeper",
+        name: "Go deeper",
         data: [
           {
             id: "1",
@@ -98,7 +98,7 @@ const ListLesson = ({ courseInfo, nav }) => {
         ],
       },
       {
-        title: "Check your knowledge",
+        name: "Check your knowledge",
         data: [
           {
             id: "1",
@@ -133,13 +133,13 @@ const ListLesson = ({ courseInfo, nav }) => {
   return (
     <SectionList
       style={css.screenContent}
-      sections={course.lesson}
+      sections={course.section}
       keyExtractor={(item, index) => item + index}
       renderItem={({ item }) => <ListLessonItem lesson={item} />}
-      renderSectionHeader={({ section: { title } }) => (
-        <ListItemHeader sectionHeader={title} />
+      renderSectionHeader={({ section: { name } }) => (
+        <ListItemHeader sectionHeader={name} />
       )}
-      ListHeaderComponent={<Introduction course={courseInfo} nav={nav} />}
+      ListHeaderComponent={<Introduction course={courseInfo} fullCourse={courseInfoFull} nav={nav} />}
     />
   );
 };

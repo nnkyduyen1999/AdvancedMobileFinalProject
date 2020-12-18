@@ -17,7 +17,7 @@ const getTopNewCourses = (dispatch) => {
       } else {
         dispatch({
           type: constants.dispatchTypes.GetTopNewFailure,
-          data: res.data
+          data: res.data,
         });
       }
     })
@@ -59,17 +59,28 @@ const getTopSellCourses = (dispatch) => {
 
 const getTopRateCourses = (dispatch) => {
   dispatch({ type: constants.dispatchTypes.CoursesRequest });
-  getTopRateCoursesService().then(res => {
+  getTopRateCoursesService()
+    .then((res) => {
       if (res.status === 200) {
-          dispatch({ type: constants.dispatchTypes.GetTopRateSuccess, data: res.data})
+        dispatch({
+          type: constants.dispatchTypes.GetTopRateSuccess,
+          data: res.data,
+        });
       } else {
-          dispatch({ type: constants.dispatchTypes.GetTopRateFailure, data: res.data})
+        dispatch({
+          type: constants.dispatchTypes.GetTopRateFailure,
+          data: res.data,
+        });
       }
-  }).catch(err => {
-      dispatch({ type: constants.dispatchTypes.GetTopRateFailure, data: {
-          message: err.response.message
-      }})
-  })
+    })
+    .catch((err) => {
+      dispatch({
+        type: constants.dispatchTypes.GetTopRateFailure,
+        data: {
+          message: err.response.message,
+        },
+      });
+    });
 };
 
 export { getTopSellCourses, getTopNewCourses, getTopRateCourses };

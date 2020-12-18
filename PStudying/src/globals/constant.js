@@ -42,6 +42,7 @@ module.exports.dispatchTypes = {
     LoginSuccess: `LOGIN_SUCCEED`,
     LoginFailure: `LOGIN_FAILURE`,
     LoginRequest: `LOGIN_REQUEST`,
+    LogOutRequest: `LOGOUT_REQUEST`,
     RegisterRequest: `REGISTER_REQUEST`,
     RegisterSuccess: `REGISTER_SUCCESS`,
     RegisterFailure: `REGISTER_FAILURE`,
@@ -55,4 +56,7 @@ module.exports.dispatchTypes = {
     UpdateProfileRequest: `UPDATE_PROFILE_REQUEST`,
     UpdateProfileSuccess: `UPDATE_PROFILE_SUCCESS`,
     UpdateProfileFailure: `UPDATE_PROFILE_FAILURE`,
+    GetCourseDetailRequest: `GET_COURSE_DETAIL_REQUEST`,
+    GetCourseDetailSuccess: `GET_COURSE_DETAIL_SUCCESS`,
+    GetCourseDetailFailure: `GET_COURSE_DETAIL_FAILURE`
 }

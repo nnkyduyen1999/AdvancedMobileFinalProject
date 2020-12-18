@@ -1,16 +1,10 @@
-import React, { useState, useReducer } from "react";
-import { coursesReducer } from "../reducers/courses-reducer";
-import { getTopNewCourses, getTopSellCourses } from "../actions/courses-action";
+import React, { useState } from "react";
 
-const initialState = {
-  
-};
 const CourseContext = React.createContext();
 const CourseProvider = (props) => {
-  const [courseState, dispatch] = useReducer(coursesReducer, initialState);
 
-  //const [favoriteCourses, setFavoriteCourses] = useState([]);
-  //const [bookmark, setBookmark] = useState([]);
+  const [favoriteCourses, setFavoriteCourses] = useState([]);
+  const [bookmark, setBookmark] = useState([]);
   const [searchData, setSearchData] = useState([
     {
       id: "1",
@@ -41,14 +35,11 @@ const CourseProvider = (props) => {
   return (
     <CourseContext.Provider
       value={{
-        courseState,
-        getTopNewCourses: getTopNewCourses(dispatch),
-        getTopSellCourses: getTopSellCourses(dispatch),
-        // favoriteCourses,
-        // setFavoriteCourses,
-        // bookmark,
-        // setBookmark,
-        // searchData,
+        favoriteCourses,
+        setFavoriteCourses,
+        bookmark,
+        setBookmark,
+        searchData,
         searchDataAfter,
         setSearchDataAfter,
       }}
