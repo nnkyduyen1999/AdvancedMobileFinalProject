@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import theme from "../../../globals/theme";
 import css from "../../../globals/style";
-const ListItemHeader = ({ sectionHeader }) => {
+const ListItemHeader = ({ sectionHeader, sectionSubHeader }) => {
   return (
     <View style={css.headerSection}>
       <View style={{ flexDirection: "row" }}>
@@ -12,7 +12,7 @@ const ListItemHeader = ({ sectionHeader }) => {
           <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>
             {sectionHeader}
           </Text>
-          <Text style={css.courseContent}>1m 16s</Text>
+          <Text style={css.courseContent}>{sectionSubHeader}h</Text>
         </View>
       </View>
 

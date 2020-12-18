@@ -12,6 +12,13 @@ module.exports.courseDetailReducer = (prevState, action) => {
         ...prevState,
         isLoading: false,
         courseInfo: action.data.payload,
+        renderCourseSection: action.data.payload.section.map(
+          section => ({
+            name: section.name,
+            sumHours: section.sumHours,
+            data: section.lesson
+          })
+        )
       };
     case constants.dispatchTypes.GetCourseDetailFailure:
       return {
