@@ -53,6 +53,16 @@ module.exports.getFavoriteCoursesService = (token) => {
   });
 };
 
+module.exports.getProcessCoursesService = (token) => {
+  return axios.get(`${constants.API_LINK}/user/get-process-courses`, {
+    header: { Authorization: `Bearer ${token}` },
+  });
+};
+
+module.exports.getCategoryService = () => {
+  return axios.get(`${constants.API_LINK}/category/all`);
+}
+
 module.exports.getCourseDetailService = (idCourse, idUser, token) => {
   return axios.get(
     `${constants.API_LINK}/course/get-course-detail/${idCourse}/${idUser}`,

@@ -67,5 +67,29 @@ module.exports.coursesReducer = (prevState, action) => {
         isLoadingCourses: false,
         errMsg: action.data.message,
       };
+    case constants.dispatchTypes.GetProcessSuccess:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        processCourses: action.data.payload,
+      };
+    case constants.dispatchTypes.GetProcessFailure:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        errMsg: action.data.message,
+      };
+    case constants.dispatchTypes.GetCategorySuccess:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        category: action.data.payload,
+      };
+    case constants.dispatchTypes.GetCategoryFailure:
+      return {
+        ...prevState,
+        isLoadingCourses: false,
+        errMsg: action.data.message,
+      };
   }
 };

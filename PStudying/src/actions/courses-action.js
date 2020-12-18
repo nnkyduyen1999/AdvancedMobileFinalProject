@@ -5,6 +5,8 @@ import {
   getTopRateCoursesService,
   getRecommendCoursesService,
   getFavoriteCoursesService,
+  getProcessCoursesService,
+  getCategoryService,
 } from "../core/services/course-services";
 
 const getTopNewCourses = (dispatch) => {
@@ -133,10 +135,59 @@ const getFavoriteCourses = (dispatch, token) => {
     });
 };
 
+const getProcessCourses = (dispatch, token) => {
+  dispatch({ type: constants.dispatchTypes.CoursesRequest });
+  getProcessCoursesService(token)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({
+          type: constants.dispatchTypes.GetProcessSuccess,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: constants.dispatchTypes.GetProcessFailure,
+          data: res.data,
+        });
+      }
+    })
+    .catch((err) => {
+      dispatch({
+        type: constants.dispatchTypes.GetProcessFailure,
+        data: err.response.data,
+      });
+    });
+};
+
+const getCategory = (dispatch) => {
+  getCategoryService()
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({
+          type: constants.dispatchTypes.GetCategorySuccess,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: constants.dispatchTypes.GetCategoryFailure,
+          data: res.data,
+        });
+      }
+    })
+    .catch((err) => {
+      dispatch({
+        type: constants.dispatchTypes.GetCategoryFailure,
+        data: err.response.data,
+      });
+    });
+};
+
 export {
   getTopSellCourses,
   getTopNewCourses,
   getTopRateCourses,
   getRecommendCourses,
   getFavoriteCourses,
+  getProcessCourses,
+  getCategory,
 };

@@ -7,7 +7,11 @@ import SectionCourseTitle from "../../Common/section-course-title";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import { coursesReducer } from "../../../reducers/courses-reducer";
-import { getRecommendCourses, getFavoriteCourses } from "../../../actions/courses-action";
+import {
+  getRecommendCourses,
+  getFavoriteCourses,
+  getProcessCourses,
+} from "../../../actions/courses-action";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const initialState = {
@@ -47,49 +51,59 @@ export default function home({ navigation }) {
     },
   ];
 
-  const {state} = useContext(AuthenticationContext);
+  const { state } = useContext(AuthenticationContext);
   const [courseState, dispatch] = useReducer(coursesReducer, initialState);
   useEffect(() => {
-    getRecommendCourses(
-      dispatch,
-      state.userInfo.id,
-      state.token
-    );
+    getRecommendCourses(dispatch, state.userInfo.id, state.token);
     getFavoriteCourses(dispatch, state.token);
+    getProcessCourses(dispatch, state.token);
   }, []);
   return (
     <>
-    {courseState.isLoadingCourses ? <ActivityIndicator size="large" color={theme.BASIC_BLUE}/> : <ScrollView contentContainerStyle={css.screenContent}>
-      <ScreenHeader screenTitle="Home" />
-      <SectionCourses
-        title="Tiếp tục học"
-        nav={navigation}
-        listCourse={courseState.processCourses}
-      />
-      {courseState.recommendedCourses.length === 0 ? (
-        <View>
-          <SectionCourseTitle sectionTitle="Khóa học gợi ý" />
-          <EmptySection content="Use channels to save, organize and share content to accomplish your learning objectives." />
-        </View>
+      {courseState.isLoadingCourses ? (
+        <ActivityIndicator size="large" color={theme.BASIC_BLUE} />
       ) : (
-        <SectionCourses title="Khoá học gợi ý" nav={navigation} 
-        listCourse={courseState.recommendedCourses}
-        />
+        <ScrollView contentContainerStyle={css.screenContent}>
+          <ScreenHeader screenTitle="Home" />
+          {courseState.processCourses.length === 0 ? (
+            <View>
+              <SectionCourseTitle sectionTitle="Tiếp tục học" />
+              <EmptySection content="Bắt đầu xem để có khóa học mới." />
+            </View>
+          ) : (
+            <SectionCourses
+              title="Tiếp tục học"
+              nav={navigation}
+              listCourse={courseState.processCourses}
+            />
+          )}
+
+          {courseState.recommendedCourses.length === 0 ? (
+            <View>
+              <SectionCourseTitle sectionTitle="Khóa học gợi ý" />
+              <EmptySection content="Use channels to save, organize and share content to accomplish your learning objectives." />
+            </View>
+          ) : (
+            <SectionCourses
+              title="Khoá học gợi ý"
+              nav={navigation}
+              listCourse={courseState.recommendedCourses}
+            />
+          )}
+          {courseState.favoriteCourses.length === 0 ? (
+            <View>
+              <SectionCourseTitle sectionTitle="Khóa học yêu thích" />
+              <EmptySection content="Dùng bookmark đánh dấu lại các khóa học muốn xem sau." />
+            </View>
+          ) : (
+            <SectionCourses
+              title="Khóa học yêu thích"
+              nav={navigation}
+              listCourse={courseState.favoriteCourses}
+            />
+          )}
+        </ScrollView>
       )}
-      {courseState.favoriteCourses.length === 0 ? (
-        <View>
-          <SectionCourseTitle sectionTitle="Khóa học yêu thích" />
-          <EmptySection content="Dùng bookmark đánh dấu lại các khóa học muốn xem sau." />
-        </View>
-      ) : (
-        <SectionCourses
-          title="Khóa học yêu thích"
-          nav={navigation}
-          listCourse={courseState.favoriteCourses}
-        />
-      )}
-    </ScrollView>}
     </>
-    
   );
 }
