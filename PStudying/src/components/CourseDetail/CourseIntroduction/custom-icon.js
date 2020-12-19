@@ -4,7 +4,6 @@ import { Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 const CustomIcon = ({ iconName, title, onPressIcon }) => {
-  
   return (
     <TouchableOpacity style={styles.container}>
       <Icon

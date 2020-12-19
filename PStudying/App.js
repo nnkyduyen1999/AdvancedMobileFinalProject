@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
       <AuthenticationProvider>
-          <RootStack />
+        <RootStack />
       </AuthenticationProvider>
     </NavigationContainer>
   );

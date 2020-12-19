@@ -1,14 +1,6 @@
 import axios from "axios";
 import constants from "../../globals/constant";
 
-module.exports.likeCourse = (id) => {
-  return {
-    statusCode: 200,
-    likeStatus: true,
-    message: "Course added to favorite",
-  };
-};
-
 module.exports.getCatalogCourses = (idCat) => {
   const coursesByCategory = [];
   return coursesByCategory;
@@ -61,7 +53,7 @@ module.exports.getProcessCoursesService = (token) => {
 
 module.exports.getCategoryService = () => {
   return axios.get(`${constants.API_LINK}/category/all`);
-}
+};
 
 module.exports.getCourseDetailService = (idCourse, idUser, token) => {
   return axios.get(
@@ -71,3 +63,11 @@ module.exports.getCourseDetailService = (idCourse, idUser, token) => {
     }
   );
 };
+
+module.exports.likeCourse = (idCourse) => {
+  return axios.post(`${constants.API_LINK}/user/like-course`, {
+    courseId: idCourse,
+  });
+};
+
+

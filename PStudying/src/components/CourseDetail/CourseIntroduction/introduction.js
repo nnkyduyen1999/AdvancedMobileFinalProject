@@ -7,20 +7,11 @@ import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
 import CourseInfo from "../../Common/course-info";
 import CustomIcon from "./custom-icon";
-import { CourseContext } from "../../../providers/course-provider";
 import courseServices from "../../../core/services/course-services";
 
 const Introduction = ({ course, fullCourse, nav }) => {
-  const courseContext = useContext(CourseContext);
   const [textTouched, setTextTouched] = useState(false);
   const [status, setStatus] = useState();
-
-  const onPressFavorite = (status, course) => {
-    setStatus(courseServices.likeCourse(course.id));
-    if (status && status.statusCode === 200) {
-      Alert.alert(status.message);
-    }
-  };
 
   return (
     <View>
@@ -42,22 +33,18 @@ const Introduction = ({ course, fullCourse, nav }) => {
       <View style={styles.iconView}>
         <CustomIcon
           iconName="bookmark-o"
-          title="Bookmarks"
+          title="Đăng ký"
           onPressIcon={() => {
-            courseContext.setBookmark([...courseContext.bookmark, course]);
-            Alert.alert("Added course to bookmark");
+            // courseContext.setBookmark([...courseContext.bookmark, course]);
+            Alert.alert("Đăng ký okla");
           }}
         />
         <CustomIcon
           iconName="heart-o"
-          title="Add to channels"
+          title="Xem sau"
           onPressIcon={() => {
             //setStatus(courseServices.likeCourse(course.id));
-            courseContext.setFavoriteCourses([
-              ...courseContext.favoriteCourses,
-              course,
-            ]);
-            Alert.alert("Added course to favorites");
+            Alert.alert("Đã thêm khóa học vào danh sách yêu thích");
           }}
         />
         <CustomIcon iconName="arrow-circle-o-down" title="Download" />
@@ -67,12 +54,11 @@ const Introduction = ({ course, fullCourse, nav }) => {
         style={styles.textContainer}
         onPress={() => setTextTouched(!textTouched)}
       >
-        {!textTouched && (
+        {!textTouched ? (
           <Text style={{ color: theme.SECONDARY_TEXT_COLOR }} numberOfLines={3}>
             {`${course.description.slice(0, 300)}...`}
           </Text>
-        )}
-        {textTouched && (
+        ) : (
           <Text style={{ color: theme.SECONDARY_TEXT_COLOR }}>
             {course.description}
           </Text>
