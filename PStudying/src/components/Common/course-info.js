@@ -3,18 +3,14 @@ import { Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import css from "../../globals/style";
 
-
 export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
-  
   return (
     <View style={styles.container}>
       <Text style={nameStyle}>{courseInfo.title}</Text>
 
-      {!authorStyle && (
+      {!authorStyle ? (
         <Text style={css.courseContent}>{courseInfo.subtitle}</Text>
-      )}
-
-      {courseInfo.instructor && (
+      ) : (
         <View style={{ width: 150, marginTop: 10 }}>
           <Button
             buttonStyle={authorStyle}
@@ -23,10 +19,10 @@ export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
           />
         </View>
       )}
-      
+
       <Text
         style={css.courseContent}
-      >{`${courseInfo.contentPoint}P . ${courseInfo.status} . ${courseInfo.totalHours}h`}</Text>
+      >{`Content ${courseInfo.contentPoint}Pt . ${courseInfo.price}đ . Formal ${courseInfo.formalityPoint}Pt`}</Text>
     </View>
   );
 }

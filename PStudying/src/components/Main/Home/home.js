@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useContext } from "react";
 import SectionCourses from "./SectionCourses/section-courses";
-import { ScrollView, View, ActivityIndicator } from "react-native";
+import { ScrollView, View, ActivityIndicator, Alert } from "react-native";
 import ScreenHeader from "../../Common/screen-header";
 import EmptySection from "../../Common/empty-section";
 import SectionCourseTitle from "../../Common/section-course-title";
@@ -9,10 +9,11 @@ import theme from "../../../globals/theme";
 import { coursesReducer } from "../../../reducers/courses-reducer";
 import {
   getRecommendCourses,
-  getFavoriteCourses,
   getProcessCourses,
 } from "../../../actions/courses-action";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
+import { CourseContext } from "../../../providers/course-provider";
+import { getFavoriteCoursesService } from "../../../core/services/course-services";
 
 const initialState = {
   recommendedCourses: [],
@@ -22,42 +23,42 @@ const initialState = {
   errMsg: null,
 };
 export default function home({ navigation }) {
-  const channels = [];
-  const bookmark = [];
-  const courses = [
-    {
-      id: "1",
-      name: "React Native",
-      author: "Hai Pham",
-      level: "Advanced",
-      released: "May 2019",
-      duration: "40h",
-    },
-    {
-      id: "2",
-      name: "React",
-      author: "Khanh Nguyen",
-      level: "Advanced",
-      released: "May 2019",
-      duration: "60h",
-    },
-    {
-      id: "3",
-      name: "Test",
-      author: "Hanh Tran",
-      level: "Beginner",
-      released: "May 2019",
-      duration: "45h",
-    },
-  ];
-
   const { state } = useContext(AuthenticationContext);
+  const courseContext = useContext(CourseContext);
   const [courseState, dispatch] = useReducer(coursesReducer, initialState);
+
+  const convertApi = (apiArr) => {
+    return apiArr.map((course) => ({
+      id: course.id,
+      title: course.courseTitle,
+      price: course.coursePrice,
+      imageUrl: course.courseImage,
+      instructorId: course.instructorId,
+      instructorName: course.instructorName,
+      soldNumber: course.courseSoldNumber,
+      contentPoint: course.courseContentPoint,
+      formalityPoint: course.courseFormalityPoint,
+      presentationPoint: course.coursePresentationPoint,
+      averagePoint: course.courseAveragePoint,
+    }));
+  };
   useEffect(() => {
     getRecommendCourses(dispatch, state.userInfo.id, state.token);
-    getFavoriteCourses(dispatch, state.token);
+    // getFavoriteCourses(dispatch, state.token);
+    getFavoriteCoursesService(state.token)
+      .then((res) => {
+        if (res.status === 200) {
+          courseContext.setFavoriteCourses(convertApi(res.data.payload));
+        } else {
+          Alert.alert("Lỗi khi tải khóa học");
+        }
+      })
+      .catch((err) => {
+        Alert.alert("Lỗi khi tải khóa học");
+      });
     getProcessCourses(dispatch, state.token);
   }, []);
+
   return (
     <>
       {courseState.isLoadingCourses ? (
@@ -90,7 +91,7 @@ export default function home({ navigation }) {
               listCourse={courseState.recommendedCourses}
             />
           )}
-          {courseState.favoriteCourses.length === 0 ? (
+          {courseContext.favoriteCourses.length === 0 ? (
             <View>
               <SectionCourseTitle sectionTitle="Khóa học yêu thích" />
               <EmptySection content="Dùng bookmark đánh dấu lại các khóa học muốn xem sau." />
@@ -99,7 +100,7 @@ export default function home({ navigation }) {
             <SectionCourses
               title="Khóa học yêu thích"
               nav={navigation}
-              listCourse={courseState.favoriteCourses}
+              listCourse={courseContext.favoriteCourses}
             />
           )}
         </ScrollView>

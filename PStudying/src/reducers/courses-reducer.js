@@ -59,7 +59,19 @@ module.exports.coursesReducer = (prevState, action) => {
       return {
         ...prevState,
         isLoadingCourses: false,
-        favoriteCourses: action.data.payload,
+        favoriteCourses: action.data.payload.map((course) => ({
+          id: course.id,
+          title: course.courseTitle,
+          price: course.coursePrice,
+          imageUrl: course.courseImage,
+          instructorId: course.instructorId,
+          instructorName: course.instructorName,
+          soldNumber: course.courseSoldNumber,
+          contentPoint: course.courseContentPoint,
+          formalityPoint: course.courseFormalityPoint,
+          presentationPoint: course.coursePresentationPoint,
+          averagePoint: course.courseAveragePoint,
+        }))
       };
     case constants.dispatchTypes.GetFavoriteFailure:
       return {

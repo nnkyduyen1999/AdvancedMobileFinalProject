@@ -1,7 +1,7 @@
 import axios from "axios";
 import constants from "../../globals/constant";
 
-module.exports.getCatalogCourses = (idCat) => {
+module.exports.getCatalogCoursesService = (idCat) => {
   const coursesByCategory = [];
   return coursesByCategory;
 };
@@ -34,20 +34,20 @@ module.exports.getRecommendCoursesService = (idUser, token) => {
   return axios.get(
     `${constants.API_LINK}/user/recommend-course/${idUser}/${limit}/${offset}`,
     {
-      header: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` },
     }
   );
 };
 
 module.exports.getFavoriteCoursesService = (token) => {
   return axios.get(`${constants.API_LINK}/user/get-favorite-courses`, {
-    header: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 };
 
 module.exports.getProcessCoursesService = (token) => {
   return axios.get(`${constants.API_LINK}/user/get-process-courses`, {
-    header: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 };
 
@@ -64,10 +64,23 @@ module.exports.getCourseDetailService = (idCourse, idUser, token) => {
   );
 };
 
-module.exports.likeCourse = (idCourse) => {
-  return axios.post(`${constants.API_LINK}/user/like-course`, {
-    courseId: idCourse,
-  });
+module.exports.likeCourseService = (idCourse, token) => {
+  return axios.post(
+    `${constants.API_LINK}/user/like-course`,
+    {
+      courseId: idCourse,
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  );
 };
 
-
+module.exports.getCourseLikedStatusService = (idCourse, token) => {
+  return axios.get(
+    `${constants.API_LINK}/user/get-course-like-status/${idCourse}`,
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
+}
