@@ -83,4 +83,16 @@ module.exports.getCourseLikedStatusService = (idCourse, token) => {
       headers: { Authorization: `Bearer ${token}` }
     }
   )
+};
+
+module.exports.subscribeCourseService = (idCourse, token) => {
+  return axios.post(
+    `${constants.API_LINK}/payment/get-free-courses`,
+    {
+      courseId: idCourse
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
 }

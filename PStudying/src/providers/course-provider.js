@@ -4,6 +4,7 @@ const CourseContext = React.createContext();
 const CourseProvider = (props) => {
 
   const [favoriteCourses, setFavoriteCourses] = useState([]);
+  const [subscribeCourses, setSubscribeCourses] = useState([]);
   const [searchData, setSearchData] = useState([
     {
       id: "1",
@@ -36,6 +37,8 @@ const CourseProvider = (props) => {
       value={{
         favoriteCourses,
         setFavoriteCourses,
+        subscribeCourses,
+        setSubscribeCourses,
         searchData,
         searchDataAfter,
         setSearchDataAfter,

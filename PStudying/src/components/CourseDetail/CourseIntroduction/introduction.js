@@ -10,7 +10,8 @@ import CustomIcon from "./custom-icon";
 import {
   getCourseLikedStatusService,
   likeCourseService,
-  getFavoriteCoursesService
+  getFavoriteCoursesService,
+  subscribeCourseService,
 } from "../../../core/services/course-services";
 import { CourseContext } from "../../../providers/course-provider";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
@@ -35,7 +36,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
       averagePoint: course.courseAveragePoint,
     }));
   };
-  
+
   const likeCourse = (idCourse, token) => {
     getCourseLikedStatusService(idCourse, token)
       .then((res) => {
@@ -49,7 +50,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
                 ]);
                 Alert.alert("Đã thêm khóa học vào danh sách yêu thích");
               } else {
-                Alert.alert(res.message);
+                Alert.alert(res.data.message);
               }
             })
             .catch((error) => {
@@ -74,7 +75,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
                   });
                 Alert.alert("Đã bỏ thích khóa học");
               } else {
-                Alert.alert(res.message);
+                Alert.alert(res.data.message);
               }
             })
             .catch((error) => {
@@ -86,6 +87,24 @@ const Introduction = ({ course, fullCourse, nav }) => {
         Alert.alert(error.response.data.message);
       });
   };
+
+  const subscribeCourse = (idCourse, token) => {
+    subscribeCourseService(idCourse, token)
+      .then((res) => {
+        if (res.status === 200) {
+          courseContext.subscribeCourses([
+            ...courseContext.subcribeCourses,
+            fullCourse,
+          ]);
+        } else {
+          Alert.alert(res.data.message);
+        }
+      })
+      .catch((err) => {
+        Alert.alert(err.response.data.messsage);
+      });
+  };
+
   return (
     <View>
       {fullCourse ? (
@@ -105,10 +124,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
         <CustomIcon
           iconName="bookmark-o"
           title="Đăng ký"
-          onPressIcon={() => {
-            // courseContext.setBookmark([...courseContext.bookmark, course]);
-            Alert.alert("Đăng ký okla");
-          }}
+          onPressIcon={() => subscribeCourse(fullCourse.id, state.token)}
         />
         <CustomIcon
           iconName="heart-o"

@@ -13,7 +13,10 @@ import {
 } from "../../../actions/courses-action";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 import { CourseContext } from "../../../providers/course-provider";
-import { getFavoriteCoursesService } from "../../../core/services/course-services";
+import {
+  getFavoriteCoursesService,
+  getProcessCoursesService,
+} from "../../../core/services/course-services";
 
 const initialState = {
   recommendedCourses: [],
@@ -44,7 +47,7 @@ export default function home({ navigation }) {
   };
   useEffect(() => {
     getRecommendCourses(dispatch, state.userInfo.id, state.token);
-    // getFavoriteCourses(dispatch, state.token);
+    
     getFavoriteCoursesService(state.token)
       .then((res) => {
         if (res.status === 200) {
@@ -56,7 +59,18 @@ export default function home({ navigation }) {
       .catch((err) => {
         Alert.alert("Lỗi khi tải khóa học");
       });
-    getProcessCourses(dispatch, state.token);
+
+    getProcessCoursesService(state.token)
+      .then((res) => {
+        if (res.status === 200) {
+          courseContext.setSubscribeCourses(convertApi(res.data.payload));
+        } else {
+          Alert.alert("Lỗi khi tải khóa học");
+        }
+      })
+      .catch((err) => {
+        Alert.alert("Lỗi khi tải khóa học");
+      });
   }, []);
 
   return (
@@ -66,7 +80,7 @@ export default function home({ navigation }) {
       ) : (
         <ScrollView contentContainerStyle={css.screenContent}>
           <ScreenHeader screenTitle="Home" />
-          {courseState.processCourses.length === 0 ? (
+          {courseContext.subscribeCourses.length === 0 ? (
             <View>
               <SectionCourseTitle sectionTitle="Tiếp tục học" />
               <EmptySection content="Bắt đầu xem để có khóa học mới." />
@@ -75,7 +89,7 @@ export default function home({ navigation }) {
             <SectionCourses
               title="Tiếp tục học"
               nav={navigation}
-              listCourse={courseState.processCourses}
+              listCourse={courseContext.subscribeCourses}
             />
           )}
 

@@ -83,7 +83,19 @@ module.exports.coursesReducer = (prevState, action) => {
       return {
         ...prevState,
         isLoadingCourses: false,
-        processCourses: action.data.payload,
+        processCourses: action.data.payload.map((course) => ({
+          id: course.id,
+          title: course.courseTitle,
+          price: course.coursePrice,
+          imageUrl: course.courseImage,
+          instructorId: course.instructorId,
+          instructorName: course.instructorName,
+          soldNumber: course.courseSoldNumber,
+          contentPoint: course.courseContentPoint,
+          formalityPoint: course.courseFormalityPoint,
+          presentationPoint: course.coursePresentationPoint,
+          averagePoint: course.courseAveragePoint,
+        })),
       };
     case constants.dispatchTypes.GetProcessFailure:
       return {
