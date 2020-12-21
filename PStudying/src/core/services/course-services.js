@@ -71,7 +71,7 @@ module.exports.likeCourseService = (idCourse, token) => {
       courseId: idCourse,
     },
     {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     }
   );
 };
@@ -80,19 +80,35 @@ module.exports.getCourseLikedStatusService = (idCourse, token) => {
   return axios.get(
     `${constants.API_LINK}/user/get-course-like-status/${idCourse}`,
     {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     }
-  )
+  );
 };
 
 module.exports.subscribeCourseService = (idCourse, token) => {
   return axios.post(
     `${constants.API_LINK}/payment/get-free-courses`,
     {
-      courseId: idCourse
+      courseId: idCourse,
     },
     {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     }
-  )
-}
+  );
+};
+
+module.exports.ratingCourseService = (content, courseId, point, token) => {
+  return axios.post(
+    `${constants.API_LINK}/course/rating-course`,
+    {
+      courseId: courseId,
+      formalityPoint: point,
+      contentPoint: point,
+      presentationPoint: point,
+      content: content,
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

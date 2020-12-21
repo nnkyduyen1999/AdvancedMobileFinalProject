@@ -3,10 +3,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 import theme from "../../../../globals/theme";
 import css from "../../../../globals/style";
-const InputCustom = ({ label, placeholder, iconName, rightIcon, textChange }) => {
+const InputCustom = ({
+  label,
+  placeholder,
+  iconName,
+  rightIcon,
+  textChange,
+}) => {
   return (
     <>
-      {!rightIcon && (
+      {!rightIcon ? (
         <Input
           label={label}
           labelStyle={css.courseTitle}
@@ -22,9 +28,7 @@ const InputCustom = ({ label, placeholder, iconName, rightIcon, textChange }) =>
           inputStyle={{ color: theme.PRIMARY_TEXT_COLOR }}
           onChangeText={textChange}
         />
-      )}
-
-      {rightIcon && (
+      ) : (
         <Input
           label={label}
           labelStyle={css.courseTitle}

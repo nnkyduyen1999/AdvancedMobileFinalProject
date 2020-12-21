@@ -36,6 +36,7 @@ module.exports.authenticationReducer = (prevState, action) => {
         userInfo: action.data.payload,
       };
     case constants.dispatchTypes.UpdateProfileFailure:
+      console.log("failed");
       return {
         ...prevState,
         isAuthenticating: false,

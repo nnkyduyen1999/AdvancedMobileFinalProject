@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import ButtonCategory from "../../Main/Browse/Category/ButtonCategory";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
+import { updateProfileService } from "../../../core/services/user-services";
 
 const Profile = ({ navigation }) => {
   const authenticationContext = useContext(AuthenticationContext);
@@ -86,17 +87,32 @@ const Profile = ({ navigation }) => {
               title="Update info"
               type="outline"
               onPress={() => {
-                authenticationContext.updateProfile(
-                  name,
-                  avatar,
-                  phone,
-                  state.token
-                );
-                if (state.isUpdated) {
-                  Alert.alert("Successfully updated info");
-                } else {
-                  Alert.alert(state.errMsg);
-                }
+                // authenticationContext.updateProfile(
+                //   name,
+                //   avatar,
+                //   phone,
+                //   state.token
+                // );
+                // if (state.isUpdated) {
+                //   setIsEmitted(false);
+                //   Alert.alert("Successfully updated info");
+                // } else if (state.isAuthenticating) {
+                //   setIsEmitted(true);
+                // } else {
+                //   setIsEmitted(false);
+                //   Alert.alert(state.errMsg);
+                // }
+                updateProfileService(name, avatar, phone, state.token)
+                  .then((res) => {
+                    if (res.status === 200) {
+                      Alert.alert("Cập nhật thành công");
+                    } else {
+                      Alert.alert(res.data.message);
+                    }
+                  })
+                  .catch((err) => {
+                    Alert.alert(err.response.data.message);
+                  });
               }}
             />
           </View>

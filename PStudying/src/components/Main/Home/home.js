@@ -47,17 +47,17 @@ export default function home({ navigation }) {
   };
   useEffect(() => {
     getRecommendCourses(dispatch, state.userInfo.id, state.token);
-    
+
     getFavoriteCoursesService(state.token)
       .then((res) => {
         if (res.status === 200) {
           courseContext.setFavoriteCourses(convertApi(res.data.payload));
         } else {
-          Alert.alert("Lỗi khi tải khóa học");
+          Alert.alert(res.data.message);
         }
       })
       .catch((err) => {
-        Alert.alert("Lỗi khi tải khóa học");
+        Alert.alert(err.response.data.message);
       });
 
     getProcessCoursesService(state.token)
@@ -65,11 +65,11 @@ export default function home({ navigation }) {
         if (res.status === 200) {
           courseContext.setSubscribeCourses(convertApi(res.data.payload));
         } else {
-          Alert.alert("Lỗi khi tải khóa học");
+          Alert.alert(res.data.message);
         }
       })
       .catch((err) => {
-        Alert.alert("Lỗi khi tải khóa học");
+        Alert.alert(err.response.data.message);
       });
   }, []);
 

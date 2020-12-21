@@ -15,7 +15,7 @@ const ListComments = ({ fullCourse }) => {
       ItemSeparatorComponent={() => <Divider style={css.divider} />}
       keyExtractor={(item) => item.id}
       ListHeaderComponent={
-        <CommentBox/>
+        <CommentBox courseId={fullCourse.id}/>
       }
     />
   );
