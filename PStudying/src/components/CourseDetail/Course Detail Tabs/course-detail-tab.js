@@ -19,7 +19,7 @@ const initialState = {
 
 const Tab = createMaterialTopTabNavigator();
 
-const CourseDetailTab = ({ courseInfo, nav }) => {
+const CourseDetailTab = ({ courseInfo, nav, onPressLesson }) => {
   const authenticationContext = useContext(AuthenticationContext);
   const [courseDetailState, dispatch] = useReducer(
     courseDetailReducer,
@@ -48,6 +48,7 @@ const CourseDetailTab = ({ courseInfo, nav }) => {
                 fullCourse={courseDetailState.courseInfo}
                 renderCourse={courseDetailState.renderCourseSection}
                 nav={nav}
+                onPressLesson={onPressLesson}
               />
             )}
           </Tab.Screen>

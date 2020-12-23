@@ -6,13 +6,13 @@ import Introduction from "../CourseIntroduction/introduction";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 
-const ListLesson = ({ courseInfo, renderCourse, fullCourse, nav }) => {
+const ListLesson = ({ courseInfo, renderCourse, fullCourse, nav, onPressLesson }) => {
   return (
     <SectionList
       style={css.screenContent}
       sections={renderCourse}
       keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <ListLessonItem lesson={item} />}
+      renderItem={({ item }) => <ListLessonItem lesson={item} nav={nav} onPressLesson={onPressLesson}/>}
       renderSectionHeader={({ section: { name, sumHours } }) => (
         <ListItemHeader sectionHeader={name} sectionSubHeader={sumHours} />
       )}
