@@ -112,3 +112,23 @@ module.exports.ratingCourseService = (content, courseId, point, token) => {
     }
   );
 };
+
+module.exports.getRelativeCoursesService = (idCat, keyword) => {
+  return axios.post(`${constants.API_LINK}/course/search`, {
+    keyword: keyword,
+    opt: {
+      category: [idCat],
+    },
+    limit: 10,
+    offset: 1,
+  });
+};
+
+module.exports.searchV2Service = (token, keyword) => {
+  return axios.post(`${constants.API_LINK}/course/searchV2`, {
+    token: token,
+    keyword: keyword,
+    limit: 10,
+    offset: 1,
+  });
+};
