@@ -8,16 +8,15 @@ import constant from "../../../globals/constant";
 
 const listCourseItems = ({ course, listCourseNav }) => {
   const onPressItem = () => {
-    listCourseNav.navigate(constant.navigationNames.CourseDetail, {courseInfo: course});
-  }
-  return ( 
+    listCourseNav.navigate(constant.navigationNames.CourseDetail, {
+      courseInfo: course,
+    });
+  };
+  return (
     <TouchableOpacity onPress={onPressItem}>
       <View style={styles.container}>
-        <Image
-          style={styles.img}
-          source={{uri: course.imageUrl}}
-        />
-        <CourseInfo courseInfo={course} nameStyle={css.courseTitle}/>
+        <Image style={styles.img} source={{ uri: course.imageUrl }} />
+        <CourseInfo courseInfo={course} nameStyle={css.courseTitle} />
       </View>
       <Divider style={css.divider} />
     </TouchableOpacity>

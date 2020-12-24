@@ -66,5 +66,5 @@ module.exports.dispatchTypes = {
     UpdateProfileFailure: `UPDATE_PROFILE_FAILURE`,
     GetCourseDetailRequest: `GET_COURSE_DETAIL_REQUEST`,
     GetCourseDetailSuccess: `GET_COURSE_DETAIL_SUCCESS`,
-    GetCourseDetailFailure: `GET_COURSE_DETAIL_FAILURE`
+    GetCourseDetailFailure: `GET_COURSE_DETAIL_FAILURE`,
 }

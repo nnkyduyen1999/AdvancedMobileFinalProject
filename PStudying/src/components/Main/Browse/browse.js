@@ -15,7 +15,7 @@ import {
   getTopNewCourses,
   getTopSellCourses,
   getTopRateCourses,
-  getCategory
+  getCategory,
 } from "../../../actions/courses-action";
 
 const initialState = {
@@ -34,6 +34,7 @@ const Browse = ({ navigation }) => {
     getTopRateCourses(dispatch);
     getCategory(dispatch);
   }, []);
+
 
   return (
     <>
@@ -71,7 +72,10 @@ const Browse = ({ navigation }) => {
           <View style={{ marginVertical: 20 }}>
             <SectionCourseTitle sectionTitle="Popular Skills" />
             <ButtonCategory nav={navigation} />
-            <ImageButtonCategory nav={navigation} category={courseState.category}/>
+            <ImageButtonCategory
+              nav={navigation}
+              category={courseState.category}
+            />
           </View>
           <SectionCourses
             title="Top rate"

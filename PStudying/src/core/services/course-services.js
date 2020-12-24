@@ -114,7 +114,7 @@ module.exports.ratingCourseService = (content, courseId, point, token) => {
 };
 
 module.exports.getRelativeCoursesService = (idCat, keyword) => {
-  return axios.post(`${constants.API_LINK}/course/search`, {
+  const req = axios.post(`${constants.API_LINK}/course/search`, {
     keyword: keyword,
     opt: {
       category: [idCat],
@@ -122,6 +122,7 @@ module.exports.getRelativeCoursesService = (idCat, keyword) => {
     limit: 10,
     offset: 1,
   });
+  return req;
 };
 
 module.exports.searchV2Service = (token, keyword) => {
