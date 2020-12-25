@@ -5,14 +5,14 @@ import SectionCourseTitle from "../../../Common/section-course-title";
 import SearchEmpty from "../SearchEmpty/search-empty"
 import css from "../../../../globals/style";
 
-const SearchDetail = ({nav, searchData}) => {
+const SearchDetail = ({nav, searchData, searchCoursesData, searchAuthorsData}) => {
   const DATA = [
     {
       title: "Courses",
       data: searchData,
     },
     {
-      title: "Paths",
+      title: "Authors",
       data: searchData,
     },
   ];

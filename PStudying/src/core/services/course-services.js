@@ -125,11 +125,19 @@ module.exports.getRelativeCoursesService = (idCat, keyword) => {
   return req;
 };
 
+module.exports.searchService = (keyword) => {
+  return axios.post(`${constants.API_LINK}/course/search`, {
+    keyword: keyword,
+    limit: 10,
+    offset: 1,
+  });
+};
+
 module.exports.searchV2Service = (token, keyword) => {
   return axios.post(`${constants.API_LINK}/course/searchV2`, {
     token: token,
     keyword: keyword,
-    limit: 10,
+    limit: 20,
     offset: 1,
   });
 };

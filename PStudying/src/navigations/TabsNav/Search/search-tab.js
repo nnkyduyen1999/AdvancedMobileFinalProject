@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { View } from "react-native";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -8,15 +8,14 @@ import Search from "../../../components/Main/Search/search";
 import SearchBarCustom from "../../../components/Main/Search/SearchBar/search-bar";
 import FullSection from "../../../components/Main/Home/SectionFullList/section-full-list";
 import SearchCourses from "../../../components/Main/Search/SearchDetail/search-course";
-import SearchPaths from "../../../components/Main/Search/SearchDetail/search-path";
 import SearchAuthors from "../../../components/Main/Search/SearchDetail/search-author";
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
-import {CourseContext} from "../../../providers/course-provider";
+import { CourseContext } from "../../../providers/course-provider";
 
 const Tab = createMaterialTopTabNavigator();
 
-const TabSearchScreen = () => {
+const TabSearchScreen = ({ navigation }) => {
   const courseContext = useContext(CourseContext);
   return (
     <>
@@ -32,25 +31,36 @@ const TabSearchScreen = () => {
           labelStyle: { fontWeight: theme.FONT_WEIGHT_MEDIUM },
         }}
       >
-        <Tab.Screen
-          name={constant.navigationNames.SearchAll}
-        >
-          {props => <Search {...props} searchData={courseContext.searchDataAfter}/>}
+        <Tab.Screen name={constant.navigationNames.SearchAll}>
+          {(props) => (
+            <Search
+              {...props}
+              nav={navigation}
+              searchData={courseContext.searchDataAfter}
+              searchCoursesData={courseContext.searchCoursesData}
+              searchAuthorsData={courseContext.searchAuthorsData}
+            />
+          )}
         </Tab.Screen>
-        <Tab.Screen
-          name={constant.navigationNames.SearchCourses}
-        >
-          {props => <SearchCourses {...props} searchData={courseContext.searchDataAfter}/>}
+        <Tab.Screen name={constant.navigationNames.SearchCourses}>
+          {(props) => (
+            <SearchCourses
+              {...props}
+              nav={navigation}
+              searchData={courseContext.searchDataAfter}
+              searchCoursesData={courseContext.searchCoursesData}
+            />
+          )}
         </Tab.Screen>
-        <Tab.Screen
-          name={constant.navigationNames.SearchPaths}
-        >
-          {props => <SearchPaths {...props} searchData={courseContext.searchDataAfter}/>}
-        </Tab.Screen>
-        <Tab.Screen
-          name={constant.navigationNames.SearchAuthors}
-        >
-          {props => <SearchAuthors {...props} searchData={courseContext.searchDataAfter}/>}
+        <Tab.Screen name={constant.navigationNames.SearchAuthors}>
+          {(props) => (
+            <SearchAuthors
+              {...props}
+              nav={navigation}
+              searchData={courseContext.searchDataAfter}
+              searchAuthorsData={courseContext.searchAuthorsData}
+            />
+          )}
         </Tab.Screen>
       </Tab.Navigator>
     </>
@@ -68,7 +78,8 @@ const SearchStackScreen = () => {
       <SearchStack.Screen
         name={constant.navigationNames.FullSection}
         component={FullSection}
-        options={{ title: "" }}
+        // options={{ title: "" }}
+        options={{ headerShown: false }}
       />
     </SearchStack.Navigator>
   );
