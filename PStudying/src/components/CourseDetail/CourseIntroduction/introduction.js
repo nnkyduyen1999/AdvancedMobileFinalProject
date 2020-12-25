@@ -92,16 +92,22 @@ const Introduction = ({ course, fullCourse, nav }) => {
     subscribeCourseService(idCourse, token)
       .then((res) => {
         if (res.status === 200) {
-          courseContext.subscribeCourses([
-            ...courseContext.subcribeCourses,
+          courseContext.setSubscribeCourses([
+            ...courseContext.subscribeCourses,
             fullCourse,
           ]);
+          Alert.alert("Đăng ký khóa học thành công");
         } else {
           Alert.alert(res.data.message);
         }
       })
       .catch((err) => {
-        Alert.alert(err.response.data.messsage);
+        if (err.response) {
+          Alert.alert(err.response.data.messsage);
+        } else {
+          Alert.alert("Đã có lỗi xảy ra");
+          console.log("err", err);
+        }
       });
   };
 
