@@ -45,6 +45,22 @@ export default function home({ navigation }) {
       averagePoint: course.courseAveragePoint,
     }));
   };
+
+  const formatProcessCourses = (apiArr) => {
+    return apiArr.map((course) => ({
+      id: course.id,
+      title: course.courseTitle,
+      price: course.coursePrice,
+      imageUrl: course.courseImage,
+      instructorId: course.instructorId,
+      instructorName: course.instructorName,
+      latestLearnTime: course.latestLearnTime,
+      learnLesson: course.learnLesson,
+      process: course.process,
+      total: course.total,
+    }));
+  };
+
   useEffect(() => {
     getRecommendCourses(dispatch, state.userInfo.id, state.token);
 
@@ -63,7 +79,9 @@ export default function home({ navigation }) {
     getProcessCoursesService(state.token)
       .then((res) => {
         if (res.status === 200) {
-          courseContext.setSubscribeCourses(convertApi(res.data.payload));
+          courseContext.setSubscribeCourses(
+            formatProcessCourses(res.data.payload)
+          );
         } else {
           Alert.alert(res.data.message);
         }
