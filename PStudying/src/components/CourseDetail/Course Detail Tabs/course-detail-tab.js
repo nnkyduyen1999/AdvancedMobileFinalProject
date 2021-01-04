@@ -19,7 +19,7 @@ const initialState = {
 
 const Tab = createMaterialTopTabNavigator();
 
-const CourseDetailTab = ({ courseInfo, nav, onPressLesson }) => {
+const CourseDetailTab = ({ courseInfo, nav, onPressLesson, getUrlCourse }) => {
   const authenticationContext = useContext(AuthenticationContext);
   const [courseDetailState, dispatch] = useReducer(
     courseDetailReducer,
@@ -35,6 +35,11 @@ const CourseDetailTab = ({ courseInfo, nav, onPressLesson }) => {
     );
   }, []);
 
+  useEffect(() => {
+    if (!courseDetailState.isLoading) {
+      getUrlCourse(courseDetailState.courseInfo.promoVidUrl)
+    }
+  }, [courseDetailState.isLoading]);
   return (
     <>
       {courseDetailState.isLoading ? (
