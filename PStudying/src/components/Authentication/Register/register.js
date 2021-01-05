@@ -34,7 +34,7 @@ const Register = ({ navigation }) => {
 
   useEffect(() => {
     if (status && status === 200) {
-      navigation.navigate(constant.navigationNames.VerifyEmail);
+      navigation.navigate(constant.navigationNames.Login);
     }
   }, [status]);
 

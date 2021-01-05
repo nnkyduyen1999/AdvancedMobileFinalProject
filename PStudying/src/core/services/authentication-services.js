@@ -26,9 +26,9 @@ module.exports.verifyEmail = (token) => {
   return { statusCode: 400, errString: "Invalid token" };
 };
 
-module.exports.forgetPassword = (email) => {
-  if (email === `admin@gmail.com`) {
-    return { statusCode: 200 };
-  }
-  return { statusCode: 400, errString: "Unregistered email" };
-};
+module.exports.forgetPasswordService = (email) => {
+  return axios.post(`${constants.API_LINK}/user/forget-pass/send-email`,
+  {
+    email: email
+  });
+}
