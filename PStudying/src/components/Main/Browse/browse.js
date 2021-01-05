@@ -81,6 +81,7 @@ const Browse = ({ navigation }) => {
             title="Top rate"
             nav={navigation}
             listCourse={courseState.topRateCourses}
+            isProcessing={false}
           />
           <ListAuthor title="Top Authors" nav={navigation} />
         </ScrollView>

@@ -13,7 +13,7 @@ const SearchDetail = ({nav, searchData, searchCoursesData, searchAuthorsData}) =
     },
     {
       title: "Authors",
-      data: searchData,
+      data: searchAuthorsData,
     },
   ];
 

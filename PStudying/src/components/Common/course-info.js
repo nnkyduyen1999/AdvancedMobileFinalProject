@@ -1,14 +1,21 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button, Rating } from "react-native-elements";
 import css from "../../globals/style";
 import theme from "../../globals/theme";
 
-export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
+export default function CourseInfo({
+  courseInfo,
+  nameStyle,
+  authorStyle,
+  isProcessing,
+}) {
   const price = courseInfo.price ? courseInfo.price : 0;
   const rating = courseInfo.averagePoint
     ? courseInfo.averagePoint
-    : (courseInfo.contentPoint ? courseInfo.contentPoint : 3.2);
+    : courseInfo.contentPoint
+    ? courseInfo.contentPoint
+    : 3.2;
   return (
     <View style={styles.container}>
       <Text style={nameStyle}>{courseInfo.title}</Text>
@@ -25,9 +32,14 @@ export default function CourseInfo({ courseInfo, nameStyle, authorStyle }) {
         </View>
       )}
 
-<Text
-          style={css.courseContent}
-        >{`Rating ${rating}P . Price ${price}đ`}</Text>
+        {isProcessing ? <Text
+        style={css.courseContent}
+      >{`Process ${courseInfo.process} / ${courseInfo.total}`}</Text> :
+      <Text
+        style={css.courseContent}
+      >{`Rating ${rating}P . Price ${price}đ`}</Text> 
+      }
+      
     </View>
   );
 }

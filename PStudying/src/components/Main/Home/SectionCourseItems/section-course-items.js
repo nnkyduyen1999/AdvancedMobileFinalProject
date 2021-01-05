@@ -5,7 +5,7 @@ import CourseInfo from "../../../Common/course-info";
 import theme from "../../../../globals/theme";
 import constant from "../../../../globals/constant";
 
-const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav }) => {
+const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav, isProcessing }) => {
   const pressItem = () => {
     listCourseNav.navigate(constant.navigationNames.CourseDetail, {
       courseInfo: courseInfo,
@@ -17,7 +17,7 @@ const SectionCourseItems = ({ courseInfo, nameStyle, listCourseNav }) => {
         source={{uri: courseInfo.imageUrl}}
         style={styles.img}
       />
-      <CourseInfo courseInfo={courseInfo} nameStyle={nameStyle} />
+      <CourseInfo courseInfo={courseInfo} nameStyle={nameStyle} isProcessing={isProcessing}/>
     </TouchableOpacity>
   );
 };

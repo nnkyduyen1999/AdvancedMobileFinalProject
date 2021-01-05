@@ -108,6 +108,7 @@ export default function home({ navigation }) {
               title="Tiếp tục học"
               nav={navigation}
               listCourse={courseContext.subscribeCourses}
+              isProcessing={true}
             />
           )}
 
@@ -121,6 +122,7 @@ export default function home({ navigation }) {
               title="Khoá học gợi ý"
               nav={navigation}
               listCourse={courseState.recommendedCourses}
+              isProcessing={false}
             />
           )}
           {courseContext.favoriteCourses.length === 0 ? (
@@ -133,6 +135,7 @@ export default function home({ navigation }) {
               title="Khóa học yêu thích"
               nav={navigation}
               listCourse={courseContext.favoriteCourses}
+              isProcessing={false}
             />
           )}
         </ScrollView>
