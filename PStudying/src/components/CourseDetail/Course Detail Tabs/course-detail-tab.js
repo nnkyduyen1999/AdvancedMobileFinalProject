@@ -40,6 +40,7 @@ const CourseDetailTab = ({ courseInfo, nav, onPressLesson, getUrlCourse }) => {
       getUrlCourse(courseDetailState.courseInfo.promoVidUrl)
     }
   }, [courseDetailState.isLoading]);
+  
   return (
     <>
       {courseDetailState.isLoading ? (

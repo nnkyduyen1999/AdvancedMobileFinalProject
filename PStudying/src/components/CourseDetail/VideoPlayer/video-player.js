@@ -12,14 +12,26 @@ const MyVideoPlayer = ({ urlLesson }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [playingUrl, setPlayingUrl] = useState(``);
 
+  const getYoutubeId = (url) => {
+    var newUrl = ``;
+    var videoId = ``;
+    if ((newUrl = url.match(/(\?|&)v=([^&#]+)/))) {
+      videoId = newUrl.pop();
+    } else if ((newUrl = url.match(/(\.be\/)+([^\/]+)/))) {
+      videoId = newUrl.pop();
+    } else if ((newUrl = url.match(/(\embed\/)+([^\/]+)/))) {
+      videoId = newUrl.pop().replace("?rel=0", "");
+    }
+    return videoId;
+  };
   const setPlayingVideo = (url) => {
-    const youtubeDomain = `https://www.youtube.com/`;
+    const youtubeDomain = `youtube.com`;
     if (url) {
       setIsLoading(false);
       if (url.includes(youtubeDomain)) {
         setIsYoutube(true);
-        const indexOfStart = url.indexOf(`=`);
-        setPlayingUrl(url.substring(indexOfStart + 1, url.length));
+        const videoId = getYoutubeId(url);
+        setPlayingUrl(videoId);
       } else {
         setIsYoutube(false);
         setPlayingUrl(url);
