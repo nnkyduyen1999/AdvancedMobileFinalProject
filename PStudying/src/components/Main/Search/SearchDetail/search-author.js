@@ -5,7 +5,7 @@ import SearchEmpty from "../SearchEmpty/search-empty";
 import CustomAvatar from "../AvatarCustom/custom-avatar";
 import css from "../../../../globals/style";
 
-const SearchAuthor = ({ nav, searchData, searchAuthorsData }) => {
+const SearchAuthor = ({ nav, searchAuthorsData }) => {
   const DATA = [
     {
       title: "Authors",

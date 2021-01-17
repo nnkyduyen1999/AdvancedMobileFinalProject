@@ -7,40 +7,40 @@ import {AuthenticationContext}  from "../../../../providers/authentication-provi
 import {searchService, searchV2Service} from "../../../../core/services/course-services";
 
 export default function SearchBarCustom() {
-  const [search, setSearch] = useState(``);
+  const [searchVal, setSearchVal] = useState(``);
   const courseContext = useContext(CourseContext);
   const {state} = useContext(AuthenticationContext);
 
   const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);
-    searchService("")
-    .then(res=> {
-      setIsLoading(false);
-      if (res.status === 200) {
-        courseContext.setSearchData(res.data.payload.rows);
-      } else {
-        Alert.alert(res.data.message);
-      }
-    }).catch(err=> {
-      setIsLoading(false);
-      Alert.alert(err.response.data.message);
-    })
-  },[]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   searchService("")
+  //   .then(res=> {
+  //     setIsLoading(false);
+  //     if (res.status === 200) {
+  //       courseContext.setSearchData(res.data.payload.rows);
+  //     } else {
+  //       Alert.alert(res.data.message);
+  //     }
+  //   }).catch(err=> {
+  //     setIsLoading(false);
+  //     Alert.alert(err.response.data.message);
+  //   })
+  // },[]);
 
-  const searchData = courseContext.searchData;
+ // const searchData = courseContext.searchData;
   const handleSearch = (query) => {
     setIsLoading(true);
-    const searchQuery = query.toLowerCase();
-    const filteredData = searchData.filter((item) => {
-      if (item.title.toLowerCase().includes(searchQuery)) {
-        return true;
-      }
-      return false;
-    });
-    courseContext.setSearchDataAfter(filteredData);
-    setSearch(query);
-    searchV2Service(state.token, search)
+    //const searchQuery = query.toLowerCase();
+    // const filteredData = searchData.filter((item) => {
+    //   if (item.title.toLowerCase().includes(searchQuery)) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+    // courseContext.setSearchDataAfter(filteredData);
+    //setSearch(searchQuery);
+    searchV2Service(state.token, query)
     .then(res => {
       if (res.status === 200) {
         courseContext.setSearchCoursesData(res.data.payload.courses.data);
@@ -61,11 +61,12 @@ export default function SearchBarCustom() {
       platform="ios"
       placeholder="Search"
       showLoading={isLoading}
-      onChangeText={(query) => handleSearch(query)}
-      value={search}
+      onChangeText={(text) => setSearchVal(text.toLowerCase())}
+      value={searchVal}
       inputContainerStyle={{ height: 30, backgroundColor: "white" }}
       containerStyle={{ backgroundColor: theme.DARK_THEME, paddingTop: 40 }}
       cancelButtonProps={{ buttonStyle: { paddingTop: 25 } }}
+      onSubmitEditing={() => handleSearch(searchVal)}
     />
   );
 }
