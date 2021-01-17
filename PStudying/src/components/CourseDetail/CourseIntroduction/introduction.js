@@ -20,6 +20,8 @@ const Introduction = ({ course, fullCourse, nav }) => {
   const courseContext = useContext(CourseContext);
   const { state } = useContext(AuthenticationContext);
   const [textTouched, setTextTouched] = useState(false);
+  const [isPressedLike, setIsPressedLike] = useState(false);
+  const [isPressedSubscribe, setIsPressedSubscribe] = useState(false);
 
   const convertApi = (apiArr) => {
     return apiArr.map((course) => ({
@@ -49,6 +51,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
                   fullCourse,
                 ]);
                 Alert.alert("Đã thêm khóa học vào danh sách yêu thích");
+                setIsPressedLike(true);
               } else {
                 Alert.alert(res.data.message);
               }
@@ -74,6 +77,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
                     throw new Error(err);
                   });
                 Alert.alert("Đã bỏ thích khóa học");
+                setIsPressedLike(false);
               } else {
                 Alert.alert(res.data.message);
               }
@@ -97,6 +101,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
             fullCourse,
           ]);
           Alert.alert("Đăng ký khóa học thành công");
+          setIsPressedSubscribe(true);
         } else {
           Alert.alert(res.data.message);
         }
@@ -128,17 +133,19 @@ const Introduction = ({ course, fullCourse, nav }) => {
       )}
       <View style={styles.iconView}>
         <CustomIcon
-          iconName="bookmark-o"
+          iconName="bookmark"
           title="Đăng ký"
           onPressIcon={() => subscribeCourse(fullCourse.id, state.token)}
+          isPressed={isPressedSubscribe}
         />
         <CustomIcon
-          iconName="heart-o"
+          iconName="heart"
           title="Xem sau"
           onPressIcon={() => likeCourse(fullCourse.id, state.token)}
+          isPressed={isPressedLike}
         />
 
-        <CustomIcon iconName="arrow-circle-o-down" title="Download" />
+        <CustomIcon iconName="arrow-circle-down" title="Download" />
       </View>
       <Divider style={css.divider} />
       <TouchableOpacity
@@ -157,7 +164,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
       </TouchableOpacity>
       <Button
         buttonStyle={styles.fullButton}
-        title="Related paths and courses"
+        title="Courses by this instructor"
         titleStyle={styles.fullButtonText}
         icon={
           <Icon
@@ -169,8 +176,8 @@ const Introduction = ({ course, fullCourse, nav }) => {
         onPress={() => {
           nav.navigate(constant.navigationNames.FullSection, {
             sectionContent: {
-              title: "Related courses",
-              courses: courseContext.favoriteCourses,
+              title: "Courses by this instructor",
+              courses: fullCourse.instructor.courses,
             },
           });
         }}

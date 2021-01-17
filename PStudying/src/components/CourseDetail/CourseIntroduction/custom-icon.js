@@ -3,7 +3,9 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-const CustomIcon = ({ iconName, title, onPressIcon }) => {
+
+const CustomIcon = ({ iconName, title, onPressIcon, isPressed }) => {
+  const color = isPressed ? theme.BASIC_BLUE : theme.PRIMARY_TEXT_COLOR;
   return (
     <TouchableOpacity style={styles.container}>
       <Icon
@@ -12,6 +14,7 @@ const CustomIcon = ({ iconName, title, onPressIcon }) => {
         type="font-awesome"
         color={theme.BASIC_GREY}
         reverse={true}
+        iconStyle={{color: color}}
         onPress={onPressIcon}
       />
       <Text style={{color: theme.PRIMARY_TEXT_COLOR}}>{title}</Text>
