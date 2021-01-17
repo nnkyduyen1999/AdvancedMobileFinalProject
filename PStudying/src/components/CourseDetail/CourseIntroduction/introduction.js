@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Text, View, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Alert, TouchableOpacity, Share } from "react-native";
 import { Divider, Button, Icon } from "react-native-elements";
 
 import css from "../../../globals/style";
@@ -116,6 +116,23 @@ const Introduction = ({ course, fullCourse, nav }) => {
       });
   };
 
+  const onShare = async (courseName) => {
+    try {
+      const result = await Share.share({
+        message: `Download and join ${courseName} at PStudying on AppStore and GooglePlayStore`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          Alert.alert("Successfully share");
+        } else {
+          Alert.alert("Oppss. Cannot share now");
+        }
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <View>
       {fullCourse ? (
@@ -145,7 +162,11 @@ const Introduction = ({ course, fullCourse, nav }) => {
           isPressed={isPressedLike}
         />
 
-        <CustomIcon iconName="arrow-circle-down" title="Download" />
+        <CustomIcon
+          iconName="share-alt"
+          title="Chia sẻ"
+          onPressIcon={() => onShare(course.title)}
+        />
       </View>
       <Divider style={css.divider} />
       <TouchableOpacity

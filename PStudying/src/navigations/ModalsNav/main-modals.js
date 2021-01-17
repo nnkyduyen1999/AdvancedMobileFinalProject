@@ -20,8 +20,7 @@ const dismissIcon = (
 const onShare = async () => {
   try {
     const result = await Share.share({
-      message:
-        'Join new course',
+      message: `Download and join us at PStudying on AppStore and GooglePlayStore`,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
