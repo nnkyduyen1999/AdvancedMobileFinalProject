@@ -7,15 +7,28 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { ratingCourseService } from "../../../core/services/course-services";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 
-const ListCommentHeader = ({ courseId }) => {
+const ListCommentHeader = ({ courseId, oldList, setNewList }) => {
+  const date = new Date().toUTCString();
   const { state } = useContext(AuthenticationContext);
   const [comment, setComment] = useState(``);
 
-  const postComment = (token, comment, point, courseId) => {
+  const postComment = (token, comment, point, courseId, user) => {
     ratingCourseService(comment, courseId, point, token)
     .then(res=> {
       if (res.status === 200) {
         Alert.alert("Đã thêm bình luận.");
+        setNewList([
+          ...oldList,
+          {
+            id: res.data.id,
+            createdAt: date,
+            content: comment,
+            user : {
+              name: user.name,
+              avatar: user.avatar,
+            }
+          }
+        ])
       } else {
         Alert.alert(res.data.message);
       }
@@ -32,7 +45,7 @@ const ListCommentHeader = ({ courseId }) => {
       inputStyle={{ color: theme.PRIMARY_TEXT_COLOR }}
       rightIcon={
         <TouchableOpacity
-          onPress={() => postComment(state.token, comment, 0, courseId)}
+          onPress={() => postComment(state.token, comment, 0, courseId, state.userInfo)}
         >
           <Icon name="paper-plane" size={24} color={theme.BASIC_BLUE} />
         </TouchableOpacity>
