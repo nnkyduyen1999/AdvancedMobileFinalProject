@@ -81,27 +81,13 @@ const Profile = ({ navigation }) => {
                 placeholder="Email here ..."
                 style={styles.infoInput}
                 value={`${userInfo.email}`}
+                disabled={true}
               />
             </View>
             <Button
               title="Update info"
               type="outline"
               onPress={() => {
-                // authenticationContext.updateProfile(
-                //   name,
-                //   avatar,
-                //   phone,
-                //   state.token
-                // );
-                // if (state.isUpdated) {
-                //   setIsEmitted(false);
-                //   Alert.alert("Successfully updated info");
-                // } else if (state.isAuthenticating) {
-                //   setIsEmitted(true);
-                // } else {
-                //   setIsEmitted(false);
-                //   Alert.alert(state.errMsg);
-                // }
                 updateProfileService(name, avatar, phone, state.token)
                   .then((res) => {
                     if (res.status === 200) {
