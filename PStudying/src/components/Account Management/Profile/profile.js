@@ -88,17 +88,28 @@ const Profile = ({ navigation }) => {
               title="Update info"
               type="outline"
               onPress={() => {
-                updateProfileService(name, avatar, phone, state.token)
-                  .then((res) => {
-                    if (res.status === 200) {
-                      Alert.alert("Cập nhật thành công");
-                    } else {
-                      Alert.alert(res.data.message);
-                    }
-                  })
-                  .catch((err) => {
-                    Alert.alert(err.response.data.message);
-                  });
+                authenticationContext.updateProfile(
+                  name,
+                  avatar,
+                  phone,
+                  state.token
+                );
+                if (!state.isAuthenticating && state.isUpdated) {
+                  Alert.alert("Cập nhật thành công");
+                } else {
+                  Alert.alert(state.errMsg);
+                }
+                // updateProfileService(name, avatar, phone, state.token)
+                //   .then((res) => {
+                //     if (res.status === 200) {
+                //       Alert.alert("Cập nhật thành công");
+                //     } else {
+                //       Alert.alert(res.data.message);
+                //     }
+                //   })
+                //   .catch((err) => {
+                //     Alert.alert(err.response.data.message);
+                //   });
               }}
             />
           </View>
