@@ -1,7 +1,6 @@
 import React from "react";
 import { SectionList, View, Text } from "react-native";
 import SectionCourseTitle from "../../../Common/section-course-title";
-import SearchEmpty from "../SearchEmpty/search-empty";
 import CustomAvatar from "../AvatarCustom/custom-avatar";
 import css from "../../../../globals/style";
 
@@ -29,7 +28,6 @@ const SearchAuthor = ({ nav, searchAuthorsData }) => {
             sectionCourses={data}
           />
         )}
-        ListEmptyComponent={<SearchEmpty />}
       />
     </View>
   );

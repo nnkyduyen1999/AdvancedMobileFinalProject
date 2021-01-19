@@ -9,17 +9,18 @@ import SearchBarCustom from "../../../components/Main/Search/SearchBar/search-ba
 import FullSection from "../../../components/Main/Home/SectionFullList/section-full-list";
 import SearchCourses from "../../../components/Main/Search/SearchDetail/search-course";
 import SearchAuthors from "../../../components/Main/Search/SearchDetail/search-author";
+import SearchHistory from "../../../components/Main/Search/SearchHistory/searchHistory";
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
 import { CourseContext } from "../../../providers/course-provider";
 
 const Tab = createMaterialTopTabNavigator();
 
-const TabSearchScreen = ({ navigation }) => {
+const TabSearchScreen = ({ navigation, route }) => {
   const courseContext = useContext(CourseContext);
   return (
     <>
-      <SearchBarCustom />
+      <SearchBarCustom route={route}/>
       <Tab.Navigator
         tabBarOptions={{
           activeTintColor: theme.PRIMARY_TEXT_COLOR,
@@ -69,7 +70,12 @@ const TabSearchScreen = ({ navigation }) => {
 const SearchStackScreen = () => {
   const SearchStack = createStackNavigator();
   return (
-    <SearchStack.Navigator initialRouteName={constant.navigationNames.Search}>
+    <SearchStack.Navigator initialRouteName={constant.navigationNames.SearchHistory}>
+      <SearchStack.Screen
+        name={constant.navigationNames.SearchHistory}
+        component={SearchHistory}
+        options={{ headerShown: false }}
+      />
       <SearchStack.Screen
         name={constant.navigationNames.Search}
         component={TabSearchScreen}
@@ -78,7 +84,6 @@ const SearchStackScreen = () => {
       <SearchStack.Screen
         name={constant.navigationNames.FullSection}
         component={FullSection}
-        // options={{ title: "" }}
         options={{ headerShown: false }}
       />
     </SearchStack.Navigator>

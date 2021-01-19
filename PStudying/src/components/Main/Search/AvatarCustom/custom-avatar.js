@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 import css from "../../../../globals/style";
 import theme from "../../../../globals/theme";
+import { ThemeContext } from "../../../../providers/theme-provider";
 
 const CustomAvatar = ({ author, authorNav }) => {
+  const { themes } = useContext(ThemeContext);
+
   return (
     <View style={styles.layout}>
       <Avatar
@@ -16,7 +19,9 @@ const CustomAvatar = ({ author, authorNav }) => {
         containerStyle={styles.avatar}
       />
       <View style={styles.textLayout}>
-        <Text style={styles.content}>{author.name}</Text>
+        <Text style={{ ...styles.content, color: themes.text }}>
+          {author.name}
+        </Text>
         <Text style={css.courseContent}>
           Total courses: {author.numcourses}
         </Text>
@@ -34,8 +39,7 @@ const styles = StyleSheet.create({
     marginRight: theme.LARGE_MARGIN,
   },
   content: {
-    color: theme.PRIMARY_TEXT_COLOR,
-    fontWeight: theme.FONT_WEIGHT_MEDIUM
+    fontWeight: theme.FONT_WEIGHT_MEDIUM,
   },
   textLayout: {
     flex: 1,

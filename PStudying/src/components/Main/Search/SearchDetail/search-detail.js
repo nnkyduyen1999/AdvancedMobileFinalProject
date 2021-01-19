@@ -3,7 +3,6 @@ import { SectionList, View, Text } from "react-native";
 import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
 import CustomAvatar from "../AvatarCustom/custom-avatar";
-import SearchEmpty from "../SearchEmpty/search-empty";
 import css from "../../../../globals/style";
 
 const SearchDetail = ({
@@ -42,7 +41,6 @@ const SearchDetail = ({
             sectionCourses={data}
           />
         )}
-        ListEmptyComponent={<SearchEmpty />}
       />
     </View>
   );

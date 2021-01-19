@@ -9,7 +9,7 @@ module.exports.navigationNames = {
     SkillDetail: "SkillDetail",
     SearchAll: "All",
     SearchCourses: "Courses",
-    SearchPaths: "Paths",
+    SearchHistory: "History",
     SearchAuthors: "Authors",
     Setting: "Setting",
     Register: "Register",

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button, Rating } from "react-native-elements";
 import css from "../../globals/style";
 import theme from "../../globals/theme";
+import {ThemeContext} from "../../providers/theme-provider";
 
 export default function CourseInfo({
   courseInfo,
@@ -10,6 +11,8 @@ export default function CourseInfo({
   authorStyle,
   isProcessing,
 }) {
+  const {themes} = useContext(ThemeContext);
+
   const price = courseInfo.price ? courseInfo.price : 0;
   const rating = courseInfo.averagePoint
     ? courseInfo.averagePoint
@@ -18,7 +21,7 @@ export default function CourseInfo({
     : 3.2;
   return (
     <View style={styles.container}>
-      <Text style={nameStyle}>{courseInfo.title}</Text>
+      <Text style={{...nameStyle, color: themes.text}}>{courseInfo.title}</Text>
 
       {!authorStyle ? (
         <Rating imageSize={12} readonly startingValue={rating} type="custom" />

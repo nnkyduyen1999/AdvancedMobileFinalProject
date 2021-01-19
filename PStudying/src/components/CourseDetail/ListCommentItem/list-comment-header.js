@@ -6,11 +6,13 @@ import css from "../../../globals/style";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { ratingCourseService } from "../../../core/services/course-services";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
+import {ThemeContext} from "../../../providers/theme-provider";
 
 const ListCommentHeader = ({ courseId, oldList, setNewList }) => {
   const date = new Date().toUTCString();
   const { state } = useContext(AuthenticationContext);
   const [comment, setComment] = useState(``);
+  const {themes} = useContext(ThemeContext);
 
   const postComment = (token, comment, point, courseId, user) => {
     ratingCourseService(comment, courseId, point, token)
@@ -42,7 +44,7 @@ const ListCommentHeader = ({ courseId, oldList, setNewList }) => {
       containerStyle={{ marginVertical: theme.LARGE_MARGIN }}
       placeholder="Viết đánh giá"
       labelStyle={css.courseTitle}
-      inputStyle={{ color: theme.PRIMARY_TEXT_COLOR }}
+      inputStyle={{ color: themes.text }}
       rightIcon={
         <TouchableOpacity
           onPress={() => postComment(state.token, comment, 0, courseId, state.userInfo)}

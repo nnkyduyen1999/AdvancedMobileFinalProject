@@ -91,7 +91,6 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: theme.DARK_THEME,
     paddingVertical: theme.SMALL_PADDING
   },
   authenBtnTitle: {
