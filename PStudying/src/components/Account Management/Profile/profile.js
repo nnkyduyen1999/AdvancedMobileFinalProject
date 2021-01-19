@@ -16,6 +16,7 @@ import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 import { updateProfileService } from "../../../core/services/user-services";
+import {ThemeContext} from "../../../providers/theme-provider";
 
 const Profile = ({ navigation }) => {
   const authenticationContext = useContext(AuthenticationContext);
@@ -25,6 +26,8 @@ const Profile = ({ navigation }) => {
   const [name, setName] = useState(userInfo.name);
   const [phone, setPhone] = useState(userInfo.phone);
   const avatar = `https://i.pinimg.com/originals/3c/77/7a/3c777af381c043c928cc6beaef2dd102.jpg`;
+
+  const {themes} = useContext(ThemeContext);
 
   return (
     <ScrollView style={css.screenContent}>
@@ -65,21 +68,21 @@ const Profile = ({ navigation }) => {
               <Text style={styles.textStyle}>Name</Text>
               <Input
                 placeholder="Name here ..."
-                style={styles.infoInput}
+                style={{...styles.infoInput, color: themes.text}}
                 value={name}
                 onChangeText={(text) => setName(text)}
               />
               <Text style={styles.textStyle}>Phone</Text>
               <Input
                 placeholder="Phone here ..."
-                style={styles.infoInput}
+                style={{...styles.infoInput, color: themes.text}}
                 value={phone}
                 onChangeText={(text) => setPhone(text)}
               />
               <Text style={styles.textStyle}>email</Text>
               <Input
                 placeholder="Email here ..."
-                style={styles.infoInput}
+                style={{...styles.infoInput, color: themes.text}}
                 value={`${userInfo.email}`}
                 disabled={true}
               />
@@ -99,17 +102,6 @@ const Profile = ({ navigation }) => {
                 } else {
                   Alert.alert(state.errMsg);
                 }
-                // updateProfileService(name, avatar, phone, state.token)
-                //   .then((res) => {
-                //     if (res.status === 200) {
-                //       Alert.alert("Cập nhật thành công");
-                //     } else {
-                //       Alert.alert(res.data.message);
-                //     }
-                //   })
-                //   .catch((err) => {
-                //     Alert.alert(err.response.data.message);
-                //   });
               }}
             />
           </View>
@@ -126,7 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
   },
   infoInput: {
-    color: theme.PRIMARY_TEXT_COLOR,
     fontSize: theme.FONT_SIZE_SMALL,
   },
 });

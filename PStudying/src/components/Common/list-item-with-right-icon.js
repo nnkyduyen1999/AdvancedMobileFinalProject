@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Icon, Divider } from "react-native-elements";
 import { View, TouchableOpacity, Text, Switch } from "react-native";
 import css from "../../globals/style";
 import theme from "../../globals/theme";
+import { ThemeContext } from "../../providers/theme-provider";
+
 const ListItemWithRightIcon = ({ setting, rightIcon, switchBtn }) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const themeContext = useContext(ThemeContext);
+  const { themes } = themeContext;
+
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    themeContext.toggleTheme();
+  };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <TouchableOpacity
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           paddingVertical: 5,
-          flex: 1
+          flex: 1,
         }}
       >
-        <View style={{flex: 2}}>
+        <View style={{ flex: 2 }}>
           <Text
             style={{
-              color: theme.PRIMARY_TEXT_COLOR,
+              color: themes.text,
               fontSize: theme.FONT_SIZE_XLARGE,
             }}
           >
@@ -30,17 +38,16 @@ const ListItemWithRightIcon = ({ setting, rightIcon, switchBtn }) => {
             <Text style={css.courseContent}>{setting.sub}</Text>
           )}
         </View>
-        {!switchBtn && (
+        {!switchBtn ? (
           <Icon
             name={rightIcon}
             type="font-awesome"
-            color={theme.PRIMARY_TEXT_COLOR}
+            color={themes.text}
           />
-        )}
-        {switchBtn && (
+        ) : (
           <Switch
             trackColor={{ false: theme.BASIC_GREY, true: theme.BASIC_BLUE }}
-            thumbColor={theme.PRIMARY_TEXT_COLOR}
+            thumbColor={themes.text}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />

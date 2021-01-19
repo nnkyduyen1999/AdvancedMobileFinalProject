@@ -14,11 +14,5 @@ export default function search({
       searchCoursesData={searchCoursesData}
       searchAuthorsData={searchAuthorsData}
     />
-    // <ScrollView contentContainerStyle={css.screenContent}>
-    //   <ScreenHeader screenTitle="Search"/>
-    //   <SearchBarCustom />
-    //   <SearchList title="Recent searches" clearBtn="true"/>
-    //   <SearchList title="Your interested"/>
-    // </ScrollView>
   );
 }

@@ -10,11 +10,9 @@ export default StyleSheet.create({
   sectionTitle: {
     fontSize: theme.FONT_SIZE_LARGE,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
-    color: theme.PRIMARY_TEXT_COLOR,
   },
   courseTitle: {
     fontSize: theme.FONT_SIZE_MEDIUM,
-    color: theme.PRIMARY_TEXT_COLOR,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
   },
   courseContent: {

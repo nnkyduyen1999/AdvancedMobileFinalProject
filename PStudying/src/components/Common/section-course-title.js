@@ -4,6 +4,7 @@ import { Button } from "react-native-elements";
 import css from "../../globals/style";
 import theme from "../../globals/theme";
 import constant from "../../globals/constant";
+import {ThemeContext} from "../../providers/theme-provider";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 const seeAllIcon = <Icon name="angle-right" size={10} color="white" />;
@@ -14,9 +15,11 @@ const SectionCourseTitle = ({
   fullSecNav,
   sectionCourses,
 }) => {
+  const {themes} = useContext(ThemeContext);
+
   return (
-    <View style={styles.titleLayout}>
-      <Text style={css.sectionTitle}>{sectionTitle}</Text>
+    <View style={{...styles.titleLayout, backgroundColor: themes.backgroundColor}}>
+      <Text style={{...css.sectionTitle, color: themes.text}}>{sectionTitle}</Text>
 
       {seeAll && (
         <Button
@@ -45,7 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: theme.DARK_THEME,
     paddingVertical: theme.SMALL_PADDING,
   },
 });

@@ -5,41 +5,18 @@ import theme from "../../../../globals/theme";
 import {CourseContext} from "../../../../providers/course-provider"
 import {AuthenticationContext}  from "../../../../providers/authentication-provider";
 import {searchService, searchV2Service} from "../../../../core/services/course-services";
+import {ThemeContext} from "../../../../providers/theme-provider";
 
 export default function SearchBarCustom() {
   const [searchVal, setSearchVal] = useState(``);
   const courseContext = useContext(CourseContext);
   const {state} = useContext(AuthenticationContext);
+  const {themes} = useContext(ThemeContext);
 
   const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   searchService("")
-  //   .then(res=> {
-  //     setIsLoading(false);
-  //     if (res.status === 200) {
-  //       courseContext.setSearchData(res.data.payload.rows);
-  //     } else {
-  //       Alert.alert(res.data.message);
-  //     }
-  //   }).catch(err=> {
-  //     setIsLoading(false);
-  //     Alert.alert(err.response.data.message);
-  //   })
-  // },[]);
-
- // const searchData = courseContext.searchData;
+  
   const handleSearch = (query) => {
     setIsLoading(true);
-    //const searchQuery = query.toLowerCase();
-    // const filteredData = searchData.filter((item) => {
-    //   if (item.title.toLowerCase().includes(searchQuery)) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-    // courseContext.setSearchDataAfter(filteredData);
-    //setSearch(searchQuery);
     searchV2Service(state.token, query)
     .then(res => {
       if (res.status === 200) {
@@ -64,7 +41,7 @@ export default function SearchBarCustom() {
       onChangeText={(text) => setSearchVal(text.toLowerCase())}
       value={searchVal}
       inputContainerStyle={{ height: 30, backgroundColor: "white" }}
-      containerStyle={{ backgroundColor: theme.DARK_THEME, paddingTop: 40 }}
+      containerStyle={{ backgroundColor: themes.backgroundColor, paddingTop: 40 }}
       cancelButtonProps={{ buttonStyle: { paddingTop: 25 } }}
       onSubmitEditing={() => handleSearch(searchVal)}
     />
