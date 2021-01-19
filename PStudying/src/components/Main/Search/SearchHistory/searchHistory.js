@@ -23,6 +23,7 @@ const DATA = [
 const SearchHistory = ({navigation}) => {
   const renderItem = ({ item }) => <HistoryItem item={item} nav={navigation}/>;
 
+  
   return (
     <View style={{...css.screenContent, marginTop: 40}}>
       <ScreenHeader screenTitle="Search"/>
