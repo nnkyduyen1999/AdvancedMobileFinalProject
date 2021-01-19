@@ -16,7 +16,7 @@ module.exports.updateProfileService = (name, avatar, phone, token) => {
   return req;
 };
 
-module.exports.getSearchHistory = (token) => {
+module.exports.getSearchHistoryService = (token) => {
   return axios.get(`${constants.API_LINK}/course/search-history`, {
     headers: { Authorization: `Bearer ${token}` }
   });

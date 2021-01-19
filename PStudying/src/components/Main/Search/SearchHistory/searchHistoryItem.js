@@ -8,7 +8,7 @@ import { ThemeContext } from "../../../../providers/theme-provider";
 const SearchHistoryItem = ({ item, nav }) => {
   const { themes } = useContext(ThemeContext);
   const onPressHistoryItem = () => {
-    nav.navigate(constant.navigationNames.Search, { history: item.title });
+    nav.navigate(constant.navigationNames.Search, { history: item.content });
   };
 
   const onPressDeleteItem = () => {
@@ -16,7 +16,7 @@ const SearchHistoryItem = ({ item, nav }) => {
   }
   return (
     <TouchableOpacity style={styles.item} onPress={onPressHistoryItem}>
-      <Text style={{ color: themes.text, fontSize: 18 }}>{item.title}</Text>
+      <Text style={{ color: themes.text, fontSize: 18 }}>{item.content}</Text>
       <TouchableOpacity onPress={onPressDeleteItem}>
         <Icon type="font-awesome" name="times" size={23} color={themes.text} />
       </TouchableOpacity>

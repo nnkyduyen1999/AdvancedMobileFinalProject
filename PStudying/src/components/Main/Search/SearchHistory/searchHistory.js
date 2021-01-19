@@ -1,9 +1,12 @@
-import React from "react";
-import { View, FlatList, StyleSheet, StatusBar } from "react-native";
+import React, { useEffect, useContext, useState } from "react";
+import { View, FlatList, StyleSheet, StatusBar, Alert,ActivityIndicator } from "react-native";
 import HistoryItem from "./searchHistoryItem";
 import ScreenHeader from "../../../Common/screen-header";
 import css from "../../../../globals/style";
+import theme from "../../../../globals/theme";
 import SearchBarCustom from "../SearchBar/search-bar";
+import { getSearchHistoryService } from "../../../../core/services/user-services";
+import { AuthenticationContext } from "../../../../providers/authentication-provider";
 
 const DATA = [
   {
@@ -20,19 +23,43 @@ const DATA = [
   },
 ];
 
-const SearchHistory = ({navigation}) => {
-  const renderItem = ({ item }) => <HistoryItem item={item} nav={navigation}/>;
+const SearchHistory = ({ navigation }) => {
+  const [listHistory, setListHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { state } = useContext(AuthenticationContext);
 
-  
+  useEffect(() => {
+    getSearchHistoryService(state.token)
+      .then((res) => {
+        if (res.status === 200) {
+          setListHistory(res.data.payload.data);
+          setIsLoading(false);
+        } else {
+          Alert.alert(res.data.message);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        Alert.alert(err.response.data.message);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const renderItem = ({ item }) => <HistoryItem item={item} nav={navigation} />;
+
   return (
-    <View style={{...css.screenContent, marginTop: 40}}>
-      <ScreenHeader screenTitle="Search"/>
+    <View style={{ ...css.screenContent, marginTop: 40 }}>
+      <ScreenHeader screenTitle="Search" />
       <SearchBarCustom />
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color={theme.BASIC_BLUE} />
+      ) : (
+        <FlatList
+          data={listHistory}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      )}
     </View>
   );
 };
