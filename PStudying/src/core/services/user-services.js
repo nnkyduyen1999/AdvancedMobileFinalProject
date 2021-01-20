@@ -18,6 +18,15 @@ module.exports.updateProfileService = (name, avatar, phone, token) => {
 
 module.exports.getSearchHistoryService = (token) => {
   return axios.get(`${constants.API_LINK}/course/search-history`, {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: { Authorization: `Bearer ${token}` },
   });
-}
+};
+
+module.exports.deteleSearchHistoryService = (token, historyId) => {
+  return axios.delete(
+    `${constants.API_LINK}/course/delete-search-history/${historyId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

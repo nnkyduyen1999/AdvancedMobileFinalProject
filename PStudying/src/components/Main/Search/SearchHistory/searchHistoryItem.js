@@ -4,20 +4,20 @@ import { Icon } from "react-native-elements";
 import constant from "../../../../globals/constant";
 import theme from "../../../../globals/theme";
 import { ThemeContext } from "../../../../providers/theme-provider";
+import { AuthenticationContext } from "../../../../providers/authentication-provider";
 
-const SearchHistoryItem = ({ item, nav }) => {
+const SearchHistoryItem = ({ item, nav, onPressDeleteItem }) => {
   const { themes } = useContext(ThemeContext);
+  const { state } = useContext(AuthenticationContext);
+
   const onPressHistoryItem = () => {
     nav.navigate(constant.navigationNames.Search, { history: item.content });
   };
 
-  const onPressDeleteItem = () => {
-      Alert.alert("del");
-  }
   return (
     <TouchableOpacity style={styles.item} onPress={onPressHistoryItem}>
       <Text style={{ color: themes.text, fontSize: 18 }}>{item.content}</Text>
-      <TouchableOpacity onPress={onPressDeleteItem}>
+      <TouchableOpacity onPress={() => onPressDeleteItem(state.token, item.id)}>
         <Icon type="font-awesome" name="times" size={23} color={themes.text} />
       </TouchableOpacity>
     </TouchableOpacity>
