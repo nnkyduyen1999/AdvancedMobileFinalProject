@@ -1,19 +1,34 @@
 import React, { useContext, useEffect } from "react";
-import { View, Image } from "react-native";
+import { View, Image, Text } from "react-native";
 import { Button } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
+import { ThemeContext } from "../../../providers/theme-provider";
 
 const SplashScreen = ({ navigation }) => {
-  
+  const { themes } = useContext(ThemeContext);
+
   return (
     <View style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <Image
-        source={require("../../../../assets/logo.png")}
-        style={{ width: 300, height: 200, alignSelf: "center" }}
+        source={require("../../../../assets/playstation.png")}
+        style={{ alignSelf: "center" }}
       />
-      <View style={{ justifyContent: "space-around", height: 200 }}>
+      <View style={{ justifyContent: "space-around", height: 250 }}>
+        <Text
+          style={{
+            alignSelf: "center",
+            color: themes.text,
+            fontWeight: "bold",
+            fontSize: 32,
+            textTransform: "uppercase",
+            marginVertical: 10,
+            fontFamily: "Chalkduster",
+          }}
+        >
+          PStudying
+        </Text>
         <Button
           title="Sign in"
           buttonStyle={{ backgroundColor: theme.BASIC_BLUE }}
