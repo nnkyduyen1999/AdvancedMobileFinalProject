@@ -4,10 +4,7 @@ import { Alert } from "react-native";
 import theme from "../../../../globals/theme";
 import { CourseContext } from "../../../../providers/course-provider";
 import { AuthenticationContext } from "../../../../providers/authentication-provider";
-import {
-  searchService,
-  searchV2Service,
-} from "../../../../core/services/course-services";
+import { searchV2Service } from "../../../../core/services/course-services";
 import { ThemeContext } from "../../../../providers/theme-provider";
 
 export default function SearchBarCustom({ route }) {
