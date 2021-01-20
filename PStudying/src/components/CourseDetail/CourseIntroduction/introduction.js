@@ -15,6 +15,7 @@ import {
 } from "../../../core/services/course-services";
 import { CourseContext } from "../../../providers/course-provider";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
+import {ThemeContext} from "../../../providers/theme-provider";
 
 const Introduction = ({ course, fullCourse, nav }) => {
   const courseContext = useContext(CourseContext);
@@ -22,6 +23,7 @@ const Introduction = ({ course, fullCourse, nav }) => {
   const [textTouched, setTextTouched] = useState(false);
   const [isPressedLike, setIsPressedLike] = useState(false);
   const [isPressedSubscribe, setIsPressedSubscribe] = useState(false);
+  const {themes} = useContext(ThemeContext);
 
   const convertApi = (apiArr) => {
     return apiArr.map((course) => ({

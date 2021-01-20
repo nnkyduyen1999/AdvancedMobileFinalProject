@@ -13,20 +13,22 @@ import SearchHistory from "../../../components/Main/Search/SearchHistory/searchH
 import constant from "../../../globals/constant";
 import theme from "../../../globals/theme";
 import { CourseContext } from "../../../providers/course-provider";
+import { ThemeContext } from "../../../providers/theme-provider";
 
 const Tab = createMaterialTopTabNavigator();
 
 const TabSearchScreen = ({ navigation, route }) => {
   const courseContext = useContext(CourseContext);
+  const { themes } = useContext(ThemeContext);
   return (
     <>
-      <SearchBarCustom route={route}/>
+      <SearchBarCustom route={route} />
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: theme.PRIMARY_TEXT_COLOR,
+          activeTintColor: themes.text,
           inactiveTintColor: theme.SECONDARY_TEXT_COLOR,
           style: {
-            backgroundColor: theme.TAB_BAR_BGR,
+            backgroundColor: themes.tabBarBgr,
             marginTop: theme.SMALL_MARGIN,
           },
           labelStyle: { fontWeight: theme.FONT_WEIGHT_MEDIUM },
@@ -70,7 +72,9 @@ const TabSearchScreen = ({ navigation, route }) => {
 const SearchStackScreen = () => {
   const SearchStack = createStackNavigator();
   return (
-    <SearchStack.Navigator initialRouteName={constant.navigationNames.SearchHistory}>
+    <SearchStack.Navigator
+      initialRouteName={constant.navigationNames.SearchHistory}
+    >
       <SearchStack.Screen
         name={constant.navigationNames.SearchHistory}
         component={SearchHistory}

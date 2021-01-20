@@ -13,7 +13,6 @@ import ScreenHeader from "../../../Common/screen-header";
 import css from "../../../../globals/style";
 import theme from "../../../../globals/theme";
 import constant from "../../../../globals/constant";
-import SearchBarCustom from "../SearchBar/search-bar";
 import {
   getSearchHistoryService,
   deteleSearchHistoryService,

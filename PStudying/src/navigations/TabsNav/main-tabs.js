@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import theme from "../../globals/theme";
@@ -8,10 +8,12 @@ import HomeStackScreen from "./Home/home-tab";
 import DownloadStackScreen from "./Download/download-tab";
 import BrowseStackScreen from "./Browse/browse-tab";
 import SearchStackScreen from "./Search/search-tab";
-
+import {ThemeContext} from "../../providers/theme-provider";
 
 export default MainTabs = () => {
   const Tab = createBottomTabNavigator();
+  const {themes} = useContext(ThemeContext);
+
   return (
     <Tab.Navigator
       initialRouteName={constant.navigationNames.MainTabs}
@@ -41,7 +43,7 @@ export default MainTabs = () => {
       tabBarOptions={{
         activeTintColor: theme.ICON_BLUE,
         inactiveTintColor: theme.TAB_BAR_ICON,
-        style: { backgroundColor: theme.TAB_BAR_BGR },
+        style: { backgroundColor: themes.tabBarBgr },
         tabStyle: { flexDirection: "column" },
       }}
     >

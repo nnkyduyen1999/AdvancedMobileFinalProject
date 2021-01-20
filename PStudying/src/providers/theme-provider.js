@@ -5,14 +5,18 @@ const ThemeContext = React.createContext();
 
 const pallete = {
   light: {
-    backgroundColor: "#eeeeee",
-    text: "#2D313A",
-    courseBgr: theme.COURSE_ITEM_BGR_LIGHT
+    backgroundColor: theme.LIGHT_THEME,
+    text: theme.PRIMARY_TEXT_COLOR_LIGHT,
+    courseBgr: theme.COURSE_ITEM_BGR_LIGHT,
+    tabBarBgr: theme.TAB_BAR_BGR_LIGHT,
+    radiusBtn: theme.RADIUS_BTN_BGR_LIGHT
   },
   dark: {
     backgroundColor: theme.DARK_THEME,
     text: theme.PRIMARY_TEXT_COLOR,
-    courseBgr: theme.COURSE_ITEM_BGR
+    courseBgr: theme.COURSE_ITEM_BGR,
+    tabBarBgr: theme.TAB_BAR_BGR,
+    radiusBtn: theme.RADIUS_BTN_BGR
   },
 };
 

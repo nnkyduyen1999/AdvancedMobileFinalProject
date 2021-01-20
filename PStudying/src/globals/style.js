@@ -21,7 +21,6 @@ export default StyleSheet.create({
   },
   buttonTitle: {
     fontSize: theme.FONT_SIZE_SMALL,
-    color: theme.PRIMARY_TEXT_COLOR,
   },
   courseDetailTitle: {
     color: theme.PRIMARY_TEXT_COLOR,
@@ -30,7 +29,6 @@ export default StyleSheet.create({
   },
   buttonLayoutSmall: {
     borderRadius: 12,
-    backgroundColor: theme.RADIUS_BTN_BGR,
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
@@ -38,7 +36,6 @@ export default StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 15,
     paddingVertical: 6,
-    backgroundColor: theme.RADIUS_BTN_BGR,
     marginRight: theme.LARGE_MARGIN,
     marginBottom: theme.LARGE_MARGIN,
   },

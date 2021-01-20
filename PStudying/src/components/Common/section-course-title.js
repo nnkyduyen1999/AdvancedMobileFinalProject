@@ -7,7 +7,6 @@ import constant from "../../globals/constant";
 import {ThemeContext} from "../../providers/theme-provider";
 
 import Icon from "react-native-vector-icons/FontAwesome";
-const seeAllIcon = <Icon name="angle-right" size={10} color="white" />;
 
 const SectionCourseTitle = ({
   sectionTitle,
@@ -16,6 +15,7 @@ const SectionCourseTitle = ({
   sectionCourses,
 }) => {
   const {themes} = useContext(ThemeContext);
+  const seeAllIcon = <Icon name="angle-right" size={10} color={themes.text} />;
 
   return (
     <View style={{...styles.titleLayout, backgroundColor: themes.backgroundColor}}>
@@ -24,10 +24,10 @@ const SectionCourseTitle = ({
       {seeAll && (
         <Button
           title={`${seeAll}`}
-          buttonStyle={css.buttonLayoutSmall}
+          buttonStyle={{...css.buttonLayoutSmall, backgroundColor: themes.radiusBtn}}
           icon={seeAllIcon}
           iconRight={true}
-          titleStyle={css.buttonTitle}
+          titleStyle={{...css.buttonTitle, color: themes.text}}
           onPress={() => {
             fullSecNav.navigate(constant.navigationNames.FullSection, {
               sectionContent: {
