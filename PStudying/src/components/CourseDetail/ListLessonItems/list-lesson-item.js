@@ -1,28 +1,39 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, {useContext} from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
-const ListLessonItem = ({ lesson }) => {
+import constant from "../../../globals/constant";
+import { Alert } from "react-native";
+import {ThemeContext} from "../../../providers/theme-provider";
+
+
+const ListLessonItem = ({ lesson, onPressLesson }) => {
+  const {themes} = useContext(ThemeContext);
+
+  const handlePressLesson = (url) => {
+    if (url) {
+      console.log(url);
+      onPressLesson(url);
+    } else {
+      Alert.alert("No video. Sorry :((");
+    }
+  }
   return (
-    <View style={[css.displayRow, {paddingVertical: 20, paddingLeft: 10}]}>
+    <TouchableOpacity
+      style={[css.displayRow, { paddingVertical: 20, paddingLeft: 10 }]}
+      onPress={() => handlePressLesson(lesson.videoUrl)}
+    >
       <Icon
         name="check-circle"
         type="font-awesome"
-        color={theme.PRIMARY_TEXT_COLOR}
+        color={themes.text}
         size={14}
       />
-      <Text style={{marginLeft: 20, color: theme.PRIMARY_TEXT_COLOR}}>{lesson.name}</Text>
-    </View>
-  //   <View style={[css.displayRow, {paddingVertical: 20, paddingLeft: 10}]}>
-  //   <Icon
-  //     name="circle"
-  //     type="font-awesome"
-  //     color={theme.COURSE_ITEM_BGR}
-  //     size={14}
-  //   />
-  //   <Text style={[css.courseContent, {marginLeft: 20}]}>{lesson.name}</Text>
-  // </View>
+      <Text style={{ marginLeft: 20, color: themes.text }}>
+        {lesson.name}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

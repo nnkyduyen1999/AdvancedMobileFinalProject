@@ -2,18 +2,22 @@ import React from "react";
 import { SectionList, View, Text } from "react-native";
 import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
-import SearchEmpty from "../SearchEmpty/search-empty"
+import CustomAvatar from "../AvatarCustom/custom-avatar";
 import css from "../../../../globals/style";
 
-const SearchDetail = ({nav, searchData}) => {
+const SearchDetail = ({
+  nav,
+  searchCoursesData,
+  searchAuthorsData,
+}) => {
   const DATA = [
     {
       title: "Courses",
-      data: searchData,
+      data: searchCoursesData,
     },
     {
-      title: "Paths",
-      data: searchData,
+      title: "Authors",
+      data: searchAuthorsData,
     },
   ];
 
@@ -22,17 +26,22 @@ const SearchDetail = ({nav, searchData}) => {
       <SectionList
         sections={DATA}
         keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <ListCourseItem course={item} listCourseNav={nav}/>}
+        renderItem={({ item }) =>
+          item.avatar ? (
+            <CustomAvatar author={item} authorNav={nav} />
+          ) : (
+            <ListCourseItem course={item} listCourseNav={nav} />
+          )
+        }
         renderSectionHeader={({ section: { title, data } }) => (
           <SectionCourseTitle
             seeAll={`${data.length} results   `}
             sectionTitle={title}
-            fullSecNav={nav} sectionCourses={data}
+            fullSecNav={nav}
+            sectionCourses={data}
           />
         )}
-        ListEmptyComponent={<SearchEmpty/>}
       />
-      
     </View>
   );
 };

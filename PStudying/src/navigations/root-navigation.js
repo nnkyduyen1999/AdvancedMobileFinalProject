@@ -2,7 +2,6 @@ import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
 import constant from "../globals/constant";
 import theme from "../globals/theme";
 import MainModals from "./ModalsNav/main-modals";

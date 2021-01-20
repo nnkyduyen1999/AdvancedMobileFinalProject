@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
 import { View, ScrollView, Alert } from "react-native";
 import { Button } from "react-native-elements";
-import { StackActions } from '@react-navigation/native';
+import { StackActions } from "@react-navigation/native";
 import ListSetting from "./list-setting/list-setting";
 import css from "../../../globals/style";
 import constant from "../../../globals/constant";
-import { AuthenticationContext} from "../../../providers/authentication-provider"
+import { AuthenticationContext } from "../../../providers/authentication-provider";
+import { CourseContext } from "../../../providers/course-provider";
+import { ThemeContext } from "../../../providers/theme-provider";
 
 export default function Setting({ navigation }) {
   const authenticationContext = useContext(AuthenticationContext);
+  const courseContext = useContext(CourseContext);
+  const { themes } = useContext(ThemeContext);
+
   const settingList1 = [
     {
       main: "Subcription",
@@ -25,12 +30,12 @@ export default function Setting({ navigation }) {
   ];
   const settingList2 = [
     {
-      main: "Require Wi-Fi for streaming",
+      main: "Dark theme",
       sub: "",
     },
     {
-      main: "Require Wi-Fi for downloading",
-      sub: "",
+      main: "Language",
+      sub: "English",
     },
     {
       main: "Play video in background",
@@ -57,7 +62,6 @@ export default function Setting({ navigation }) {
     },
   ];
 
-
   const showAlert = () => {
     Alert.alert(
       "Sign out",
@@ -71,8 +75,9 @@ export default function Setting({ navigation }) {
           text: "Sign out",
           onPress: () => {
             navigation.dispatch(StackActions.pop(1));
-            navigation.navigate(constant.navigationNames.SplashScreen)
-            authenticationContext.setAuthentication(null);
+            navigation.navigate(constant.navigationNames.SplashScreen);
+            courseContext.setFavoriteCourses([]);
+            authenticationContext.logout();
           },
         },
       ],
@@ -80,7 +85,7 @@ export default function Setting({ navigation }) {
     );
   };
   return (
-    <ScrollView contentContainerStyle={css.screenContentNoPaddingTop}>
+    <ScrollView contentContainerStyle={[css.screenContentNoPaddingTop]}>
       <ListSetting settingList={settingList1} />
       <ListSetting settingList={settingList2} switchBtn="true" />
       <ListSetting settingList={settingList3} />

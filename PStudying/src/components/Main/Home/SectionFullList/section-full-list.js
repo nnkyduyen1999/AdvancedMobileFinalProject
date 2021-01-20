@@ -1,5 +1,5 @@
-import React, {useContext} from "react";
-import { ScrollView } from "react-native";
+import React from "react";
+import { ScrollView, FlatList } from "react-native";
 import css from "../../../../globals/style";
 import ScreenHeader from "../../../Common/screen-header";
 import ListCourse from "../../../Courses/ListCourse/list-course";
@@ -7,10 +7,15 @@ import ListCourse from "../../../Courses/ListCourse/list-course";
 const SectionFullList = ({ navigation, route }) => {
   const sectionContent = route.params.sectionContent;
   return (
-    <ScrollView style={css.screenContent}>
-      <ScreenHeader screenTitle={`${sectionContent.title}`} />
-      <ListCourse nav={navigation} listCourses={sectionContent.courses}/>
-    </ScrollView>
+    <FlatList style={css.screenContent}
+      ListHeaderComponent={
+        <ScreenHeader screenTitle={`${sectionContent.title}`} />
+      }
+      data={sectionContent.courses}
+      ListFooterComponent={
+        <ListCourse nav={navigation} listCourses={sectionContent.courses} />
+      }
+    />
   );
 };
 

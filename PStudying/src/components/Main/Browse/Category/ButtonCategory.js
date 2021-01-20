@@ -1,13 +1,12 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
+import React, { useContext } from "react";
 import { ScrollView } from "react-native";
 import { Button } from "react-native-elements";
 import css from "../../../../globals/style";
 import constant from "../../../../globals/constant";
+import { ThemeContext } from "../../../../providers/theme-provider";
 
 export default function ButtonCategory({ nav }) {
+  const { themes } = useContext(ThemeContext);
   const listTitle = [
     "Angular",
     "JavaScript",
@@ -26,10 +25,10 @@ export default function ButtonCategory({ nav }) {
   const renderListTitle = (listTitle) => {
     return listTitle.map((title, index) => (
       <Button
-        buttonStyle={css.buttonLayoutBig}
+        buttonStyle={{...css.buttonLayoutBig, backgroundColor: themes.radiusBtn}}
         key={index}
         title={title}
-        titleStyle={css.buttonTitle}
+        titleStyle={{...css.buttonTitle, color: themes.text}}
         onPress={() => {
           nav.navigate(constant.navigationNames.FullSection, {
             sectionContent: {

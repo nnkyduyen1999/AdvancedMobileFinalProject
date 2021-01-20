@@ -1,38 +1,38 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, TouchableOpacity, Alert, Text, KeyboardAvoidingView  } from "react-native";
+import { View, TouchableOpacity, Alert, Text, KeyboardAvoidingView, ActivityIndicator  } from "react-native";
 import { Button } from "react-native-elements";
 import InputCustom from "./InputText/input-text";
 import TextButton from "./InputText/text-button";
 import css from "../../../globals/style";
 import theme from "../../../globals/theme";
 import constant from "../../../globals/constant";
-import authenticationService from "../../../core/services/authentication-services";
 import { AuthenticationContext } from "../../../providers/authentication-provider";
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState(``);
   const [password, setPassword] = useState(``);
   const authenticationContext = useContext(AuthenticationContext);
-  const { authentication } = authenticationContext;
+  const { state } = authenticationContext;
 
   useEffect(() => {
-    if (authentication && authentication.statusCode === 200) {
+    if (state.isAuthenticated) {
       navigation.navigate(constant.navigationNames.Home);
     } 
-  }, [authentication]);
+  }, [state]);
   const renderStatus = (authentication) => {
     if (!authentication) {
       return <></>;
-    } else if (authentication.statusCode === 200) {
+    } else if (authentication.isAuthenticated) {
       return <Text style={{ color: "green" }}>Successfully Login</Text>;
     } else {
-      return <Text style={{ color: "red" }}>{authentication.errString}</Text>;
+      return <Text style={{ color: "red" }}>{authentication.errMsg}</Text>;
     }
   };
   return (
     <KeyboardAvoidingView style={[css.screenContentNoPaddingTop, { justifyContent: "center" }]}>
       <View style={{ height: 400, justifyContent: "space-around" }}>
-        {renderStatus(authentication)}
+        {state.isAuthenticating && <ActivityIndicator size="large" color={theme.BASIC_BLUE}/>}
+        {renderStatus(state)}
         <InputCustom
           label="Username"
           placeholder="Email or username"
@@ -51,9 +51,7 @@ const Login = ({ navigation }) => {
           buttonStyle={[{ backgroundColor: theme.BASIC_BLUE }]}
           titleStyle={css.authenBtnTitle}
           onPress={() => {
-            authenticationContext.setAuthentication(
-              authenticationService.login(username, password)
-            );
+            authenticationContext.login(username, password);
           }}
         />
 

@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 import theme from "../../../../globals/theme";
 import css from "../../../../globals/style";
-const InputCustom = ({ label, placeholder, iconName, rightIcon, textChange }) => {
+import {ThemeContext} from "../../../../providers/theme-provider";
+
+const InputCustom = ({
+  label,
+  placeholder,
+  iconName,
+  rightIcon,
+  textChange,
+}) => {
+  const { themes } = useContext(ThemeContext);
   return (
     <>
-      {!rightIcon && (
+      {!rightIcon ? (
         <Input
           label={label}
           labelStyle={css.courseTitle}
@@ -19,12 +28,10 @@ const InputCustom = ({ label, placeholder, iconName, rightIcon, textChange }) =>
               color={theme.SECONDARY_TEXT_COLOR}
             />
           }
-          inputStyle={{ color: theme.PRIMARY_TEXT_COLOR }}
+          inputStyle={{ color: themes.text }}
           onChangeText={textChange}
         />
-      )}
-
-      {rightIcon && (
+      ) : (
         <Input
           label={label}
           labelStyle={css.courseTitle}
@@ -44,7 +51,7 @@ const InputCustom = ({ label, placeholder, iconName, rightIcon, textChange }) =>
               color={theme.SECONDARY_TEXT_COLOR}
             />
           }
-          inputStyle={{ color: theme.PRIMARY_TEXT_COLOR }}
+          inputStyle={{ color: themes.text }}
           onChangeText={textChange}
         />
       )}

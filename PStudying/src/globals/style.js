@@ -10,11 +10,9 @@ export default StyleSheet.create({
   sectionTitle: {
     fontSize: theme.FONT_SIZE_LARGE,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
-    color: theme.PRIMARY_TEXT_COLOR,
   },
   courseTitle: {
     fontSize: theme.FONT_SIZE_MEDIUM,
-    color: theme.PRIMARY_TEXT_COLOR,
     fontWeight: theme.FONT_WEIGHT_MEDIUM,
   },
   courseContent: {
@@ -23,7 +21,6 @@ export default StyleSheet.create({
   },
   buttonTitle: {
     fontSize: theme.FONT_SIZE_SMALL,
-    color: theme.PRIMARY_TEXT_COLOR,
   },
   courseDetailTitle: {
     color: theme.PRIMARY_TEXT_COLOR,
@@ -32,7 +29,6 @@ export default StyleSheet.create({
   },
   buttonLayoutSmall: {
     borderRadius: 12,
-    backgroundColor: theme.RADIUS_BTN_BGR,
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
@@ -40,7 +36,6 @@ export default StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 15,
     paddingVertical: 6,
-    backgroundColor: theme.RADIUS_BTN_BGR,
     marginRight: theme.LARGE_MARGIN,
     marginBottom: theme.LARGE_MARGIN,
   },
@@ -93,7 +88,6 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: theme.DARK_THEME,
     paddingVertical: theme.SMALL_PADDING
   },
   authenBtnTitle: {

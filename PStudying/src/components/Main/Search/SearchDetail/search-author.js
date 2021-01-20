@@ -1,15 +1,14 @@
 import React from "react";
 import { SectionList, View, Text } from "react-native";
-import ListCourseItem from "../../../Courses/ListCourseItems/list-course-items";
 import SectionCourseTitle from "../../../Common/section-course-title";
-import SearchEmpty from "../SearchEmpty/search-empty";
+import CustomAvatar from "../AvatarCustom/custom-avatar";
 import css from "../../../../globals/style";
 
-const SearchAuthor = ({ nav, searchData }) => {
+const SearchAuthor = ({ nav, searchAuthorsData }) => {
   const DATA = [
     {
       title: "Authors",
-      data: searchData,
+      data: searchAuthorsData,
     },
   ];
 
@@ -19,7 +18,7 @@ const SearchAuthor = ({ nav, searchData }) => {
         sections={DATA}
         keyExtractor={(item, index) => item + index}
         renderItem={({ item }) => (
-          <ListCourseItem course={item} listCourseNav={nav} />
+          <CustomAvatar author={item} authorNav={nav} />
         )}
         renderSectionHeader={({ section: { title, data } }) => (
           <SectionCourseTitle
@@ -29,7 +28,6 @@ const SearchAuthor = ({ nav, searchData }) => {
             sectionCourses={data}
           />
         )}
-        ListEmptyComponent={<SearchEmpty />}
       />
     </View>
   );
