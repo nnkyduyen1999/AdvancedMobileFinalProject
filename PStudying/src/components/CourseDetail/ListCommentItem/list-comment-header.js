@@ -47,7 +47,7 @@ const ListCommentHeader = ({ courseId, oldList, setNewList }) => {
       inputStyle={{ color: themes.text }}
       rightIcon={
         <TouchableOpacity
-          onPress={() => postComment(state.token, comment, 0, courseId, state.userInfo)}
+          onPress={() => postComment(state.token, comment, 3, courseId, state.userInfo)}
         >
           <Icon name="paper-plane" size={24} color={theme.BASIC_BLUE} />
         </TouchableOpacity>
